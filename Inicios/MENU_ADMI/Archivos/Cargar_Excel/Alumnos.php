@@ -22,11 +22,11 @@
     <?php include 'menu.php';?>
     <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
     <br>
-      <header>
+      
         <div class="alert alert-info">
           <h3>Insertar registros de Alumnos</h3>
         </div>
-      </header>
+     
       <form action="files.php" method="post" enctype="multipart/form-data" id="filesForm">
         <div class="col-md-4 offset-md-4">
             <input class="form-control" type="file" name="fileContacts" id="cuadr"><br>

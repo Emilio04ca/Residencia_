@@ -23,6 +23,7 @@
   <body>
     <?php include 'menu.php';?>
     <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
+    <br>
       <br>
 
       <div class="container justify-items-center n">

@@ -49,7 +49,7 @@
         </ul>
       </div>
       <div class="close">
-        <a href="Submenu/cerrrar_seson.php"><i class='bx bx-window-close'></i></a>
+        <a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_SIIE/Submenu/cerrrar_seson.php"><i class='bx bx-window-close'></i></a>
       </div>
     </div>
   </nav>

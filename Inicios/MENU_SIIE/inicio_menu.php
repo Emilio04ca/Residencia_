@@ -2,7 +2,7 @@
 // Solo se permite el ingreso con el inicio de sesion.
 session_start();
 // Si el usuario no se ha logueado se le regresa al inicio.
-if (($_SESSION ["usuario"]['Num_Ctrl'] != '')) {
+if (($_SESSION ["usuario"]['Num_Ctrl'] != null)) {
   
 ?>
 <!DOCTYPE html>
