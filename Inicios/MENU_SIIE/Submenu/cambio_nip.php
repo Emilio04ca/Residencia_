@@ -189,48 +189,9 @@ if (($_SESSION ["usuario"]['Num_Ctrl'] != '')) {
 
    </head>
 <body>
-  <header>
-  <nav>
-    <div class="navbar">
-      <i class='bx bx-menu'></i>
-      <div class="logo"><a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_SIIE/inicio_menu.php">SIIE</a></div>
-      <div class="nav-links">
-        <div class="sidebar-logo">
-          <span class="logo-name">SIEE</span>
-          <i class='bx bx-x' ></i>
-        </div>
-        <ul class="links">
-          <li ><a href="inicio_menu_califas.php">Calif. parciales</a></li>
-          <li >
-            <a href="#">Serv. Social</a>
-            <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
-            <ul class="htmlCss-sub-menu sub-menu">
-              <li class=""><a href="Requisitos_serv.html">Requisitos</a></li>
-              <li><a href="Requsitos_Servicio.html">Descargar Formatos</a></li>
-            </ul>
-          </li>
-         <li >
-            <a href="#">Practicas Profesionales</a>
-            <i class='bx bxs-chevron-down js-arrow arrow '></i>
-            <ul class="js-sub-menu sub-menu">
-              <li><a href="Requisitos_ProF.html">Requisitos</a></li>
-              <li><a href="PracticasProfesionales.html">Descargar Formatos</a></li>
-            </ul>
-          </li>
-          <li><a href="#">Boleta de calificaciones</a></li>
-          <li><a href="Requisitos_Titulacion.html">Requisitos_Titulacion</a></li>
-          <li class="activo"><a href="#">Cambio Nip</a></li>
-          
-        </ul>
-      </div>
-      <div class="close">
-        <a href="Submenu/cerrrar_seson.php"><i class='bx bx-window-close'></i></a>
-      </div>
-      </div>
-      <script src="script.js"></script>
-  </nav>
-  
-</header>
+<?php
+    include 'Menu.php';
+  ?>
 <br>
 <br>
 <br>
