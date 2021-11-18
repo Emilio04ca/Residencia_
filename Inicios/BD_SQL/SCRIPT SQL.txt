@@ -1,0 +1,135 @@
+CREATE TABLE `cbtis`.`especialidad` (
+  `idEspecialidad` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`idEspecialidad`));
+
+
+CREATE TABLE `cbtis`.`materia` (
+  `Nom_Materia` VARCHAR(25) NOT NULL,
+  `clave` INT NOT NULL,
+  `Tipo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`Nom_Materia`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+
+CREATE TABLE `cbtis`.`maestro_info` (
+  `ID_Clave` VARCHAR(25) NOT NULL,
+  `Nombre` VARCHAR(15) NOT NULL,
+  `Apelliodo_P` VARCHAR(15) NULL,
+  `Apelliod_M` VARCHAR(15) NULL,
+  PRIMARY KEY (`ID_Clave`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE `cbtis`.`status` (
+  `Id_Status` INT NOT NULL,
+  `Descripcion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`Id_Status`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE `cbtis`.`periodo` (
+  `Periodo_ID` VARCHAR(15) NOT NULL,
+  `Mes` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`Periodo_ID`));
+
+CREATE TABLE `cbtis`.`info_estudiantes` (
+  `Num_Ctrl` INT NOT NULL,
+  `Nombre` VARCHAR(20) NOT NULL,
+  `Apellido_P` VARCHAR(20) NOT NULL,
+  `Apellido_M` VARCHAR(20) NOT NULL,
+  `Especialidad` VARCHAR(25) NOT NULL,
+  `Semestre` INT NOT NULL,
+  `Status` INT NULL,
+  PRIMARY KEY (`Num_Ctrl`),
+  INDEX `FK_especilidad_idx` (`Especialidad` ASC) VISIBLE,
+  INDEX `FK_Status_idx` (`Status` ASC) VISIBLE,
+  CONSTRAINT `FK_especilidad`
+    FOREIGN KEY (`Especialidad`)
+    REFERENCES `cbtis`.`especialidad` (`idEspecialidad`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Status`
+    FOREIGN KEY (`Status`)
+    REFERENCES `cbtis`.`status` (`Id_Status`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE `cbtis`.`maestro_materia` (
+  `ID_inc` INT NOT NULL AUTO_INCREMENT,
+  `Nom_Materia` VARCHAR(25) NOT NULL,
+  `Especialidad` VARCHAR(25) NOT NULL,
+  `Grupo` VARCHAR(5) NOT NULL,
+  PRIMARY KEY (`ID_inc`),
+  INDEX `FK_NomMateria_idx` (`Nom_Materia` ASC) VISIBLE,
+  INDEX `FK_Especilidad_idx` (`Especialidad` ASC) VISIBLE,
+  CONSTRAINT `FK_NomMateria`
+    FOREIGN KEY (`Nom_Materia`)
+    REFERENCES `cbtis`.`materia` (`Nom_Materia`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+  CONSTRAINT `FK_Especilidad`
+    FOREIGN KEY (`Especialidad`)
+    REFERENCES `cbtis`.`especialidad` (`idEspecialidad`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE `cbtis`.`calificaciones` (
+  `Id_inc` INT NOT NULL AUTO_INCREMENT,
+  `Num_Ctrl` INT NOT NULL,
+  `Nom_Materia` VARCHAR(25) NOT NULL,
+  `Calificacion` INT NOT NULL,
+  `Unidad` INT NOT NULL,
+  `Asistencia` INT NOT NULL,
+  `Grupo` VARCHAR(45) NOT NULL,
+  `Periodo` VARCHAR(15) NOT NULL,
+  `Semestre` INT NOT NULL,
+  PRIMARY KEY (`Id_inc`),
+  INDEX `FK_NumCtrl_idx` (`Num_Ctrl` ASC) VISIBLE,
+  INDEX `FK_Materia_idx` (`Nom_Materia` ASC) VISIBLE,
+  INDEX `FK_Periodo_idx` (`Periodo` ASC) VISIBLE,
+  CONSTRAINT `FK_NumCtrl`
+    FOREIGN KEY (`Num_Ctrl`)
+    REFERENCES `cbtis`.`info_estudiante` (`Num_Ctrl`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Materia`
+    FOREIGN KEY (`Nom_Materia`)
+    REFERENCES `cbtis`.`maestro_materia` (`Nom_Materia`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Periodo`
+    FOREIGN KEY (`Periodo`)
+    REFERENCES `cbtis`.`periodo` (`Periodo_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `cbtis`.`login_alumno` (
+  `Idregistro` INT NOT NULL,
+  `Numcontrol` INT NOT NULL,
+  `Especialidad` VARCHAR(45) NOT NULL,
+  `login_alumnocol` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`Idregistro`),
+  INDEX `FK_NumControl_idx` (`Numcontrol` ASC) VISIBLE,
+  INDEX `FK_Especialidad_idx` (`Especialidad` ASC) VISIBLE,
+  CONSTRAINT `FK_NumControl`
+    FOREIGN KEY (`Numcontrol`)
+    REFERENCES `cbtis`.`info_estudiante` (`Num_Ctrl`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Especialidad`
+    FOREIGN KEY (`Especialidad`)
+    REFERENCES `cbtis`.`especialidad` (`idEspecialidad`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `cbtis`.`login_administrador` (
+  `Id_incremental` INT NOT NULL,
+  `Clave` VARCHAR(20) NOT NULL,
+  `Nombre` VARCHAR(20) NOT NULL,
+  `Apellido` VARCHAR(20) NOT NULL,
+  `Nivel` VARCHAR(20) NOT NULL);
+

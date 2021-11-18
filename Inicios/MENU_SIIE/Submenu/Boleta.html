@@ -1,0 +1,106 @@
+  <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<link rel="stylesheet" href="style.css">
+	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<style type="text/css">
+  .derecha{
+    margin-top: 30px;
+    width: 20%;
+    height: 100vh;
+    position: fixed;
+    background: #707B7C;
+
+  }
+  .posicion1{
+   text-align: center;
+   font-family: sans-serif;
+   margin-top: 15%;
+  }
+</style>
+</head>
+<body>
+	  <header>
+  <nav>
+    <div class="navbar">
+      <i class='bx bx-menu'></i>
+      <div class="logo"><a href="#">SIIE</a></div>
+      <div class="nav-links">
+        <div class="sidebar-logo">
+          <span class="logo-name">SIEE</span>
+          <i class='bx bx-x' ></i>
+        </div>
+        <ul class="links">
+          <li><a href="inicio_menu_califas.php">Calif. parciales</a></li>
+          <li>
+            <a href="#">Serv. Social</a>
+            <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+            <ul class="htmlCss-sub-menu sub-menu">
+              <li class="more">
+                <span><a href="#">Llenar Formato</a>
+                <i class='bx bxs-chevron-right arrow more-arrow'></i>
+              </span>
+                <ul class="more-sub-menu sub-menu">
+                  <li><a href="#">Formato 1</a></li>
+                  <li><a href="#">Formato 2</a></li>
+                  <li><a href="#">Formato 3</a></li>
+                  <li><a href="#">Formato 4</a></li>
+                </ul>
+              </li>
+              <li><a href="Bienvenida_alumno.html">Descargar Formatos</a></li>
+            </ul>
+          </li>
+         <li>
+            <a href="#">Practicas Profesionales</a>
+            <i class='bx bxs-chevron-down js-arrow arrow '></i>
+            <ul class="js-sub-menu sub-menu">
+              <li class="more2">
+                <span><a href="#">Llenar Formato</a>
+                <i class='bx bxs-chevron-right arrow more2-arrow'></i>
+              </span>
+                <ul class="more2-sub-menu sub-menu">
+                  <li><a href="#">Formato 1</a></li>
+                  <li><a href="#">Formato 2</a></li>
+                  <li><a href="#">Formato 3</a></li>
+                  <li><a href="#">Formato 4</a></li>
+                </ul>
+              </li>
+              <li><a href="PracticasProfesionales.html">Descargar Formatos</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Boleta de calificaciones</a></li>
+          <li><a href="#">Conceptos de cobro</a></li>
+          <li ><a href="cambio_nip.html">Cambio Nip</a></li>
+          
+        </ul>
+      </div>
+      <div class="close">
+        <a href="Submenu/cerrrar_seson.php"><i class='bx bx-window-close'></i></a>
+      </div>
+    </div>
+  </nav>
+  <script src="script.js"></script>
+</header>
+
+<section class="patalladividida">
+  <div class="izquierdo">
+    
+  </div>
+<div class="derecha">
+      <h3 align="center" style="padding-top: 50%;">Consulta<br>De Boletas</h3>
+      <div class="posicion3">
+          <table align="center" width="200px">  
+          <tbody>
+          <tr> 
+          <th> No. de Control </th> </tr><tr> <td id="non"> <input type="text" name="no_de_control" value="17030081" maxlength="10" readonly="true"> </td> </tr><tr> <th> Periodo </th> </tr><tr> <td id="non"> <select name="periodo"><option style="margin: auto;" value="0"> -- Seleccione Periodo -- </option></select> </td> 
+          </tr> 
+          </tbody>
+          </table>
+          </div>
+      </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,52 @@
+/*tabla alumno*/
+table{
+    border :0;
+    background: #FFFFFF;
+    align-items: center;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    display: table;
+      border-collapse: separate;
+      box-sizing: border-box;
+      text-indent: initial;
+      border-spacing: 2px;
+      border-color: darkred;
+      width: 50%;
+    
+  }
+  
+  th {
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #FFFFFF;
+  
+    background-color: #8B0000;
+    font-variant: small-caps;
+    padding: 3px 10px 3px 5px;
+  }
+  
+  
+  td {
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #25496B;
+    text-align: left;
+    background-color: #DDDDDD;
+    padding: 0px 0px 0px 0px;
+  }
+  .non{
+    font-variant:small-caps;
+    font-size: 20px;
+    color: #25496B;
+  
+  }
+  input {
+    border-style: solid;
+    background-color:  #fff;
+    color:#014E82;
+    padding: 1px 3px 1px 3px;
+    font-size: 11px;
+    text-align: center;
+  }
+  
+  

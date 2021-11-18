@@ -1,0 +1,521 @@
+/********** ETIQUETAS **********/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: auto;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+body {
+	
+	background: url('../image_info/leopardol.png') no-repeat  fixed center;
+	background-size: cover;
+	margin: auto;
+	
+	
+}
+.titulo1 { font-size: 40px; color: #000000; font-family: Verdana;}
+
+.titulo2 { font-size: 23px; font-weight:bold; color: #F8F9F9; font-family: Courier New;  }
+
+.titulos{
+	width:	180px;
+	height: 180px;
+
+}
+.leo{
+	width:	350px;
+	height: 350px;
+	opacity: 0.2;
+	align-content: center;
+	object-position: left;
+	border: 15px;
+	align: left;
+}
+.ima{
+display:block;
+margin:auto;
+}
+
+table{
+	border :0;
+	margin: auto;
+
+	
+}
+
+th {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFFFFF;
+	background-color: #8B0000;
+	font-variant: small-caps;
+	padding: 3px 10px 3px 5px;
+}
+div{
+	margin: auto;
+}
+
+
+
+
+
+
+
+p { text-align: justify; }
+
+
+a:link, a:visited {
+	font-weight:bold;
+	color: #6699cc;
+	text-decoration: none;
+}
+
+a:hover{
+	color: #FF8000;
+	text-decoration: none;
+}
+
+
+input {
+	border-style: solid;
+	border-bottom-width: 1px;
+	border-top-width: 2px;
+	border-left-width: 2px;
+	border-right-width: 1px;
+	border-color: #7288A0;
+	background-color:  #EEEEEE;
+	color:#014E82;
+	padding: 1px 3px 1px 3px;
+	font-size: 11px;
+}
+
+textarea {
+	border-style: solid;
+	border-bottom-width: 1px;
+	border-top-width: 2px;
+	border-left-width: 2px;
+	border-right-width: 1px;
+	border-color: #7288A0;
+	background-color: #EEEEEE;
+	color: #014E82;
+	padding: 1px 3px 1px 3px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+select {
+	border-style: solid;	
+	background-color:#EEEEEE;	
+	color:#014E82;
+	font-size: 11px;
+}
+
+select:disabled {
+	background-color:#EEEEEE
+	color:#CC0000;
+}
+
+label{
+	/*text-decoration:underline;*/
+}
+
+fieldset {
+	border-color:#FF9900;
+	padding: 0px 10px 10px 10px;
+}
+
+legend {
+	padding: 0px 10px 5px 10px;
+	color: #FF8000;
+	font-variant: small-caps;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+/********** CLASES **********/
+.calendario{
+	font-size: 10px;
+	font-family: Verdana,Helvetica;
+	font-weight: bold;
+	color: #FFFFFF;
+	padding: 1px 1px 2px 1px;
+	background: #638CB5;
+	border-color: #014E82;
+	border-style: solid;
+	border-bottom-width: 2px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-right-width: 2px;
+  width:20px;
+  height:18px;
+}
+
+.boton{
+	font-size: 12px;
+	font-family: Verdana,Helvetica;
+	font-weight: bold;
+	font-variant:small-caps;
+	color: #FFFFFF;
+	background:#8B0000;
+	border-color: #8B0000;
+	border-style: solid;
+	border-bottom-width: 2px;
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-right-width: 2px;
+}
+
+.vinculo:link, .vinculo:visited {
+	font-weight:bold;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.vinculo:hover{
+	color: #FFFF99;
+	text-decoration: none;
+}
+
+
+.vinculo_par:link, .vinculo:visited {
+	font-weight:bold;
+	color: #25496B;
+	text-decoration: none;
+}
+
+.vinculo_par:hover{
+	color: #FFFF99;
+	text-decoration: none;
+}
+
+.vinculo_non:link, .vinculo:visited {
+	font-weight:bold;
+	color: #25496B;
+	text-decoration: none;
+}
+
+.vinculo_non:hover{
+	color: #FF8000;
+	text-decoration: none;
+}
+
+.cursor_pointer{
+	cursor: pointer;
+}
+
+.bold { font-weight: bold; }
+.justified { text-align: justify; }
+.left { text-align: left; }
+.center { text-align: center; }
+.right { text-align: right; }
+
+.expanded { 
+	font-size: 12px;
+	line-height: 16px;
+	letter-spacing: 2px;
+}
+
+
+/** Clases small **/
+.small_right{ 
+	font-size: 9px;
+	font-weight: normal;
+	text-align: right;
+}
+
+.small_left{ 
+	font-size: 9px;
+	font-weight: normal;
+	text-align: left;
+}
+
+.small_center{ 
+	font-size: 9px;
+	font-weight: normal;
+	text-align: center;
+}
+
+.small_negrita_right{ 
+	font-size: 9px;
+	font-weight: bold;
+	text-align: right;
+}
+
+.small_negrita_left{ 
+	font-size: 9px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.small_negrita_center{ 
+	font-size: 9px;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+/** Clases medium **/
+.medium_right{ 
+	font-size: 10px;
+	font-weight:normal;
+	text-align: right;
+}
+
+.medium_left{ 
+	font-size: 10px;
+	font-weight:normal;
+	text-align: left;
+}
+
+.medium_center{ 
+	font-size: 11px;
+	font-weight:normal;
+	text-align: center;
+}
+
+.medium_negrita_right{ 
+	font-size: 10px;
+	font-weight: bold;
+	text-align: right;
+}
+
+.medium_negrita_left{ 
+	font-size: 10px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.medium_negrita_center{ 
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+}
+
+/** Clases normal **/
+.normal_right{ 
+	font-size: 11px;
+	font-weight:normal;
+	text-align: right;
+}
+
+.normal_left{ 
+	font-size: 11px;
+	font-weight:normal;
+	text-align: left;
+}
+
+.normal_center{ 
+	font-size: 11px;
+	font-weight:normal;
+	text-align: center;
+}
+
+.normal_negrita_right{ 
+	font-size: 11px;
+	font-weight: bold;
+	text-align: right;
+}
+
+.normal_negrita_left{ 
+	font-size: 11px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.normal_negrita_center{ 
+	font-size: 11px;
+	font-weight: bold;
+	text-align: center;
+}
+
+/** Clases big **/
+.big_right{ 
+	font-size: 12px;
+	font-weight:normal;
+	text-align: right;
+}
+
+.big_left{ 
+	font-size: 12px;
+	font-weight:normal;
+	text-align: left;
+}
+
+.big_center{ 
+	font-size: 12px;
+	font-weight:normal;
+	text-align: center;
+}
+
+.big_negrita_right{ 
+	font-size: 12px;
+	font-weight: bold;
+	text-align: right;
+}
+
+.big_negrita_left{ 
+	font-size: 12px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.big_negrita_center{ 
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+/** Clases xbig **/
+.xbig_right{ 
+	font-size: 14px;
+	font-weight:normal;
+	text-align: right;
+}
+
+.xbig_left{ 
+	font-size: 14px;
+	font-weight:normal;
+	text-align: left;
+}
+
+.xbig_center{ 
+	font-size: 14px;
+	font-weight:normal;
+	text-align: center;
+}
+
+.xbig_negrita_right{ 
+	font-size: 14px;
+	font-weight: bold;
+	text-align: right;
+}
+
+.xbig_negrita_left{ 
+	font-size: 14px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.xbig_negrita_center{ 
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+}
+
+/********** IDs **********/
+#par {
+	background-color: #BBBBBB;
+/*	color: #000000;
+	color: #25496B; */
+}
+
+#non {
+	background-color: #DDDDDD;
+/*	color: #000000;*/
+}
+
+#amarillo {
+	background-color: #FFFF66;
+}
+
+#lila{
+	background-color: #603060;
+	color: #FFFFFF;
+}
+
+#verde{
+	background-color: #A0D79F;
+	color: #000000;
+}
+
+#naranja{
+	background-color: #FF9900;
+	color: #000000;
+}
+
+#azul{
+	background-color: #0080C0;
+	color: #FFFFFF;
+}
+
+#gris{
+	background-color: #CCCCCC;
+	color: #000000;
+}
+
+#rojo {
+	background:#FF0000;
+	color:#FFFFFF;
+}
+
+#verde_s {
+	background-color: #669900;/* #800080;*/
+	color: #FFFFFF;
+}
+
+#sub{
+	text-decoration:underline;
+}
+
+/*Codigo Experimento Login*/
+.box{
+  width: 300px;
+  padding: 1px;
+  position: static;
+  top: 40%;
+  
+  background: rgb(255, 255, 255,.5);
+  border-radius: 5px;
+  text-align: center;
+}
+.box h2{
+  color: black;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: black; 
+  font-variant:small-caps;
+}
+.box label{
+	color: black;
+	text-transform: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 15;
+}
+.box input[type = "text"],.box input[type = "password"]{
+  border:0;
+  background: none;
+  display: block;
+  margin: 5px auto;
+  text-align: center;
+  border: 2px solid #8B0000;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+.box input[type = "text"]:focus,.box input[type = "password"]:focus{
+  width: 250px;
+  border-color: #9C9C9C;
+}
+.box input[type = "submit"]{
+  border:0;
+  background: none;
+  display: block;
+  margin: 15px auto;
+  text-align: center;
+  border: 2px solid #9C9C9C;
+  padding: 14px 40px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+.box input[type = "submit"]:hover{
+  background: #8B0000;
+  color: white;
+}
