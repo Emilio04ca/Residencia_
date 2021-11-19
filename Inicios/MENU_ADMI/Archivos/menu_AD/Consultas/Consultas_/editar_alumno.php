@@ -5,8 +5,8 @@
 <html lang="en">
   <head>
     <title>Actualizar_Alumno</title>
-    <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/style.css">
-    <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/estilo2.css">
+    <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_SIIE/Submenu/style.css">
+    <!--<link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/estilo2.css">-->
     
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -112,13 +112,13 @@
     <br>
         
       <form name="actualizar" action="../php_s/php/update.php" method="POST">
-        <h1 class="text-center"><strong>Actualizar Alumno</strong></h1>
+        <center><h1 class="text-center"><strong>Actualizar Alumno</strong></h1></center> 
         <input name="Num_Ctrl" type="hidden" value="<?php echo $row['Num_Ctrl'];?>">
         <table align="center" width="300px">
           <tbody>
             <tr>
               <th>No. de Control: </th>
-              <td id="non"><input type="hidden" value=""> <?php echo $row['Num_Ctrl'];?></td>
+              <center><td id="non"><input type="hidden" value=""> <?php echo $row['Num_Ctrl'];?></td></center>
             </tr>
             <tr>
               <th>Nombre </th>
@@ -151,7 +151,7 @@
         </table>
         <br>  
           <div align="center">
-            <input name="aceptar" type="button" value="Actualizar"  onclick="valida_datos();"> 
+          <input type="button" name="aceptar" value="Aceptar" class="boton" onclick="valida_datos();"> 
           </div>
       </form>
     <!-- Optional JavaScript -->

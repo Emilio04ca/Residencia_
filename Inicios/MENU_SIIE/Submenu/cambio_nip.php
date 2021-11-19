@@ -227,8 +227,7 @@ if (($_SESSION ["usuario"]['Num_Ctrl'] != '')) {
   <br>  
   <div align="center">
     <input type="button" name="aceptar" value="Aceptar" class="boton" onclick="valida_datos();"> 
-    
-    <input type="button" name="salir" value="Salir" class="boton"> 
+     
   </div>
   
 

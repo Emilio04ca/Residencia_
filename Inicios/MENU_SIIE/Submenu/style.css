@@ -310,7 +310,7 @@ table{
 
 th {
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   color: #FFFFFF;
 
   background-color: #8B0000;
@@ -321,7 +321,7 @@ th {
 
 td {
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   color: #25496B;
   text-align: left;
   background-color: #DDDDDD;
@@ -331,6 +331,7 @@ td {
   font-variant:small-caps;
   font-size: 20px;
   color: #25496B;
+  text-align: center;
 
 }
 input {
@@ -338,7 +339,7 @@ input {
   background-color:  #fff;
   color:#014E82;
   padding: 1px 3px 1px 3px;
-  font-size: 11px;
+  font-size: 14px;
   text-align: center;
   width: 100%;
 }

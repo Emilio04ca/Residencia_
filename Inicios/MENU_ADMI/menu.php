@@ -46,6 +46,7 @@
               <li><a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/MM_index.php">CRUD</a></li>
             </ul>
           </li>
+          <li ><a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/agg_admi_index.php">Agg. Admi.</a></li>
         </ul>
       </div>
       <div class="close">

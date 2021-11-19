@@ -32,7 +32,7 @@
       <br>
       <br>
       <br>
-      <h1 class="text-center"><strong>Consulta Contraseña</strong></h1>
+      <h1 class="text-center"><strong>Consulta Calificaciones</strong></h1>
       <form action="Consultas_/Consulta_Cali.php" method="POST">
             <center>
               <input type="text" name="buscar" required style="margin: auto; text-align: center;" placeholder="Numero de control">

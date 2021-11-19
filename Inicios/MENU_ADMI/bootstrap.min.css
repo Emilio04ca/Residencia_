@@ -609,8 +609,8 @@ pre code {
 .col-xl-auto {
     position: relative;
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px
+    padding-right: 10px;
+    padding-left: 10px
 }
 .col {
     -ms-flex-preferred-size: 0;
@@ -1902,10 +1902,10 @@ pre code {
     text-align: center;
     margin: auto;
     height: calc(1.5em + .75rem + 2px);
-    padding: .375rem .75rem;
+    padding: 2px;
     font-size: 1rem;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1;
     color: #495057;
     background-color: #fff;
     background-clip: padding-box;

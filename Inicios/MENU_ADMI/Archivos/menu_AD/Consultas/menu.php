@@ -2,7 +2,7 @@
   <nav>
     <div class="navbar">
       <i class='bx bx-menu'></i>
-      <div class="logo"><a href="#">SIIE</a></div>
+      <div class="logo"><a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/admi_menu.php">SIIE</a></div>
       <div class="nav-links">
         <div class="sidebar-logo">
           <span class="logo-name">SIEE</span>
@@ -46,6 +46,7 @@
               <li><a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/MM_index.php">CRUD</a></li>
             </ul>
           </li>
+          <li ><a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/agg_admi_index.php">Agg. Admi.</a></li>
         </ul>
       </div>
   

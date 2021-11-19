@@ -12,25 +12,19 @@
   <head>
     <title>Consulta Contraseña</title>
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/style.css">
-
-    
-    
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/bootstrap.min.css" >
    
-<style>
-    .n{
-        margin-top: 50px;
-    }
-</style>
+    <style>
+        .n{
+            margin-top: 50px;
+        }
+    </style>
     <!-- Bootstrap CSS -->
   </head>
   <body>
@@ -50,8 +44,6 @@
       </form>
       <br>
       
-          
-     
       <div class="container justify-items-center n">
                 </form>
                   <table class="table">
@@ -65,20 +57,10 @@
                         <th scope="col">Asistencia U2</th>
                         <th scope="col">Asistencia U3</th>
                         <th scope="col">Calificacion</th>
-
-
                       </tr>
                     </thead>
-
-                  </table>
-                
-          
+                  </table>                        
       </div>
-
-<br>
-<br>
-<br>
-<br>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

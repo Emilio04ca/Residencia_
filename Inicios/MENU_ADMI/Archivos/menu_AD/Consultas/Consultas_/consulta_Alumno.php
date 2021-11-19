@@ -23,15 +23,7 @@
       
         <br>
         <br>
-        <h1 class="text-center"><strong>Consulta Alumnos</strong></h1>
-
-          
-        <form action="consulta_Alumno.php" method="post">
-          <center>
-            <input type="text" required name="buscar" style="margin: auto; text-align: center;" placeholder="Numero de control">
-            <input type="submit" value="Buscar" width="100px" >
-          </center>
-        </form>
+        
       
       <div class="container justify-items-center n">
       <div class="row">
@@ -55,6 +47,15 @@
       </form>
       </div>
       <div class="col-xs-12 col-lg-8 p-3">
+      <h1 class="text-center"><strong>Consulta Alumnos</strong></h1>
+
+          
+<form action="consulta_Alumno.php" method="post">
+  <center>
+    <input type="text" required name="buscar" style="margin: auto; text-align: center;" placeholder="Numero de control">
+    <input type="submit" value="Buscar" width="100px" >
+  </center>
+</form>
       <table class="table">
   <thead class="table">
     <tr>

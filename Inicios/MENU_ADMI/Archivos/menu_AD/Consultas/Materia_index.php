@@ -17,6 +17,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/bootstrap.min.css" >
@@ -26,6 +27,33 @@
             margin-top: 50px;
         }
     </style>
+    <script type="text/javascript">
+        function valida_datos()
+        {
+          formulario = document.priv;
+          if (formulario.Privilegio.value != "1")
+          {
+                    formulario.Clave.value="";
+                    formulario.Nombre.value="";
+                    formulario.Tipo.value="";
+                    
+                    
+            Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        toast: true,
+                        position: 'top',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey:false,
+                        stopKeydownPropagation:false,
+                        text: 'No tienes la autorizacion para agregar Materias'
+                    })
+                    return false;
+                  }
+                  formulario.submit();
+        }
+      </script>
   
   </head>
   <body>
@@ -33,18 +61,12 @@
     <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
         
       <br>
-    <br>
-    <h1 class="text-center"><strong>Consulta Materia Maestro</strong></h1>   
-        <form action="consulta_Alumno.php" method="post">
-          <center>
-            <input type="text" required name="buscar" style="margin: auto; text-align: center;" placeholder="Numero de control">
-            <input type="submit" value="Buscar" width="100px" >
-          </center>
-        </form>
+
       <div class="container justify-items-center n">
           <div class="row">
             <div class="col-xs-12 col-lg-3">
-              <form action="phpmate/insertar.php" method="POST">
+              <form name="priv" action="phpmate/insertar.php" method="POST">
+              <input name="Privilegio" type="hidden" value="<?php $_SESSION ["usuario"]["Privilegios"];?>">
                 <h1 class="text-center"><strong>Agregar Materias</strong></h1>
                 <br>
                 <input type="text" required placeholder="Clave" name="Clave" class="form-control">
@@ -53,10 +75,18 @@
                 <br>
                 <input type="text" required placeholder="Tipo" name="Tipo" class="form-control">
                 <br>
-                <input type="submit" value="Agregar" class="btn btn-primary btn-block">
+                <input type="button" value="Agregar" class="btn btn-primary btn-block" onclick="valida_datos();">
               </form>
             </div>
             <div class="col-xs-12 col-lg-8 p-3">
+              <h1 class="text-center"><strong>Consulta Materia Maestro</strong></h1>   
+              <form  action="consulta_Alumno.php" method="post">
+                <center>
+                  <input type="text" required name="buscar" style="margin: auto; text-align: center;" placeholder="Numero de control">
+                  <input type="submit" value="Buscar" width="100px" >
+                </center>
+              </form>
+              <br>
               <table class="table">
                 <thead class="table">
                   <tr>
