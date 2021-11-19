@@ -5,37 +5,30 @@ require_once("../Cripto/mcript.php");
 <html lang="en">
   <head>
     <title>Consulta Contraseña</title>
-    <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/style.css">
-    
-    
+    <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/style.css">    
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/bootstrap.min.css" >
   </head>
   <body>
-        <?php include 'menu.php';?>
-        <script src="script.js"></script>
+    <?php include 'menu.php';?>
+    <script src="script.js"></script>
       <br>
       <br>
       <h1 class="text-center"><strong>Consulta Contraseña</strong></h1>
-      <form action="consulta_Contraseña.php" method="POST">
-            <center>
-              <input type="text" name="buscar" required style="margin: auto; text-align: center;" placeholder="Numero de control">
-              <input type="submit" value="Buscar" width="100px">
-            </center>
-      </form>
-     
+        <form action="consulta_Contraseña.php" method="POST">
+              <center>
+                <input type="text" name="buscar" required style="margin: auto; text-align: center;" placeholder="Numero de control">
+                <input type="submit" value="Buscar" width="100px">
+              </center>
+        </form>
       <div class="container justify-items-center n">
         <div class="row">
-          <div class="col-xs-12 col-lg-3">
-            
+          <div class="col-xs-12 col-lg-3">            
             <form  method="POST" action="../reporte/reporte.php">
               <h1 class="text-center"><strong>Descarga Grupal</strong></h1>
               <br>
@@ -58,48 +51,41 @@ require_once("../Cripto/mcript.php");
                   <option value="5">5</option>
                   <option value="6">6</option>
                 </select>
-              </p>
-              
+              </p>              
               <input type="submit" value="Descargar Formatos" class="btn btn-primary btn-block">
             </form>
           </div>
-        <div class="col-xs-12 col-lg-8 p-3">
-          <table class="table">
-            <thead class="table">
-              <tr>
-                <th scope="col">Num. Control</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido Paterno</th>
-                <th scope="col">Apellido Materno</th>
-                <th scope="col">Contraseña</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-                  include("../php_s/phpcontra/contra.php");
+          <div class="col-xs-12 col-lg-8 p-3">
+            <table class="table">
+              <thead class="table">
+                <tr>
+                  <th scope="col">Num. Control</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Apellido Paterno</th>
+                  <th scope="col">Apellido Materno</th>
+                  <th scope="col">Contraseña</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                    include("../php_s/phpcontra/contra.php");
                     while($row=mysqli_fetch_array($query)){
-              ?>
-
-              <tr>
-                <td><?php echo utf8_decode($row['Num_Ctrl'])?></td>
-                <td><?php echo utf8_decode($row['Nombre'])?></td>
-                <td><?php echo utf8_decode($row['Ape_paterno'])?></td>
-                <td><?php echo utf8_decode($row['Ape_Materno'])?></td>
-                <td><?php echo $dato_desencriptado = $desencriptar($row['Contrasena'])?></td>
-              </tr>
-              <?php
-                  }
-              ?>
-            </tbody>
-          </table>
+                ?>
+                  <tr>
+                    <td><?php echo utf8_decode($row['Num_Ctrl'])?></td>
+                    <td><?php echo utf8_decode($row['Nombre'])?></td>
+                    <td><?php echo utf8_decode($row['Ape_paterno'])?></td>
+                    <td><?php echo utf8_decode($row['Ape_Materno'])?></td>
+                    <td><?php echo $dato_desencriptado = $desencriptar($row['Contrasena'])?></td>
+                  </tr>
+                <?php
+                    }
+                ?>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-   
-<br>
-<br>
-<br>
-<br>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
