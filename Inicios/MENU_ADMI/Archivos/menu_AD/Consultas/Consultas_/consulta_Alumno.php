@@ -64,6 +64,7 @@
       <th scope="col">Apellido Materno</th>
       <th scope="col">Semestre</th>
       <th scope="col">Carrera</th>
+      <th scope="col">Grupo</th>
       <th scope="col">Status</th>
       <th scope="col">Editar</th>
       <th scope="col">Eliminar</th>
@@ -72,7 +73,7 @@
   <tbody>
 
         <?php
-            include("php/alumno.php");
+              include("../php_s/php/alumno.php");
               while($row=mysqli_fetch_array($query)) {
         ?>
     
@@ -84,8 +85,9 @@
             <td><?php echo utf8_decode($row['Ape_Materno'])?></td>
             <td><?php echo utf8_decode($row['Semestre'])?></td>
             <td><?php echo utf8_decode($row['Especialidad']) ?></td>
+            <td><?php echo utf8_decode($row['Grupo']) ?></td>
             <td><?php echo utf8_decode($row['Status'])?></td>
-            <td><a href="copia_alumno.php?id=<?php echo $row['Num_Ctrl'] ?>" class="btn btn-primary">Editar</a></td>
+            <td><a href="editar_alumno.php?id=<?php echo $row['Num_Ctrl'] ?>" class="btn btn-primary">Editar</a></td>
             <td><a href="php/delete.php?id=<?php echo $row['Num_Ctrl'] ?>"  class="btn btn-danger" >Eliminar</a></td>
         </tr>
          <?php

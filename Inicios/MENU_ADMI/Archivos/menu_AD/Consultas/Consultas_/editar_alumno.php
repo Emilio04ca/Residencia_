@@ -1,5 +1,5 @@
 <?php
- include ('php/actualizar.php');
+ include ('../php_s/php/actualizar.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -26,7 +26,7 @@
     {
         formulario = document.actualizar;
 
-        if (formulario.Nombre.value = "") {
+        if (formulario.Nombre.value == "") {
           Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -40,7 +40,7 @@
                     })
                     return false;
         }
-        if (formulario.Semestre.value = "") {
+        if (formulario.Semestre.value == "") {
           Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -54,7 +54,7 @@
                     })
                     return false;
         }
-        if (formulario.Carrera.value = "") {
+        if (formulario.Carrera.value == "") {
           Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -68,7 +68,7 @@
                     })
                     return false;
         }
-        if (formulario.Status.value = "") {
+        if (formulario.Status.value == "") {
           Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -108,8 +108,10 @@
   <body>
     <?php include 'menu.php';?>
     <script src="script.js"></script>
+    <br>
+    <br>
         
-      <form name="actualizar" action="php/update.php" method="POST">
+      <form name="actualizar" action="../php_s/php/update.php" method="POST">
         <h1 class="text-center"><strong>Actualizar Alumno</strong></h1>
         <input name="Num_Ctrl" type="hidden" value="<?php echo $row['Num_Ctrl'];?>">
         <table align="center" width="300px">
@@ -120,7 +122,7 @@
             </tr>
             <tr>
               <th>Nombre </th>
-              <td id="non"><input name="Nombre" type="text" value="<?php echo $row['Nombre'];?>">  </td>
+              <td id="non"><input name="Nombre" type="text" value="<?php echo $row['Nombre'];?>"></td>
             </tr>
             <tr>
               <th>Apellido Paterno </th>
@@ -132,24 +134,24 @@
             </tr>
             <tr>
               <th>Semestre</th> 
-              <td id="non"><input name="Semestre" type="text" value="<?php echo $row['Semestre'];?>"> </td>
-              <td id="non">  </td>      
+              <td id="non"><input name="Semestre" type="text" value="<?php echo $row['Semestre'];?>"></td>
+                  
             </tr>
             <tr>
               <th>Especialidad</th>
-              <td id="non"><input name="Carrera" type="text" size="8" maxlength="5" value="<?php echo $row['Especialidad'];?>"> </td>
-              <td id="non">  </td>
+              <td id="non"><input name="Carrera" type="text"  value="<?php echo $row['Especialidad'];?>"></td>
             </tr> 
+            
             <tr>
               <th>Status </th>
-              <td id="non"> <input name="Status" type="text" id="pass1" size="8" maxlength="5" value="<?php echo $row['Status'];?>"></td>
+              <td id="non"> <input name="Status" type="text"  value="<?php echo $row['Status'];?>"></td>
             </tr>
       
           </tbody>
         </table>
         <br>  
           <div align="center">
-            <input name="aceptar" type="button" value="Actualizar" class="boton" onclick="valida_datos();"> 
+            <input name="aceptar" type="button" value="Actualizar"  onclick="valida_datos();"> 
           </div>
       </form>
     <!-- Optional JavaScript -->

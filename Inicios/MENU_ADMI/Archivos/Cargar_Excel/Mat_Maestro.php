@@ -1,3 +1,12 @@
+<?php
+  // Solo se permite el ingreso con el inicio de sesion.
+  session_start();
+  // Si el usuario no se ha logueado se le regresa al inicio.
+  if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
+    
+    /*if ($_SESSION ["usuario"]["Privilegios"] == '') {*/
+      // code...
+?>
 <html lang="es">
 	<head> 
 		<title>ITIC TUTORIALES</title>
@@ -121,3 +130,18 @@
             }
         });
 </script>
+<?php
+  /*}
+      else
+        if ($_SESSION ["usuario"]['Privilegios'] >= '2') 
+          {
+            header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
+          }*/
+
+  }
+  else
+  {
+
+    header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
+  }
+?>

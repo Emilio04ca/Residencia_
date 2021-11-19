@@ -1,5 +1,12 @@
- <?php
-require_once("Cripto/mcript.php");
+
+<?php
+  // Solo se permite el ingreso con el inicio de sesion.
+  session_start();
+  // Si el usuario no se ha logueado se le regresa al inicio.
+  if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
+    
+    /*if ($_SESSION ["usuario"]["Privilegios"] == '') {*/
+      // code...
 ?>
 <!doctype html>
 <html lang="en">
@@ -40,14 +47,14 @@ require_once("Cripto/mcript.php");
             <center>
               <input type="text" name="buscar" required style="margin: auto; text-align: center;" placeholder="Numero de control">
               <input type="submit" value="Buscar" width="100px">
-            </center>
+            </center> 
       </form>
      
       <div class="container justify-items-center n">
       <div class="row">
       <div class="col-xs-12 col-lg-3">
         
-      <form  method="POST" action="reportes/reporte.php">
+      <form  method="POST" action="reporte/reporte.php">
       <h1 class="text-center"><strong>Descarga Grupal</strong></h1>
       <br>
       <p>Carrera:
@@ -101,3 +108,18 @@ require_once("Cripto/mcript.php");
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
+<?php
+  /*}
+      else
+        if ($_SESSION ["usuario"]['Privilegios'] >= '2') 
+          {
+            header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
+          }*/
+
+  }
+  else
+  {
+
+    header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
+  }
+?>

@@ -16,7 +16,7 @@
               <li><a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/Cargar_Excel/Alumnos.php">Registro alumno</a></li>
               <li><a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/alumno_index.php">Consulta Alumno</a></li>
               <li><a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/contraseña_index.php">Consulta Cont.</a></li>
-              <li><a href="PENDIENTE">Calificaciones</a></li>
+              <li><a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/Calificaciones_index.php">Calificaciones</a></li>
 
             </ul>
           </li>
@@ -48,8 +48,9 @@
           </li>
         </ul>
       </div>
+  
       <div class="close">
-        <a href="Submenu/cerrrar_seson.php"><i class='bx bx-window-close'></i></a>
+        <a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_SIIE/Submenu/cerrrar_seson.php"><i class='bx bx-window-close'></i></a>
       </div>
     </div>
   </nav>

@@ -14,7 +14,7 @@ require_once("../Cripto/mcript.php");
 
 
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/bootstrap.min.css" >
@@ -41,7 +41,7 @@ require_once("../Cripto/mcript.php");
               <br>
               <p>Carrera:
                 <select name="carrera">
-                  <option utf8_decode value="">COM. BAS Y PROPEDEUTICO</option>
+                  <option utf8_decode value="COMPONENTE BASICO Y PROPEDEUTICO">COM. BAS Y PROPEDEUTICO</option>
                   <option utf8_decode value="CONTABILIDAD">CONTABILIDAD</option>
                   <option utf8_decode value="OFIMÁTICA">OFIMÁTICA</option>
                   <option utf8_decode value="MANTENIMIENTO AUTOMOTRIZ">MANTENIMIENTO AUTOMOTRIZ</option>
@@ -76,7 +76,7 @@ require_once("../Cripto/mcript.php");
             </thead>
             <tbody>
               <?php
-                  include("phpcontra/contra.php");
+                  include("../php_s/phpcontra/contra.php");
                     while($row=mysqli_fetch_array($query)){
               ?>
 

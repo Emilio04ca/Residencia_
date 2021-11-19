@@ -1,11 +1,12 @@
   <?php
-// Solo se permite el ingreso con el inicio de sesion.
-session_id();
-session_start();
-$nombre = $_SESSION ["usuario"]['Num_Ctrl'];
-// Si el usuario no se ha logueado se le regresa al inicio.
-if (($_SESSION ["usuario"]['Num_Ctrl'] != '')) {
-?>
+    // Solo se permite el ingreso con el inicio de sesion.
+    session_id();
+    session_start();
+    $nombre = $_SESSION ["usuario"]['Num_Ctrl'];
+    // Si el usuario no se ha logueado se le regresa al inicio.
+    if (($_SESSION ["usuario"]['Num_Ctrl'] != null)) 
+    {
+  ?>
  <!DOCTYPE html>
 <!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
 <html lang="en" dir="ltr">
@@ -51,15 +52,15 @@ if (($_SESSION ["usuario"]['Num_Ctrl'] != '')) {
     <td>4</td>
     <td>5</td>
   </tr>
-
 </tbody>
 
 
 </body>
 </html>
 <?php
-}else{
-
-  header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
-}
+  }
+  else
+  {
+    header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
+  }
 ?>

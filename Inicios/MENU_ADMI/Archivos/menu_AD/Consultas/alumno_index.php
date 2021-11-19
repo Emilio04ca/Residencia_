@@ -1,19 +1,22 @@
-
+<?php
+  // Solo se permite el ingreso con el inicio de sesion.
+  session_start();
+  // Si el usuario no se ha logueado se le regresa al inicio.
+  if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
+    
+    /*if ($_SESSION ["usuario"]["Privilegios"] == '') {*/
+    // code...
+?>
 <!doctype html>
 <html lang="en">
   <head>
     <title>Consulta Alumno</title> 
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/style.css">
-    
-    
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/bootstrap.min.css" >
   </head>
@@ -25,8 +28,6 @@
         <br>
       
         <h1 class="text-center"><strong>Consulta Alumnos</strong></h1>
-        
-          
         <form action="Consultas_/consulta_Alumno.php" method="post">
           <center>
             <input type="text" required name="buscar" style="margin: auto; text-align: center;" placeholder="Numero de control">
@@ -52,7 +53,7 @@
               <input type="text" required placeholder="Carrera" name="Carrera" class="form-control">
               <br>
               <input type="text" required placeholder="Estado" name="Status" class="form-control">
-              
+              <br>
               <input type="submit" value="Agregar" class="btn btn-primary btn-block">
             </form>
           </div>
@@ -66,16 +67,14 @@
                       <th scope="col">Apellido Materno</th>
                       <th scope="col">Semestre</th>
                       <th scope="col">Carrera</th>
+                      <th scope="col">Grupo</th>
                       <th scope="col">Status</th>
+                      <th scope="col">Grupo</th>
                       <th scope="col">Editar</th>
                       <th scope="col">Eliminar</th>
                     </tr>
                   </thead>
               </table>
-                <br>
-                <br>
-                <br>
-                <br>
           </div>
         </div>
       </div>
@@ -86,3 +85,18 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
+<?php
+  /*}
+      else
+        if ($_SESSION ["usuario"]['Privilegios'] >= '2') 
+          {
+            header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
+          }*/
+
+  }
+  else
+  {
+
+    header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
+  }
+?>

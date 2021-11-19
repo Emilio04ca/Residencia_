@@ -1,11 +1,11 @@
 <?php
-// Solo se permite el ingreso con el inicio de sesion.
-session_start();
-// Si el usuario no se ha logueado se le regresa al inicio.
-if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
-  
-  /*if ($_SESSION ["usuario"]["Privilegios"] == '') {*/
-    // code...
+  // Solo se permite el ingreso con el inicio de sesion.
+  session_start();
+  // Si el usuario no se ha logueado se le regresa al inicio.
+  if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
+    
+    /*if ($_SESSION ["usuario"]["Privilegios"] == '') {*/
+      // code...
 ?>
 
 <!DOCTYPE html>
@@ -21,31 +21,28 @@ if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
-  <?php include 'menu.php';?>
-  <script src="script.js"></script>
-<br>
-<br>
-<br> 
-<br> 
-    <h2 align="center"> Bienvenido(a) </h2><br><br>
-    <h3 align="center"> <?=$_SESSION ["usuario"]['Clave_RFC']?> <br> <?=$_SESSION ["usuario"]['Nombre']?> <?=$_SESSION ["usuario"]['Ape_Paterno']?> <?=$_SESSION ["usuario"]['Ape_Materno']?> </h3>
-  
-
+      <?php include 'menu.php';?>
+      <script src="script.js"></script>
+      <br>
+      <br>
+      <br> 
+      <br> 
+          <h2 align="center"> Bienvenido(a) </h2><br><br>
+          <h3 align="center"> <?=$_SESSION ["usuario"]['Clave_RFC']?> <br> <?=$_SESSION ["usuario"]['Nombre']?> <?=$_SESSION ["usuario"]['Ape_Paterno']?> <?=$_SESSION ["usuario"]['Ape_Materno']?> </h3>
 </body>
 </html>
 <?php
-/*}
-    else
-      if ($_SESSION ["usuario"]['Privilegios'] >= '2') 
-        {
-          header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
-        }*/
+  /*}
+      else
+        if ($_SESSION ["usuario"]['Privilegios'] >= '2') 
+          {
+            header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
+          }*/
 
-}
+  }
+  else
+  {
 
-else
-{
-
-  header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
-}
+    header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
+  }
 ?>

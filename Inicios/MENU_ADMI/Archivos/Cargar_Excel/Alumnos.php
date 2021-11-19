@@ -1,19 +1,25 @@
+<?php
+  // Solo se permite el ingreso con el inicio de sesion.
+  session_start();
+  // Si el usuario no se ha logueado se le regresa al inicio.
+  if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
+    
+    /*if ($_SESSION ["usuario"]["Privilegios"] == '') {*/
+      // code...
+?>
 <html lang="es">
 	<head> 
 		<title>registros_Alumnos</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 		<link rel="stylesheet" href="css/estilos.css">
-        <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/style.css">
-        
+      <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/style.css">  
        <!-- <link rel="stylesheet" href="css/cargando.css">-->
        <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/bootstrap.min.css" >
        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'> 
         <!-- Latest compiled and minified CSS -->
-
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>   
@@ -119,3 +125,18 @@
             }
         });
 </script>
+<?php
+  /*}
+      else
+        if ($_SESSION ["usuario"]['Privilegios'] >= '2') 
+          {
+            header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
+          }*/
+
+  }
+  else
+  {
+
+    header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
+  }
+?>

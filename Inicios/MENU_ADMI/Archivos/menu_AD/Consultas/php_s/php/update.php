@@ -14,7 +14,7 @@
     $query=mysqli_query($con,$sql);
  
  if($query){
-      header('location: http://localhost:8080/Edel%20Administrador/SIIE(CBTIS)/Inicios/excel_cargar/crud/alumno_index.php');
+      header('location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/alumno_index.php');
   }
  ?>
 
