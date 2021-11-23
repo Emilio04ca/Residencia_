@@ -22,6 +22,7 @@
   <?php
     include 'Menu.php';
   ?>
+  <script src="script.js"></script>
   <div class="congeneral">
   <div class="contenedor">
     <div class="cont">Requisitos para titulacion</div>

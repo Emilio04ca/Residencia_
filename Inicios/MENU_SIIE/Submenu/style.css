@@ -155,7 +155,7 @@ nav .navbar .links li:hover .js-sub-menu{
 .navbar .bx-menu{
   display: none;
 }
-@media (max-width:500px) {
+@media (max-width:920px) {
   nav .navbar{
     max-width: 100%;
     padding: 0 25px;
@@ -174,16 +174,11 @@ nav .navbar .links li:hover .js-sub-menu{
   }
 }
 @media (max-width:1000px){
-  nav{
-
+  .nav{
     /* position: relative; */
   }
   .navbar .bx-menu{
     display: block;
-  }
-  nav .navbar .links li a{
-    font-size: 15px;
-    text-align: left;
   }
   nav .navbar .nav-links{
     position: fixed;
@@ -290,7 +285,7 @@ nav .navbar .links li .sub-menu li{
   nav .navbar .nav-links{
   max-width: 100%;
   overflow: scroll;
-} 
+  } 
 }
 
 /*tabla alumno*/
@@ -298,6 +293,7 @@ table{
   border :0;
   background: #FFFFFF;
   align-items: center;
+  text-align: center;
   margin-inline-start: auto;
   margin-inline-end: auto;
   display: table;
@@ -312,7 +308,7 @@ th {
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
   font-size: 14px;
   color: #FFFFFF;
-
+  text-align: center;
   background-color: #8B0000;
   font-variant: small-caps;
   padding: 3px 10px 3px 5px;
@@ -323,7 +319,8 @@ td {
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
   font-size: 13px;
   color: #25496B;
-  text-align: left;
+  text-align: center;
+  
   background-color: #DDDDDD;
   padding: 0px 0px 0px 0px;
 }

@@ -192,6 +192,7 @@ if (($_SESSION ["usuario"]['Num_Ctrl'] != '')) {
 <?php
     include 'Menu.php';
   ?>
+  <script src="script.js"></script>
 <br>
 <br>
 <br>

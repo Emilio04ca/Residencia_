@@ -22,6 +22,7 @@ if (($_SESSION ["usuario"]['Num_Ctrl'] != null)) {
   <?php
     include 'Submenu/Menu.php';
   ?>
+  <script src="Submenu/script.js"></script>
 <br>
 <br>
 <br>

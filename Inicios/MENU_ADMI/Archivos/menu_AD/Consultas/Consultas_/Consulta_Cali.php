@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/bootstrap.min.css" >
@@ -16,6 +17,20 @@
         }
     </style>
     <!-- Bootstrap CSS -->
+      <script type="text/javascript"> 
+        function Resultado(){
+          Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey:false,
+                        stopKeydownPropagation:false,
+                        text: 'No se encontro ese alumno con el numero de control ingresado'
+                    })
+        }
+      </script>
   </head>
   <body>
     <?php include 'menu.php';?>
@@ -23,20 +38,14 @@
       <br>
       <br>
       <h1 class="text-center"><strong>Consulta Calificaciones</strong></h1>
-        <form action="Consultas_/Consulta_Cali.php" method="POST">
+        <form action="Consulta_Cali.php" method="POST">
               <center>
                 <input type="text" name="buscar" required style="margin: auto; text-align: center;" placeholder="Numero de control">
                 <input type="submit" value="Buscar" width="100px">
               </center> 
         </form>
       <br>
-          <?php
-                include("../php_s/php/calif.php");
-                while($row=mysqli_fetch_array($query)) {
-          ?>
-          <h4 align="center"><?php echo utf8_decode($row['Nombre'])?> <?php echo utf8_decode($row['Ape_paterno'])?> <?php echo utf8_decode($row['Ape_Materno'])?></h4>
-     
-              <div class="container justify-items-center n">
+      <div class="container justify-items-center n">
                   <table class="table">
                     <thead class="table">
                       <tr>
@@ -50,11 +59,28 @@
                         <th scope="col">Calificacion</th>
                       </tr>
                     </thead>
-                    <?php
-                      }
-                    ?>                   
                   </table>
               </div>
+                <?php
+                      include("../php_s/php/calif.php");
+                      $cant_duplicidad = mysqli_num_rows($query);
+                              if($cant_duplicidad == 0)
+                              {
+                                echo "<script>";
+                                echo "Resultado();";
+                                echo "</script>";
+                              }
+                              else{
+                      while($row=mysqli_fetch_array($query)) {
+                ?>
+                <h4 align="center"><?php echo utf8_decode($row['Nombre'])?> <?php echo utf8_decode($row['Ape_paterno'])?> <?php echo utf8_decode($row['Ape_Materno'])?></h4>
+     
+              
+                    <?php
+                      }
+                    }
+                    ?>                   
+                  
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

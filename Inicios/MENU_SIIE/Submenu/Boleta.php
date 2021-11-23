@@ -2,9 +2,9 @@
   // Solo se permite el ingreso con el inicio de sesion.
   session_start();
   // Si el usuario no se ha logueado se le regresa al inicio.
-  if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
+  if (($_SESSION ["usuario"]['Num_Ctrl'] != null)) {
     
-    if ($_SESSION ["usuario"]["Privilegios"] == '1') {
+    /*if ($_SESSION ["usuario"]["Privilegios"] == '1') {*/
     // code...
 ?>
 <!doctype html>
@@ -23,47 +23,37 @@
   <body>
         <?php include 'menu.php';?>
         <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
-      
-        <br>
         <br>   
+        <br>
      
       <div class="container justify-items-center n">
         <div class="row">
           <div class="col-xs-12 col-lg-3"> 
             <form action="php_s/php/ins_admi.php" method="POST">
-              <h5 class="text-center"><strong>Agregar Admi</strong></h5>
-              <input type="text" required placeholder="Clave_RFC" name="Clave_RFC" class="form-control">
-              <br>
-              <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
-              <br>
-              <input type="text" required placeholder="Apellido P" name="Apellido_p" class="form-control">
-              <br>
-              <input type="text" required placeholder="Apellido M" name="Apellido_m" class="form-control">
-              <br>
-              <input type="text" required placeholder="Contraseña" name="Contrasena" class="form-control">
-              <br>
+              <h5 class="text-center"><strong>Consulta<br>De Boletas</strong></h5>
+              <center>
+                <p>
+                  Numero De control
+                
+                <input type="text" required placeholder="Clave_RFC" name="Clave_RFC" value="<?=$_SESSION ["usuario"]['Num_Ctrl']?>" class="form-control">
+                </p>
+                </center>
                 <center>
-                    <p>Tipo:
+                    <p>Periodo:
                         <select name="Tipo" class= "form-control">
-                        <option utf8_decode value="">Selecciona un Tipo</option>
+                        <option utf8_decode value="">Seleccionalo</option>
                         <option utf8_decode value="Adm_Root">Administrador Root</option>
                         <option utf8_decode value="Adm_Inv">Administrador Invitado</option>
                         </select>
                     </p>
-                    <p>Privilegio:
-                        <select name="Privilegios" class= "form-control">
-                        <option value="">Selecciona un Tipo</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        </select>
-                    </p>
+                    
                 </center>
              
               <input type="submit" value="Agregar" class="btn btn-primary btn-block">
             </form>
           </div>
           <div class="col-xs-12 col-lg-8 p-3">
-          <h3 class="text-center"><strong>Consulta Administrador</strong></h3>
+          <h3 class="text-center"><strong>Resultados de Calificaciones</strong></h3>
             <!--<form action="Consultas_/consulta_Alumno.php" method="post">
               <center>
                 <input type="text" required name="buscar" style="margin: auto; text-align: center;" placeholder="Numero de control">
@@ -73,36 +63,20 @@
             <br>
               <table class="table">
                   <thead class="table">
-                    <tr>
-                      <th scope="col">Clave_RFC</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Apellido Paterno</th>
-                      <th scope="col">Apellido Materno</th>
-                      <th scope="col">Contrasena</th>
-                      <th scope="col">Tipo</th>
-                      <th scope="col">Privilegios</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    
-                  <?php
-                    include("php_s/php/edit_admi.php");
-                    require_once("Cripto/mcript.php");
-                    while($row=mysqli_fetch_array($query)){
-                  ?>      
-                    <tr>
-                        <td><?php echo utf8_decode($row['Clave_RFC'])?></td>
-                        <td><?php echo utf8_decode($row['Nombre'])?></td>
-                        <td><?php echo utf8_decode($row['Ape_paterno'])?></td>
-                        <td><?php echo utf8_decode($row['Ape_Materno'])?></td>
-                        <td><?php echo $dato_desencriptado = $desencriptar($row['Contrasena'])?></td>
-                        <td><?php echo utf8_decode($row['Usuario']) ?></td>
-                        <td><?php echo utf8_decode($row['Privilegios'])?></td>
-                        
-                    </tr>
-                  <?php 
-                      }
-                  ?>
+                  <tbody><tr align="center"> 
+                    <th width="16%"> No. Control s.e.p. </th>
+                    <th width="35%"> Nombre del Alumno </th>
+                    <th width="9%"> Semestre </th>
+                    <th width="15%"> Periodo Escolar </th>
+                    <th width="15%"> Especialidad </th>
+                        </tr>
+                  <tr align="center" id="non">
+                    <td> <?=$_SESSION ["usuario"]['Num_Ctrl']?></td>
+                    <td> <?=$_SESSION ["usuario"]['Nombre']?> <?=$_SESSION ["usuario"]['Ape_paterno']?> <?=$_SESSION ["usuario"]['Ape_Materno']?></td>
+                    <td> <?=$_SESSION ["usuario"]['Semestre']?></td>
+                    <td> AGO-DIC/2017 </td>
+                    <td> <?=$_SESSION ["usuario"]['Especialidad']?></td>
+                        </tr>
                   </tbody>
               </table>
           </div>
@@ -116,16 +90,15 @@
   </body>
 </html>
 <?php
-  }
+  /*}
       else
-      {
         if ($_SESSION ["usuario"]['Privilegios'] >= '2') 
           {
             header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/admi_menu.php');
           }
-
+*/
   }
-}
+
   else
   {
 

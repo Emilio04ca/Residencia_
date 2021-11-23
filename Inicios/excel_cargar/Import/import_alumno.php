@@ -54,7 +54,7 @@ foreach ($fileContacts as $contact)
             $Especialidad           = !empty($contactList[5])  ? ($contactList[5]) : '';
             $Status           = !empty($contactList[6])  ? ($contactList[6]) : '';
 
-            if( !empty($Num_Ctrl) )
+            if( !empty($Num_Ctrl) ) 
                 {
                     $checkemail_duplicidad = ("SELECT Num_Ctrl FROM info_estudiantes WHERE Num_Ctrl='".($Num_Ctrl)."' ");
                     $ca_dupli = mysqli_query($con, $checkemail_duplicidad);

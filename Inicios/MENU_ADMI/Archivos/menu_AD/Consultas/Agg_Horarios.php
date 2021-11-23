@@ -32,31 +32,41 @@
           <div class="col-xs-12 col-lg-3"> 
             <form action="php_s/php/ins_admi.php" method="POST">
               <h5 class="text-center"><strong>Agregar Admi</strong></h5>
-              <input type="text" required placeholder="Clave_RFC" name="Clave_RFC" class="form-control">
+              
               <br>
-              <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
-              <br>
-              <input type="text" required placeholder="Apellido P" name="Apellido_p" class="form-control">
-              <br>
-              <input type="text" required placeholder="Apellido M" name="Apellido_m" class="form-control">
-              <br>
-              <input type="text" required placeholder="Contraseña" name="Contrasena" class="form-control">
-              <br>
-                <center>
-                    <p>Tipo:
-                        <select name="Tipo" class= "form-control">
-                        <option utf8_decode value="">Selecciona un Tipo</option>
-                        <option utf8_decode value="Adm_Root">Administrador Root</option>
-                        <option utf8_decode value="Adm_Inv">Administrador Invitado</option>
+              <center>
+                    <p>Carrera:
+                        <select name="carrera" class="form-control">
+                        <option utf8_decode value="">Seleccionar</option>
+                        <option utf8_decode value="COMPONENTE BASICO Y PROPEDEUTICO">COM. BAS Y PROPEDEUTICO</option>
+                        <option utf8_decode value="CONTABILIDAD">CONTABILIDAD</option>
+                        <option utf8_decode value="OFIMÁTICA">OFIMÁTICA</option>
+                        <option utf8_decode value="MANTENIMIENTO AUTOMOTRIZ">MANTENIMIENTO AUTOMOTRIZ</option>
+                        <option value="PROGRAMACIÓN">PROGRAMACIÓN</option>
+                        <br>
                         </select>
                     </p>
-                    <p>Privilegio:
+                    <p>Grupo:
+                        <select name="Tipo" class= "form-control">
+                        <option utf8_decode value="">Seleccionar</option>
+                        <option utf8_decode value="A1">A1</option>
+                        <option utf8_decode value="B1">B2</option>
+                        </select>
+                    </p>
+                    <p>Semestre:
                         <select name="Privilegios" class= "form-control">
-                        <option value="">Selecciona un Tipo</option>
+                        <option value="">Selecciona</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
                         </select>
                     </p>
+               
+                <p>Seleccionar imagen</p>
+                <input type="file" required placeholder="Contraseña" name="Contrasena" class="form-control">
                 </center>
              
               <input type="submit" value="Agregar" class="btn btn-primary btn-block">
@@ -118,14 +128,12 @@
 <?php
   }
       else
-      {
         if ($_SESSION ["usuario"]['Privilegios'] >= '2') 
           {
             header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/admi_menu.php');
           }
 
   }
-}
   else
   {
 

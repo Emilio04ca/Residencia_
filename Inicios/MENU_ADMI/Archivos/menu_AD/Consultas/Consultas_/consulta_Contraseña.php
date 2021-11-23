@@ -10,9 +10,24 @@ require_once("../Cripto/mcript.php");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/bootstrap.min.css" >
+        <script type="text/javascript"> 
+        function Resultado(){
+          Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey:false,
+                        stopKeydownPropagation:false,
+                        text: 'No se encontro ese alumno con el numero de control ingresado'
+                    })
+        }
+      </script>
   </head>
   <body>
     <?php include 'menu.php';?>
@@ -69,6 +84,14 @@ require_once("../Cripto/mcript.php");
               <tbody>
                 <?php
                     include("../php_s/phpcontra/contra.php");
+                        $cant_duplicidad = mysqli_num_rows($query);
+                        if($cant_duplicidad == 0)
+                        {
+                          echo "<script>";
+                          echo "Resultado();";
+                          echo "</script>";
+                        }
+                        else{
                     while($row=mysqli_fetch_array($query)){
                 ?>
                   <tr>
@@ -79,6 +102,7 @@ require_once("../Cripto/mcript.php");
                     <td><?php echo $dato_desencriptado = $desencriptar($row['Contrasena'])?></td>
                   </tr>
                 <?php
+                    }
                     }
                 ?>
               </tbody>

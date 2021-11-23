@@ -60,7 +60,7 @@
       <div class="container justify-items-center n">
         <div class="row">
           <div class="col-xs-12 col-lg-3"> 
-            <form   name="priv" action="/Consultas_/consulta_Alumno.php" method="POST">
+            <form   name="priv" action="php_s/php/insertar.php" method="POST">
               <h1 class="text-center"><strong>Agregar Alumno</strong></h1>
               <input name="Privilegio" type="hidden" value="<?php $_SESSION ["usuario"]["Privilegios"];?>">
               <input type="text" required placeholder="No. de Control" name="Num_Ctrl" class="form-control">

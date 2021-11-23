@@ -21,6 +21,7 @@
   <?php
     include 'Menu.php';
   ?>
+  <script src="script.js"></script>
   <br>
     <div class="contenedor">
       <h3>Practicas profesionales</h3>

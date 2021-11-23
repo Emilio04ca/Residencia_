@@ -1,4 +1,4 @@
-  <?php
+<?php
     // Solo se permite el ingreso con el inicio de sesion.
     session_id();
     session_start();
@@ -25,36 +25,32 @@
   <script src="script.js"></script>
 <br>
 <br>
-<h3 align="center">Calificaciones Parciales</h3>
-<h4 align="center">
-<i>Periodo: <?=$_SESSION ["usuario"]['Periodo']?> </i><br>
-<i>No. de Control: <?=$_SESSION ["usuario"]['Num_Ctrl']?></i><br>
-<i>Nombre: <?=$_SESSION ["usuario"]['Nombre']?> <?=$_SESSION ["usuario"]['Ape_paterno']?> <?=$_SESSION ["usuario"]['Ape_Materno']?></i>
-</h4>
-<center><strong>*</strong><table width="489" align="center"></center>
-
-<tbody>
-  <tr>
-    <th rowspan="2">Materia</th>
-    <th rowspan="2">Grupo</th>
-    <th colspan="5" >Unidades</th>
-    <th colspan="5" >Asistencias</th>
-  </tr>
-  <tr>
-    <td>I</td>
-    <td>II</td>
-    <td>III</td>
-    <td>IV</td>
-    <td>V</td>
-  
-    <td>1</td>
-    <td>2</td>
-    <td>3</th>
-    <td>4</td>
-    <td>5</td>
-  </tr>
-</tbody>
-
+<table width="800" align="center">
+		<tbody><tr align="center"> 
+			<th width="21%"> No. Control s.e.p. </th>
+			<th width="40%"> Nombre del Alumno </th>
+			<th width="9%"> Semestre </th>
+			<th width="25%"> Periodo Escolar </th>
+						<th width="10%"> Prom. Acum. </th>
+					</tr>
+		<tr align="center" id="non">
+			<td><?=$_SESSION ["usuario"]['Num_Ctrl']?></td>
+			<td><?=$_SESSION ["usuario"]['Nombre']?> <?=$_SESSION ["usuario"]['Ape_paterno']?> <?=$_SESSION ["usuario"]['Ape_Materno']?></td>
+			<td><?=$_SESSION ["usuario"]['Semestre']?></td>
+			<td><?=$_SESSION ["usuario"]['Periodo']?></td>
+						<td> 96.18 </td>
+					</tr>
+	</tbody></table>
+  <table width="800" align="center">
+		<tbody><tr align="center">
+						<th> Carerra </th>
+		
+		</tr>
+		<tr align="center" id="non">
+						<td><?=$_SESSION ["usuario"]['Especialidad']?></td>
+		
+		</tr>
+	</tbody></table>
 
 </body>
 </html>
