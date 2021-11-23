@@ -84,35 +84,14 @@
               <table class="table">
                   <thead class="table">
                     <tr>
-                      <th scope="col">Clave_RFC</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Apellido Paterno</th>
-                      <th scope="col">Apellido Materno</th>
-                      <th scope="col">Contrasena</th>
-                      <th scope="col">Tipo</th>
-                      <th scope="col">Privilegios</th>
+                      <th scope="col">Clave</th>
+                      <th scope="col">Carrera</th>
+                      <th scope="col">Grupo</th>
+                      <th scope="col">Semestre</th>
+                      <th scope="col">Link imagen</th>
                     </tr>
                   </thead>
                   <tbody>
-                    
-                  <?php
-                    include("php_s/php/edit_admi.php");
-                    require_once("Cripto/mcript.php");
-                    while($row=mysqli_fetch_array($query)){
-                  ?>      
-                    <tr>
-                        <td><?php echo utf8_decode($row['Clave_RFC'])?></td>
-                        <td><?php echo utf8_decode($row['Nombre'])?></td>
-                        <td><?php echo utf8_decode($row['Ape_paterno'])?></td>
-                        <td><?php echo utf8_decode($row['Ape_Materno'])?></td>
-                        <td><?php echo $dato_desencriptado = $desencriptar($row['Contrasena'])?></td>
-                        <td><?php echo utf8_decode($row['Usuario']) ?></td>
-                        <td><?php echo utf8_decode($row['Privilegios'])?></td>
-                        
-                    </tr>
-                  <?php 
-                      }
-                  ?>
                   </tbody>
               </table>
           </div>

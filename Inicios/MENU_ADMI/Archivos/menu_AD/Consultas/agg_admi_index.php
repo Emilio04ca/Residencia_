@@ -98,6 +98,7 @@
                         <td><?php echo $dato_desencriptado = $desencriptar($row['Contrasena'])?></td>
                         <td><?php echo utf8_decode($row['Usuario']) ?></td>
                         <td><?php echo utf8_decode($row['Privilegios'])?></td>
+                        <td><a href="php_s/php/Eliminar_Admi.php?id=<?php echo $row['Clave_RFC'] ?>"  class="btn btn-danger" >Eliminar</a></td>
                         
                     </tr>
                   <?php 
