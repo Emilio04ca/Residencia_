@@ -4,8 +4,8 @@
   // Si el usuario no se ha logueado se le regresa al inicio.
   if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
     
-    /*if ($_SESSION ["usuario"]["Privilegios"] == '') {*/
-      // code...
+    if ($_SESSION ["usuario"]["Privilegios"] == '1') {
+    // code...
 ?>
 <html lang="es">
 	<head> 
@@ -103,7 +103,7 @@
         var Form = new FormData($('#filesForm')[0]);
         $.ajax({
 
-            url: "/import/import_alumno.php",
+            url: "Import/import_alumno.php",
             type: "post",
             data : Form,
             processData: false,
@@ -127,12 +127,12 @@
         });
 </script>
 <?php
-  /*}
+  }
       else
         if ($_SESSION ["usuario"]['Privilegios'] >= '2') 
           {
-            header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
-          }*/
+            header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/admi_menu.php');
+          }
 
   }
   else

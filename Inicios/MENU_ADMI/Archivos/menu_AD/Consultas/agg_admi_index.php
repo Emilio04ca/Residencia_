@@ -82,13 +82,13 @@
                       <th scope="col">Tipo</th>
                       <th scope="col">Privilegios</th>
                     </tr>
-                  </thead>
+                  </thead> 
                   <tbody>
                     
                   <?php
                     include("php_s/php/edit_admi.php");
                     require_once("Cripto/mcript.php");
-                    while($row=mysqli_fetch_array($query)){
+                    while($row= $query->fetch_assoc()){
                   ?>      
                     <tr>
                         <td><?php echo utf8_decode($row['Clave_RFC'])?></td>
