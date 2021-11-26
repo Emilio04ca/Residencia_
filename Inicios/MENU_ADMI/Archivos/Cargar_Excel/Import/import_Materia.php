@@ -16,17 +16,20 @@ foreach ($fileContacts as $contact)
     if ($i!=0) {
 		$contactList = explode(",", $contact);
 		$clave       		= !empty($contactList[0])  ? ($contactList[0]) : '';
-		$Nombre_Materia     = !empty($contactList[1])  ? ($contactList[1]) : '';
-		$Tipo             	= !empty($contactList[2])  ? ($contactList[2]) : '';
+		$Nombre     = !empty($contactList[1])  ? ($contactList[1]) : '';
+		$Semestre           = !empty($contactList[2])  ? ($contactList[2]) : '';
+        $Tipo     = !empty($contactList[3])  ? ($contactList[3]) : '';
        
         
-    $insertar = "INSERT INTO clientes( 
-            clave,
-            Nombre_Materia,
+    $insertar = "INSERT INTO info_materias( 
+            Clave,
+            Nombre,
+            Semestre,
             Tipo
         ) VALUES(
             '$clave',
-            '$Nombre_Materia',
+            '$Nombre',
+            '$Semestre',
             '$Tipo'
         )";
         mysqli_query($con, $insertar);

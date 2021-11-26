@@ -1,10 +1,16 @@
 <?php
   // Solo se permite el ingreso con el inicio de sesion.
-  session_start();
-  // Si el usuario no se ha logueado se le regresa al inicio.
-  if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
-    
-    if ($_SESSION ["usuario"]["Privilegios"] == '1') {
+ session_start();
+  function phpAlert($msg) 
+      {
+        echo '<script type="text/javascript">alert("' . $msg . '");</script>';
+        echo '<script type="text/javascript">window.location.href = "http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/admi_menu.php";</script>';
+      }
+      // Si el usuario no se ha logueado se le regresa al inicio.
+      if (($_SESSION ["usuario"]['Clave_RFC'] != null)) 
+        {
+          if ($_SESSION ["usuario"]["Privilegios"] == '1') 
+            {
     // code...
 ?>
 <!doctype html>
@@ -21,7 +27,7 @@
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/bootstrap.min.css" >
   </head>
   <body>
-        <?php include 'menu.php';?>
+        <?php include 'Consultas_/menu.php';?>
         <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
       
         <br>
@@ -30,13 +36,13 @@
       <div class="container justify-items-center n">
         <div class="row">
           <div class="col-xs-12 col-lg-3"> 
-            <form action="php_s/php/ins_admi.php" method="POST">
+            <form action="php_s/php/horario_add.php" method="POST" enctype="multipart/form-data">
               <h5 class="text-center"><strong>Agregar Admi</strong></h5>
               
               <br>
               <center>
                     <p>Carrera:
-                        <select name="carrera" class="form-control">
+                        <select name="Carrera" class="form-control">
                         <option utf8_decode value="">Seleccionar</option>
                         <option utf8_decode value="COMPONENTE BASICO Y PROPEDEUTICO">COM. BAS Y PROPEDEUTICO</option>
                         <option utf8_decode value="CONTABILIDAD">CONTABILIDAD</option>
@@ -47,14 +53,14 @@
                         </select>
                     </p>
                     <p>Grupo:
-                        <select name="Tipo" class= "form-control">
+                        <select name="Grupo" class= "form-control">
                         <option utf8_decode value="">Seleccionar</option>
-                        <option utf8_decode value="A1">A1</option>
-                        <option utf8_decode value="B1">B2</option>
+                        <option utf8_decode value="1A">1A</option>
+                        <option utf8_decode value="1B">2B</option>
                         </select>
                     </p>
                     <p>Semestre:
-                        <select name="Privilegios" class= "form-control">
+                        <select name="Semestre" class= "form-control">
                         <option value="">Selecciona</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -66,14 +72,14 @@
                     </p>
                
                 <p>Seleccionar imagen</p>
-                <input type="file" required placeholder="Contraseña" name="Contrasena" class="form-control">
+                <input type="file" required  name="imagen" class="form-control">
                 </center>
              
               <input type="submit" value="Agregar" class="btn btn-primary btn-block">
             </form>
           </div>
           <div class="col-xs-12 col-lg-8 p-3">
-          <h3 class="text-center"><strong>Consulta Administrador</strong></h3>
+          <h1 class="text-center"><strong>Consulta Administrador</strong></h1>
             <!--<form action="Consultas_/consulta_Alumno.php" method="post">
               <center>
                 <input type="text" required name="buscar" style="margin: auto; text-align: center;" placeholder="Numero de control">
@@ -88,12 +94,34 @@
                       <th scope="col">Carrera</th>
                       <th scope="col">Grupo</th>
                       <th scope="col">Semestre</th>
-                      <th scope="col">Link imagen</th>
+                      <th scope="col">Imagen</th>
+                      <th scope="col">Tipo</th>
+                      <th scope="col">Nombre</th>
                     </tr>
                   </thead>
                   <tbody>
+                  <?php
+                    include("php_s/php/consultar_horarios.php");
+                    while($row= $resultado->fetch_assoc()){
+                  ?> 
+                    <tr>
+                        <td><?php echo utf8_decode($row['id'])?></td>
+                        <td><?php echo utf8_decode($row['Carrera'])?></td>
+                        <td><?php echo utf8_decode($row['Semestre'])?></td>
+                        <td><?php echo utf8_decode($row['Grupo'])?></td>
+                        <td >
+                          <img width="100" src="data:image/<?php echo $row['Tipo']; ?>;base64,<?php echo  base64_encode($row['Imagen']); ?>">
+                        </td>
+                        <td><?php echo utf8_decode($row['Tipo'])?></td>
+                        <td><?php echo utf8_decode($row['Nombre'])?></td>
+                    </tr>
+                    <?php
+                    }
+                   
+                    ?>
                   </tbody>
               </table>
+              
           </div>
         </div>
       </div>
@@ -107,10 +135,14 @@
 <?php
   }
       else
+      {
         if ($_SESSION ["usuario"]['Privilegios'] >= '2') 
           {
-            header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/admi_menu.php');
+            phpAlert("Oops... \\n\\Solo se te permite ¡Consultar!");  
+            
+            
           }
+      }
 
   }
   else

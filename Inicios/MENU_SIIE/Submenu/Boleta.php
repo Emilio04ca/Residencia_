@@ -11,7 +11,7 @@
 <html lang="en">
   <head>
     <title>Consulta Alumno</title> 
-    <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/style.css">
+    <link rel="stylesheet" href="style.css">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

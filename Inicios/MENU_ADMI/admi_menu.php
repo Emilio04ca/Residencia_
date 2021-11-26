@@ -1,6 +1,7 @@
 <?php
   // Solo se permite el ingreso con el inicio de sesion.
   session_start();
+  
   // Si el usuario no se ha logueado se le regresa al inicio.
   if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
     
@@ -14,7 +15,7 @@
   <head>
     <meta charset="UTF-8">
     <title> Inicio-Menu </title>
-    <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/style.css">
+    <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_SIIE/Submenu/style.css">
     
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>

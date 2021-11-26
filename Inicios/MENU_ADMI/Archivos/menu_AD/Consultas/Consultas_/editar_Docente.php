@@ -1,5 +1,5 @@
 <?php
- include ('php2/actualizar.php');
+ include ('../php_s/php2/actualizar.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -44,13 +44,14 @@
   <body>
   <?php include 'menu.php';?>
   <script src="script.js"></script>
-        
+        <br>
+        <br>
       <form  name="actualizar"action="php2/update.php" method="POST">
         <h1 class="text-center"><strong>Actualizar Docente</strong></h1>
         <br>
         <input name="Clave_RFC" type="hidden" value="<?php echo $row['Clave_RFC'];?>">
         
-        <table align="center" width="300px">
+        <table align="center" width="200px">
           <tbody>
             <tr>
               <th>RFC</th>
@@ -58,7 +59,7 @@
             </tr>
             <tr>
               <th>Nombre </th>
-              <td id="non"><input name="Nombre" type="text" value="<?php echo $row['Nombre'];?>">  </td>
+              <td id="non"><input name="Nombre" type="text" value="<?php echo utf8_encode( $row['Nombre']);?>">  </td>
             </tr>
             <tr>
               <th>Apellido Paterno </th>

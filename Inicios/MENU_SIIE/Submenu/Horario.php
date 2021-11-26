@@ -51,11 +51,27 @@
 		
 		</tr>
 	</tbody></table>
-
+  <?php 
+    include "../Consultas/conexion.php";
+    $Grupo = $_SESSION ["usuario"]['Grupo'];
+    $Semestre = $_SESSION ["usuario"]['Semestre'];
+    $especilidad = $_SESSION ["usuario"]['Especialidad'];    
+    $consulta = "SELECT Imagen, Tipo, Nombre FROM horario where Carrera = '$especilidad' and Semestre= '$Semestre' AND Grupo = '$Grupo'";
+    $query=mysqli_query($con,$consulta);
+        while ($row = mysqli_fetch_assoc($query)) {
+                ?>
+                  <br>  
+                  <br>
+                  <br>                    
+                 <center> <img height = "500px" src="data:<?php echo $row['Tipo']; ?>;base64,<?php echo  base64_encode($row['Imagen']); ?>"> </center>                                 
+                <?php
+                }
+                ?>
 </body>
 </html>
 <?php
-  }
+  
+}
   else
   {
     header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');

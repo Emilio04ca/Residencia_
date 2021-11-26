@@ -1,11 +1,16 @@
 <?php
   // Solo se permite el ingreso con el inicio de sesion.
   session_start();
-  // Si el usuario no se ha logueado se le regresa al inicio.
-  if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
-    
-    if ($_SESSION ["usuario"]["Privilegios"] == '1') {
-    // code...
+  function phpAlert($msg) 
+      {
+        echo '<script type="text/javascript">alert("' . $msg . '");</script>';
+        echo '<script type="text/javascript">window.location.href = "http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/admi_menu.php";</script>';
+      }
+      // Si el usuario no se ha logueado se le regresa al inicio.
+      if (($_SESSION ["usuario"]['Clave_RFC'] != null)) 
+        {
+          if ($_SESSION ["usuario"]["Privilegios"] == '1') 
+            {
 ?>
 <html lang="es">
 	<head> 
@@ -15,31 +20,31 @@
 		<link rel="stylesheet" href="css/estilos.css">
       <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/style.css">  
        <!-- <link rel="stylesheet" href="css/cargando.css">-->
-       <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/bootstrap.min.css" >
-       <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'> 
+      <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/bootstrap.min.css" >
+      <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'> 
         <!-- Latest compiled and minified CSS -->
         <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>   
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>   
 	</head>
 	<body>
-    <?php include 'menu.php';?>
+    <?php include '../menu_AD/Consultas/Consultas_/menu.php';?>
     <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
-    <br>
-      <header>
-        <div class="alert alert-info">
-          <h3>Insertar registros de Alumnos</h3>
-        </div>
-      </header>
-     
-      <form action="files.php" method="post" enctype="multipart/form-data" id="filesForm">
-        <div class="col-md-4 offset-md-4">
-            <input class="form-control" type="file" name="fileContacts" id="cuadr"><br>
-            <center><button type="button" onclick="uploadContacts()" class="btn btn-primary form-control" >Cargar</button></center>
-        </div>      
-      </form>
+      <br>
+        <header>
+          <div class="alert alert-info">
+            <h3>Insertar registros de Alumnos</h3>
+          </div>
+        </header>
+       
+        <form action="files.php" method="post" enctype="multipart/form-data" id="filesForm">
+          <div class="col-md-4 offset-md-4">
+              <input class="form-control" type="file" name="fileContacts" id="cuadr"><br>
+              <center><button type="button" onclick="uploadContacts()" class="btn btn-primary form-control" >Cargar</button></center>
+          </div>      
+        </form>
   </body>
 </html>
 <script type="text/javascript">
@@ -129,10 +134,12 @@
 <?php
   }
       else
+      {
         if ($_SESSION ["usuario"]['Privilegios'] >= '2') 
           {
-            header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/admi_menu.php');
+            phpAlert("Oops... \\n\\Solo se te permite ¡Consultar!");  
           }
+      }
 
   }
   else

@@ -1,3 +1,4 @@
+
 <?php
   // Solo se permite el ingreso con el inicio de sesion.
   session_start();
@@ -5,12 +6,12 @@
   if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
     
     /*if ($_SESSION ["usuario"]["Privilegios"] == '') {*/
-    // code...
+      // code...
 ?>
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Consulta Alumno</title> 
+    <title>CRUD_Materia</title>
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/style.css">
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -20,19 +21,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/bootstrap.min.css" >
+   
+    <style>
+        .n{
+            margin-top: 50px;
+        }
+    </style>
     <script type="text/javascript">
         function valida_datos()
         {
           formulario = document.priv;
           if (formulario.Privilegio.value != "1")
           {
-                    formulario.Num_Ctrl.value="";
+                    formulario.Clave.value="";
                     formulario.Nombre.value="";
-                    formulario.Apellido_p.value="";
-                    formulario.Apellido_m.value="";
-                    formulario.Semestre.value="";
-                    formulario.Carrera.value="";
-                    formulario.Status.value="";
+                    formulario.Tipo.value="";
+                    
+                    
             Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -42,72 +47,76 @@
                         allowEscapeKey: false,
                         allowEnterKey:false,
                         stopKeydownPropagation:false,
-                        text: 'No tienes la autorizacion para agrgar Alumnos'
+                        text: 'No tienes la autorizacion para agregar Materias'
                     })
                     return false;
                   }
                   formulario.submit();
         }
       </script>
+  
   </head>
   <body>
-        <?php include 'Consultas_/menu.php';?>
-        <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
-      
-        <br>
-        <br>
-     
+    <?php include 'menu.php';?>
+    <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
+        
+      <br>
+
       <div class="container justify-items-center n">
-        <div class="row">
-          <div class="col-xs-12 col-lg-3"> 
-            <form   name="priv" action="php_s/php/insertar.php" method="POST">
-              <h1 class="text-center"><strong>Agregar Alumno</strong></h1>
+          <div class="row">
+            <div class="col-xs-12 col-lg-3">
+              <form name="priv" action="phpmate/insertar.php" method="POST">
               <input name="Privilegio" type="hidden" value="<?php $_SESSION ["usuario"]["Privilegios"];?>">
-              <input type="text" required placeholder="No. de Control" name="Num_Ctrl" class="form-control">
+                <h1 class="text-center"><strong>Agregar Materias</strong></h1>
+                <br>
+                <input type="text" required placeholder="Clave" name="Clave" class="form-control">
+                <br>
+                <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
+                <br>
+                <input type="int" required placeholder="Semestre" name="Semestre" class="form-control">
+                <br>
+                <input type="text" required placeholder="Tipo" name="Tipo" class="form-control">
+                <br>
+                <input type="button" value="Agregar" class="btn btn-primary btn-block" onclick="valida_datos();">
+              </form>
+            </div>
+            <div class="col-xs-12 col-lg-8 p-3">
+              <h1 align="center"><strong>Consulta Materia Maestro</strong></h1>   
               <br>
-              <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
-              <br>
-              <input type="text" required placeholder="Apellido P" name="Apellido_p" class="form-control">
-              <br>
-              <input type="text" required placeholder="Apellido M" name="Apellido_m" class="form-control">
-              <br>
-              <input type="text" required placeholder="Semestre" name="Semestre" class="form-control">
-              <br>
-              <input type="text" required placeholder="Carrera" name="Carrera" class="form-control">
-              <br>
-              <input type="text" required placeholder="Estado" name="Status" class="form-control">
-              <br>
-              <input type="button" value="Agregar" class="btn btn-primary btn-block" onclick="valida_datos();">
-            </form>
-          </div>
-          <div class="col-xs-12 col-lg-8 p-3">
-          <h1 class="text-center"><strong>Consulta Alumnos</strong></h1>
-            <form action="Consultas_/consulta_Alumno.php" method="post">
-              <center>
-                <input type="text" required name="buscar" style="margin: auto; text-align: center;" placeholder="Numero de control">
-                <input type="submit" value="Buscar" width="100px" >
-              </center>
-            </form>
-            <br>
-              <table class="table">
-                  <thead class="table">
+              <table align="center" class="table">
+                <thead class="table">
+                  <tr>
+                    <th scope="col">Clave</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Semestre</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                    include("../php_s/phpmm/Consulta_Materia.php");
+                    while($row= $resultado->fetch_assoc()){
+                  ?> 
                     <tr>
-                      <th scope="col">Num_Ctrl</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Apellido Paterno</th>
-                      <th scope="col">Apellido Materno</th>
-                      <th scope="col">Semestre</th>
-                      <th scope="col">Carrera</th>
-                      <th scope="col">Grupo</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Grupo</th>
-                      <th scope="col">Editar</th>
-                      <th scope="col">Eliminar</th>
+                        <td><?php echo utf8_encode($row['Clave'])?></td>
+                        <td><?php echo utf8_encode($row['Nombre'])?></td>
+                        <td><?php echo utf8_encode($row['Semestre'])?></td>
+                        <td><?php echo utf8_encode($row['Tipo'])?></td>
+                        
+                        <td><a href="editar_Docente.php?id=<?php echo $row['Clave'] ?>" class="btn btn-primary">Editar</a></td>
+                        <td><a href="php/delete.php?id=<?php echo $row['Clave'] ?>"  class="btn btn-danger" >Eliminar</a></td>
                     </tr>
-                  </thead>
+                    <?php
+                    }
+                   
+                    ?>
+                  </tbody>
+
               </table>
+            </div>
           </div>
-        </div>
       </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

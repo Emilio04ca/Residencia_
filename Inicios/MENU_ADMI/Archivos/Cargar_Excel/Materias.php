@@ -1,10 +1,16 @@
 <?php
   // Solo se permite el ingreso con el inicio de sesion.
   session_start();
-  // Si el usuario no se ha logueado se le regresa al inicio.
-  if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
-    
-    if ($_SESSION ["usuario"]["Privilegios"] == '1') {
+  function phpAlert($msg) 
+      {
+        echo '<script type="text/javascript">alert("' . $msg . '");</script>';
+        echo '<script type="text/javascript">window.location.href = "http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/admi_menu.php";</script>';
+      }
+      // Si el usuario no se ha logueado se le regresa al inicio.
+      if (($_SESSION ["usuario"]['Clave_RFC'] != null)) 
+        {
+          if ($_SESSION ["usuario"]["Privilegios"] == '1') 
+            {
     // code...
 ?>
 <html lang="es">
@@ -30,7 +36,7 @@
 
 	</head>
 	<body>
-    <?php include 'menu.php';?>
+  <?php include '../menu_AD/Consultas/Consultas_/menu.php';?>
     <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
     <br>
 	   <header>
@@ -107,7 +113,7 @@
         var Form = new FormData($('#filesForm')[0]);
         $.ajax({
 
-            url: "/import/import_Materia.php",
+            url: "Import/import_Materia.php",
             type: "post",
             data : Form,
             processData: false,
@@ -133,10 +139,12 @@
 <?php
   }
       else
+      {
         if ($_SESSION ["usuario"]['Privilegios'] >= '2') 
           {
-            header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/admi_menu.php');
+            phpAlert("Oops... \\n\\Solo se te permite ¡Consultar!");  
           }
+      }
 
   }
   else

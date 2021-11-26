@@ -1,3 +1,7 @@
+
+<?php
+  session_start();
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -101,12 +105,19 @@
                         <td><?php echo utf8_decode($row['Especialidad']) ?></td>
                         <td><?php echo utf8_decode($row['Grupo']) ?></td>
                         <td><?php echo utf8_decode($row['Status'])?></td>
+                        <?php
+                          if ($_SESSION ["usuario"]["Privilegios"] == '1') {
+
+                        ?>
                         <td><a href="editar_alumno.php?id=<?php echo $row['Num_Ctrl'] ?>" class="btn btn-primary">Editar</a></td>
                         <td><a href="php/delete.php?id=<?php echo $row['Num_Ctrl'] ?>"  class="btn btn-danger" >Eliminar</a></td>
+                        <?php
+                          }
+                        ?>      
                     </tr>
                   <?php
-                    }
                   }
+                }
                   ?>
                      
                 </tbody> 

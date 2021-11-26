@@ -76,15 +76,12 @@
 </head>
 <body>
 
-	
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<form name="acceso" id="loginForm" method="POST" action="validarcode.php" role="form">
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-
 		
 		<table width="700px" border="0" align="center" cellspacing="0" cellpadding="0">
 				<tbody>

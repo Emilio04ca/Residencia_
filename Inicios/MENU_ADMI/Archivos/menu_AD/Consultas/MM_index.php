@@ -55,8 +55,9 @@
       </script>
   </head>
   <body>
-    <?php include 'menu.php';?>
+  <?php include 'Consultas_/menu.php';?>
     <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
+        <br>
         <br>
         <div class="container justify-items-center n">
           <div class="row">
@@ -79,17 +80,18 @@
               </form>
             </div>
             <div class="col-xs-12 col-lg-8 p-3">
-              <h4 class="text-center"><strong>Consulta Materia Maestro</strong></h4>
-              <form action="consulta_Alumno.php" method="post">
+              <h1 class="text-center"><strong>Consulta Materia Maestro</strong></h1>
+              <form action="#" method="post">
                 <center>
-                  <input type="text" required name="buscar" style="margin: auto; text-align: center;" placeholder="Numero de control">
-                  <input type="submit" value="Buscar" width="100px" >
+                  
+                  <input type="submit" value="Consultar" width="100px" >
                 </center>
                 <br>
               </form>
               <table class="table">
                 <thead class="table">
                   <tr>
+                    <th scope="col">#</th>
                     <th scope="col">Clave</th>
                     <th scope="col">Clave_RFC</th>
                     <th scope="col">Especialidad</th>
@@ -99,6 +101,25 @@
                     <th scope="col">Eliminar</th>
                   </tr>
                 </thead>
+                <tbody>
+                  <?php
+                    include("php_s/phpmm/mat-mae.php");
+                    while($row= $query->fetch_assoc()){
+                  ?> 
+                    <tr>
+                        <td><?php echo utf8_decode($row['Clave'])?></td>
+                        <td><?php echo utf8_decode($row['Clave_RFC'])?></td>
+                        <td><?php echo utf8_decode($row['Especialidad'])?></td>
+                        <td><?php echo utf8_decode($row['Grupo'])?></td>
+                        <td><?php echo utf8_decode($row['Semestre'])?></td>
+                        <td><a href="editar_alumno.php?id=<?php echo $row['Num_Ctrl'] ?>" class="btn btn-primary">Editar</a></td>
+                        <td><a href="php/delete.php?id=<?php echo $row['Num_Ctrl'] ?>"  class="btn btn-danger" >Eliminar</a></td>
+                    </tr>
+                    <?php
+                    }
+                   
+                    ?>
+                  </tbody>
                 
               </table>
             

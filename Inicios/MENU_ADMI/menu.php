@@ -32,6 +32,7 @@
             <i class='bx bxs-chevron-down js-arrow arrow'></i>
             <ul class="js-sub-menu sub-menu">
               <li><a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/Cargar_Excel/Materias.php">Registro Archivo</a></li>
+              <li><a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/Cargar_Excel/Asistencias.php">Asistencias</a></li>
               <li><a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/Materia_index.php">CRUD</a></li>
 
             </ul>

@@ -57,9 +57,9 @@
   
   </head>
   <body>
-    <?php include 'menu.php';?>
+  <?php include 'Consultas_/menu.php';?>
     <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
-        
+        <br>
       <br>
 
       <div class="container justify-items-center n">
@@ -73,6 +73,8 @@
                 <br>
                 <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
                 <br>
+                <input type="text" required placeholder="Semestre" name="Nombre" class="form-control">
+                <br>
                 <input type="text" required placeholder="Tipo" name="Tipo" class="form-control">
                 <br>
                 <input type="button" value="Agregar" class="btn btn-primary btn-block" onclick="valida_datos();">
@@ -80,10 +82,9 @@
             </div>
             <div class="col-xs-12 col-lg-8 p-3">
               <h1 class="text-center"><strong>Consulta Materia Maestro</strong></h1>   
-              <form  action="consulta_Alumno.php" method="post">
+              <form  action="Consultas_/Consulta_M.php" method="post">
                 <center>
-                  <input type="text" required name="buscar" style="margin: auto; text-align: center;" placeholder="Numero de control">
-                  <input type="submit" value="Buscar" width="100px" >
+                  <input type="submit" value="Consultar" width="100px" >
                 </center>
               </form>
               <br>
@@ -93,6 +94,7 @@
                     <th scope="col">Clave</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Tipo</th>
+                    <th scope="col">Semestre</th>
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
                   </tr>

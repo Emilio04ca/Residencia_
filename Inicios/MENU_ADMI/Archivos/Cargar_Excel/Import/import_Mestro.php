@@ -20,11 +20,11 @@ foreach ($fileContacts as $contact)
 		$Apellido_P        	= !empty($contactList[2])  ? ($contactList[2]) : '';
         $Apellido_M        	= !empty($contactList[3])  ? ($contactList[3]) : '';
         
-    $insertar = "INSERT INTO clientes( 
-            clave,
+    $insertar = "INSERT INTO info_maestros( 
+            Clave_RFC,
             Nombre,
-            Apellido_P,
-            Apellido_M
+            Ape_paterno	,
+            Ape_materno	
         ) VALUES(
             '$clave',
             '$Nombre',

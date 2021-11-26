@@ -29,7 +29,7 @@
     <!-- Bootstrap CSS -->
   </head>
   <body>
-    <?php include 'menu.php';?>
+  <?php include 'Consultas_/menu.php';?>
     <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
         
       <br>

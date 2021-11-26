@@ -11,45 +11,41 @@
         {
           if ($_SESSION ["usuario"]["Privilegios"] == '1') 
             {
-    // code...
 ?>
 <html lang="es">
 	<head> 
-		<title>ITIC TUTORIALES</title>
+		<title>Registro Califas</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 		<link rel="stylesheet" href="css/estilos.css">
-        <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/style.css">
-        
+      <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/style.css">  
        <!-- <link rel="stylesheet" href="css/cargando.css">-->
-       <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/bootstrap.min.css" >
-       <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'> 
+      <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/bootstrap.min.css" >
+      <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'> 
         <!-- Latest compiled and minified CSS -->
-
         <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>    
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>   
 	</head>
 	<body>
-  <?php include '../menu_AD/Consultas/Consultas_/menu.php';?>  
+  <?php include '../menu_AD/Consultas/Consultas_/menu.php';?>
     <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
-    <br>
-	     <header>
+      <br>
+        <header>
           <div class="alert alert-info">
-            <h3>Insertar registros Maestro - Materia </h3>
+            <h3>Insertar calificaciones de Alumnos</h3>
           </div>
         </header>
-
+       
         <form action="files.php" method="post" enctype="multipart/form-data" id="filesForm">
-            <div class="col-md-4 offset-md-4">
+          <div class="col-md-4 offset-md-4">
               <input class="form-control" type="file" name="fileContacts" id="cuadr"><br>
               <center><button type="button" onclick="uploadContacts()" class="btn btn-primary form-control" >Cargar</button></center>
-            </div>
+          </div>      
         </form>
-</body>
+  </body>
 </html>
 <script type="text/javascript">
     function uploadContacts()
@@ -112,15 +108,14 @@
         var Form = new FormData($('#filesForm')[0]);
         $.ajax({
 
-            url: "/import/Mestro_Materia.php",
+            url: "Import/import_alumno.php",
             type: "post",
             data : Form,
             processData: false,
             contentType: false,
-        });       
+        });        
     }
 }
-
 </script>
 <script>
        $('input[type="file"]').on('change', function(){
