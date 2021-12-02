@@ -15,7 +15,7 @@
   <head>
     <meta charset="UTF-8">
     <title> Inicio-Menu </title>
-    <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_SIIE/Submenu/style.css">
+    <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Css-Scripts/style.css">
     
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -23,7 +23,6 @@
    </head>
 <body>
       <?php include 'Archivos/menu_AD/Consultas/Consultas_/menu.php';?>
-      <script src="script.js"></script>
       <br>
       <br>
       <br> 

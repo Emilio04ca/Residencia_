@@ -27,17 +27,15 @@
             margin-top: 50px;
         }
     </style>
-    <script type="text/javascript">
+<script type="text/javascript">
         function valida_datos()
         {
           formulario = document.priv;
-          if (formulario.Privilegio.value != "1")
+          if (formulario.Privilegio.value != 1)
           {
-                    formulario.Clave.value="";
-                    formulario.Nombre.value="";
-                    formulario.Tipo.value="";
-                    
-                    
+            formulario.Clave.value="";
+            formulario.Nombre.value="";
+            formulario.Tipo.value="";      
             Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -50,39 +48,81 @@
                         text: 'No tienes la autorizacion para agregar Materias'
                     })
                     return false;
-                  }
+          }
+          else
+          {
+            if (formulario.Clave.value == "" || formulario.Nombre.value == ""
+            || formulario.Semestre.value == "" || formulario.Tipo.value == "") 
+                {
+                  formulario.Clave.value="";
+                  formulario.Nombre.value="";
+                  formulario.Tipo.value="";      
+                  Swal.fire({
+                              icon: 'error',
+                              title: 'Oops...',
+                              toast: true,
+                              position: 'top',
+                              allowOutsideClick: false,
+                              allowEscapeKey: false,
+                              allowEnterKey:false,
+                              stopKeydownPropagation:false,
+                              text: 'verifica que los campos esten llenos'
+                          })
+                          return false;
+                }
+
+          }
                   formulario.submit();
         }
       </script>
   
   </head>
   <body>
-    <?php include 'menu.php';?>
-    <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
-        
+    <?php include 'menu.php';?>   
       <br>
 
       <div class="container justify-items-center n">
           <div class="row">
             <div class="col-xs-12 col-lg-3">
               <form name="priv" action="phpmate/insertar.php" method="POST">
-              <input name="Privilegio" type="hidden" value="<?php $_SESSION ["usuario"]["Privilegios"];?>">
+              <input name="Privilegio" type="hidden" value="<?php echo $_SESSION ["usuario"]['Privilegios']?>">
                 <h1 class="text-center"><strong>Agregar Materias</strong></h1>
                 <br>
                 <input type="text" required placeholder="Clave" name="Clave" class="form-control">
                 <br>
                 <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
                 <br>
-                <input type="int" required placeholder="Semestre" name="Semestre" class="form-control">
+                <center><p>Semestre:
+                        <select name="Semestre" class= "form-control">
+                        <option value="">Selecciona</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        </select>
+                </p>
                 <br>
-                <input type="text" required placeholder="Tipo" name="Tipo" class="form-control">
-                <br>
+                <p>Semestre:
+                        <select name="Tipo" class= "form-control">
+                        <option value="">Selecciona</option>
+                        <option value="Basica">Basica</option>
+                        <option value="Profesional">Profesional</option>
+                        </select>
+                </p>
+      </center>
                 <input type="button" value="Agregar" class="btn btn-primary btn-block" onclick="valida_datos();">
               </form>
             </div>
             <div class="col-xs-12 col-lg-8 p-3">
               <h1 align="center"><strong>Consulta Materia Maestro</strong></h1>   
               <br>
+              <form  action="" method="post">
+                <center>
+                  <input type="submit" value="Consultar" width="100px" >
+                </center>
+              </form>
               <table align="center" class="table">
                 <thead class="table">
                   <tr>
@@ -110,7 +150,7 @@
                     </tr>
                     <?php
                     }
-                   
+                    mysqli_close($con);
                     ?>
                   </tbody>
 

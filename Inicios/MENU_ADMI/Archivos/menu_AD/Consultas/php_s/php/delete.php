@@ -8,7 +8,8 @@ $result = mysqli_query($con,$query);
 
 
 if($query){
-
+  mysqli_close($con);
     header('location: http://localhost:8080/Edel%20Administrador/SIIE(CBTIS)/Inicios/excel_cargar/crud/consulta_Alumno.php');
   }
+  
 ?>

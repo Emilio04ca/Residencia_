@@ -33,7 +33,7 @@ if ($_POST['no_de_control'] != null && $_POST['nip_nuevo'])  {
 
 	if ($resul1 == $Num_Ctrl && $resul2 == $contan) {
 
-		$consultas = "UPDATE login_est SET Contrasena = '$Contrasena' WHERE Num_Ctrl = '$Num_Ctrl'";
+		$consultas = "UPDATE login_est SET Contrasena = '$Contrasena', Estado = 1 WHERE Num_Ctrl = '$Num_Ctrl'";
 		mysqli_query($conn, $consultas);
 
 		if($conn->errno) die($conn->error);
@@ -53,4 +53,6 @@ mysqli_close($conn);
 session_start();
 session_destroy();
 // Redirect to the login page:
-header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
+
+    echo '<script type="text/javascript">alert("¡Se cerrara la sesion para que inicies con tu nueva contraseña!");</script>';
+    echo '<script type="text/javascript">window.location.href = "http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php";</script>';

@@ -31,28 +31,59 @@
 <i>No. de Control: <?=$_SESSION ["usuario"]['Num_Ctrl']?></i><br>
 <i>Nombre: <?=$_SESSION ["usuario"]['Nombre']?> <?=$_SESSION ["usuario"]['Ape_paterno']?> <?=$_SESSION ["usuario"]['Ape_Materno']?></i>
 </h4>
-<center><strong>*</strong><table width="489" align="center"></center>
+<center><strong>*</strong><table width="489"></center>
 
 <tbody>
   <tr>
     <th rowspan="2">Materia</th>
     <th rowspan="2">Grupo</th>
-    <th colspan="5" >Unidades</th>
-    <th colspan="5" >Asistencias</th>
+    <th colspan="4" >Unidades</th>
+    <th colspan="4" >Asistencias</th>
   </tr>
   <tr>
-    <td>I</td>
-    <td>II</td>
-    <td>III</td>
-    <td>IV</td>
-    <td>V</td>
-  
-    <td>1</td>
-    <td>2</td>
-    <td>3</th>
-    <td>4</td>
-    <td>5</td>
+    <th>1</th>
+    <th>2</th>
+    <th>3</th>
+    <th>4</th>
+   
+    <th>1</th>
+    <th>2</th>
+    <th>3</th>
+    <th>4</th>
   </tr>
+  <tr>
+    <?php
+    
+    include ("../Consultas/consulta_califas.php");
+    $Num_Ctrl = $_SESSION ["usuario"]['Num_Ctrl'];
+    $Periodo = $_SESSION ["usuario"]['Periodo'];
+    $Unidad = 1;
+    $Unidad2 = 2;
+    $Unidad3 = 3;
+    $sql = "SELECT Clave_Materia, Calificacion, Asistencia from calificaciones where Num_Ctrl='$Num_Ctrl' and Unidad = '$Unidad'";
+    $sql2 = "SELECT Clave_Materia, Calificacion, Asistencia from calificaciones where Num_Ctrl='$Num_Ctrl' and Unidad = '$Unidad2'";
+    $sql3 = "SELECT Clave_Materia, Calificacion, Asistencia from calificaciones where Num_Ctrl='$Num_Ctrl' and Unidad = '$Unidad3'";
+    $query=mysqli_query($con,$sql);
+    $query2=mysqli_query($con,$sql2);
+    $query3=mysqli_query($con,$sql3);
+
+    while($row=mysqli_fetch_array($query)) {
+    ?>
+                        <td align="left" ><?php echo utf8_encode($row['Clave_Materia'])?></td>
+                        <td></td>
+                        <td><?php echo utf8_encode($row['Calificacion'])?></td>
+      </tr>                        
+    <?php
+      
+    }  
+    mysqli_close($con);
+      ?>
+        
+     
+  
+             
+    
+  
 </tbody>
 
 

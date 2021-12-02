@@ -293,7 +293,7 @@ table{
   border :0;
   background: #FFFFFF;
   align-items: center;
-  text-align: center;
+
   margin-inline-start: auto;
   margin-inline-end: auto;
   display: table;
@@ -308,7 +308,6 @@ th {
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
   font-size: 14px;
   color: #FFFFFF;
-  text-align: center;
   background-color: #8B0000;
   font-variant: small-caps;
   padding: 3px 10px 3px 5px;
@@ -319,15 +318,12 @@ td {
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
   font-size: 13px;
   color: #25496B;
-  text-align: center;
-  
-  background-color: #DDDDDD;
+  background-color: #E5E7E9;
+  border-color: gray;
   padding: 0px 0px 0px 0px;
 }
 .non{
-  font-variant:small-caps;
-  font-size: 20px;
-  color: #25496B;
+  
   text-align: center;
 
 }

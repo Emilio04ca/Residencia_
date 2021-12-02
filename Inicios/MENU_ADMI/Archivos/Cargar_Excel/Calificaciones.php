@@ -50,7 +50,7 @@
 <script type="text/javascript">
     function uploadContacts()
     {
-        //obteniendo el valor que se puso en campo text del formulario
+       /* //obteniendo el valor que se puso en campo text del formulario
         miCampoTexto = document.getElementById("cuadr").value;
         if (miCampoTexto.length == "") {
             Swal.fire({
@@ -77,9 +77,10 @@
               if (result.isConfirmed) {
                 let timerInterval
                 Swal.fire({
-                  title: 'Espera 1 minuto para que los cambios se hagan correctamente.',
+                     
+                  title: 'Espera, para que los cambios se hagan correctamente.',
                   html: ' <b></b>.',
-                  timer: 60000,
+                  timer: 300000,
                   timerProgressBar: true,
                   allowOutsideClick: false,
                     allowEscapeKey:false,
@@ -96,25 +97,52 @@
                     clearInterval(timerInterval)
                   }
                 }).then((result) => {
-                 /* Read more about handling dismissals below */
+                 /* Read more about handling dismissals below 
                   if (result.dismiss === Swal.DismissReason.timer) {
                     console.log('I was closed by the timer')
                     miCampoTexto.innerHTML = "";
 
                   }
             })
+            var Form = new FormData($('#filesForm')[0]);
+                  $.ajax({
+
+                      url: "Import/import_cali.php",
+                      type: "post",
+                      data : Form,
+                      processData: false,
+                      contentType: false,
+                  });    
               }
             })
-        var Form = new FormData($('#filesForm')[0]);
-        $.ajax({
+         
+    }*/
+    //obteniendo el valor que se puso en campo text del formulario
+    miCampoTexto = document.getElementById("cuadr").value;
+        if (miCampoTexto.length == "") {
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Para cargar un archivo ANTES DEBES DE SELECCIONAR UNO',
+            footer: '<a href="">Why do I have this issue?</a>'
+        })
 
-            url: "Import/import_alumno.php",
-            type: "post",
-            data : Form,
-            processData: false,
-            contentType: false,
-        });        
-    }
+        }
+        else{
+              var Form = new FormData($('#filesForm')[0]);
+                  $.ajax({
+
+                      url: "Import/import_cali.php",
+                      type: "post",
+                      data : Form,
+                      processData: false,
+                      contentType: false,
+                      success: function(data)
+                      {
+                          alert('Registros Agregados!');
+                      }
+                  });
+        }
 }
 </script>
 <script>

@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (($_SESSION ["usuario"]['Clave_RFC'] == null)) {
+  header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
+}
+else
+{
  include ('../php_s/php2/actualizar.php');
 ?>
 <!doctype html>
@@ -83,3 +89,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
+<?php 
+}
+?>

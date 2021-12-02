@@ -24,7 +24,7 @@
         function valida_datos()
         {
           formulario = document.priv;
-          if (formulario.Privilegio.value != "1")
+          if (formulario.Privilegio.value != 1)
           {
                     formulario.Num_Ctrl.value="";
                     formulario.Nombre.value="";
@@ -46,7 +46,20 @@
                     })
                     return false;
                   }
-                  formulario.submit();
+                  Swal.fire({
+                    title: 'Deseas Registrar este Alumno?',
+                    showDenyButton: true,
+                    confirmButtonText: 'Registrar',
+                    denyButtonText: `No Registrar`,
+                  }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                      formulario.submit();
+                    } else if (result.isDenied) {
+                      return false; 
+                    }
+                  })
+                  
         }
       </script>
   </head>
@@ -61,8 +74,8 @@
         <div class="row">
           <div class="col-xs-12 col-lg-3"> 
             <form   name="priv" action="php_s/php/insertar.php" method="POST">
-              <h1 class="text-center"><strong>Agregar Alumno</strong></h1>
-              <input name="Privilegio" type="hidden" value="<?php $_SESSION ["usuario"]["Privilegios"];?>">
+              <h4 class="text-center"><strong>Agregar Alumno</strong></h4>
+              <input name="Privilegio" type="hidden" value="<?php echo $_SESSION ["usuario"]['Privilegios']?>">
               <input type="text" required placeholder="No. de Control" name="Num_Ctrl" class="form-control">
               <br>
               <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
@@ -71,12 +84,66 @@
               <br>
               <input type="text" required placeholder="Apellido M" name="Apellido_m" class="form-control">
               <br>
-              <input type="text" required placeholder="Semestre" name="Semestre" class="form-control">
-              <br>
-              <input type="text" required placeholder="Carrera" name="Carrera" class="form-control">
-              <br>
-              <input type="text" required placeholder="Estado" name="Status" class="form-control">
-              <br>
+              <CENTER>
+              <p>Semestre:
+                  <select name="Semestre" class="form-control" >
+                  <option value="">Selecciona</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                </p>
+                <p>Especialidad:
+                  <select name="Especialidad" class="form-control" >
+                  <option value="">Selecciona</option>
+                    <option utf8_decode value="COMPONENTE BASICO Y PROPEDEUTICO">COM. BAS Y PROPEDEUTICO</option>
+                    <option utf8_decode value="CONTABILIDAD">CONTABILIDAD</option>
+                    <option utf8_decode value="OFIMÁTICA">OFIMÁTICA</option>
+                    <option utf8_decode value="MANTENIMIENTO AUTOMOTRIZ">MANTENIMIENTO AUTOMOTRIZ</option>
+                    <option value="PROGRAMACIÓN">PROGRAMACIÓN</option>
+                  </select>
+                </p>
+                <p>Grupo:
+                  <select name="Grupo" class="form-control" >
+                    <option value="">Selecciona</option>
+                    <option value="1A">1A</option>
+                    <option value="1B">1B</option>
+                    <option value="1C">1C</option>
+                    <option value="1D">1D</option>
+                    <option value="1E">1E</option>
+                    <option value="1F">1F</option>
+                    <option value="2A">2A</option>
+                    <option value="2B">2B</option>
+                    <option value="3A">3A</option>
+                    <option value="3B">3B</option>
+                    <option value="4A">4A</option>
+                    <option value="4B">4B</option>
+                    <option value="5A">5A</option>
+                    <option value="5B">5B</option>
+                    <option value="6A">6A</option>
+                    <option value="6B">6B</option>
+                  </select>
+                </p>  
+                <p>Periodo:
+                  <select name="Periodo" class="form-control" >
+                  <option value="">Selecciona</option>
+                    <?php
+                    include 'php_s/php/conexion.php';
+                    $sql= "SELECT DISTINCT Periodo FROM info_estudiantes";
+                    $query=mysqli_query($con,$sql);
+                    while($row=mysqli_fetch_array($query)) {
+                    ?>
+                    <option value="<?php echo utf8_decode($row['Periodo'])?>"><?php echo utf8_decode($row['Periodo'])?></option>
+                    <?php
+                    }
+                    mysqli_close($con);
+                    ?>
+                  </select>
+                </p>         
+              </CENTER>
               <input type="button" value="Agregar" class="btn btn-primary btn-block" onclick="valida_datos();">
             </form>
           </div>

@@ -47,7 +47,7 @@
 		
 		</tr>
 		<tr align="center" id="non">
-						<td><?=$_SESSION ["usuario"]['Especialidad']?></td>
+						<td><?=utf8_encode( $_SESSION ["usuario"]['Especialidad'])?></td>
 		
 		</tr>
 	</tbody></table>
@@ -55,17 +55,22 @@
     include "../Consultas/conexion.php";
     $Grupo = $_SESSION ["usuario"]['Grupo'];
     $Semestre = $_SESSION ["usuario"]['Semestre'];
-    $especilidad = $_SESSION ["usuario"]['Especialidad'];    
-    $consulta = "SELECT Imagen, Tipo, Nombre FROM horario where Carrera = '$especilidad' and Semestre= '$Semestre' AND Grupo = '$Grupo'";
+    $especilidad = utf8_encode( $_SESSION ["usuario"]['Especialidad']);    
+    $consulta = "SELECT Nombre FROM horario where Carrera = '$especilidad' and Semestre= '$Semestre' AND Grupo = '$Grupo'";
     $query=mysqli_query($con,$consulta);
+    $cant_duplicidad = mysqli_num_rows($query);
+                        if($cant_duplicidad == 0)
+                        {
+                          echo '<script type="text/javascript">alert("No tienes Horario");</script>';
+                        }
+                        else{
         while ($row = mysqli_fetch_assoc($query)) {
-                ?>
-                  <br>  
-                  <br>
-                  <br>                    
-                 <center> <img height = "500px" src="data:<?php echo $row['Tipo']; ?>;base64,<?php echo  base64_encode($row['Imagen']); ?>"> </center>                                 
+                ?>                   
+                 <center>  <iframe height="400px" width="900px" src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/archivos/<?php echo $row['Nombre']; ?>"></iframe> </center>                                 
                 <?php
                 }
+              }
+              mysqli_close($con);
                 ?>
 </body>
 </html>

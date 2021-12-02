@@ -36,7 +36,7 @@ if (($_SESSION ["usuario"]['Num_Ctrl'] != '')) {
                         allowEscapeKey: false,
                         allowEnterKey:false,
                         stopKeydownPropagation:false,
-                        text: 'Ya haz cambiado la contrasela anteriormente'
+                        text: 'Ya haz cambiado la contraseña anteriormente, ya no tienes permitido hacerlo...'
                     })
           }
         }
@@ -204,25 +204,24 @@ if (($_SESSION ["usuario"]['Num_Ctrl'] != '')) {
   <table align="center" width="300px">
     <tbody><tr>
       <th>No. de Control: </th>
-      <td id="non"><?=$_SESSION ["usuario"]['Num_Ctrl']?><input name="no_de_control" type="hidden" value="<?php echo $_SESSION ["usuario"]['Num_Ctrl']?>"> </td>
+      <td class="non"><?=$_SESSION ["usuario"]['Num_Ctrl']?><input name="no_de_control" type="hidden" value="<?php echo $_SESSION ["usuario"]['Num_Ctrl']?>"> </td>
     </tr>
     <tr>
       <th>Nombre: </th> 
-      <td id="non"> <?=$_SESSION ["usuario"]['Nombre']?> <?=$_SESSION ["usuario"]['Ape_paterno']?> <?=$_SESSION ["usuario"]['Ape_Materno']?> </td>
+      <td class="non"> <?=$_SESSION ["usuario"]['Nombre']?> <?=$_SESSION ["usuario"]['Ape_paterno']?> <?=$_SESSION ["usuario"]['Ape_Materno']?> </td>
     </tr>
     <tr>
       <th>Nip Anterior: </th>
-      <td id="non"><input name="nip" type="password" size="8" maxlength="5" > </td>
-      <td id="non">  </td>
+      <td class="non"><input name="nip" type="password" size="8" maxlength="5" > </td>
     </tr> 
     <tr>
       <th>Nuevo Nip: </th>
-      <td id="non"> <input name="nip_nuevo" type="password" id="pass1" size="8" maxlength="5"></td>
+      <td class="non"> <input name="nip_nuevo" type="password" id="pass1" size="8" maxlength="5"></td>
       
     </tr> 
         <tr>
       <th>Re Nuevo Nip: </th>
-      <td id="non"> <input name="re_nip_nuevo" type="password" id="pass2" size="8" maxlength="5"> </td>
+      <td class="non"> <input name="re_nip_nuevo" type="password" id="pass2" size="8" maxlength="5"> </td>
     </tr> 
   </tbody></table>
   <br>  

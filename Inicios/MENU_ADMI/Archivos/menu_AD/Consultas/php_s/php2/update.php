@@ -10,6 +10,7 @@
     $query=mysqli_query($con,$sql);
  
  if($query){
+    mysqli_close($con);
       header('location: http://localhost:8080/Edel%20Administrador/SIIE(CBTIS)/Inicios/excel_cargar/crud/CRUD_Docentes.php');
   }
  ?>

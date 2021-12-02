@@ -27,7 +27,8 @@ $insetarData = "INSERT INTO horario(
 )";
 $query = mysqli_query($con, $insetarData);
 if($query){
+  mysqli_close($con);
     header('location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/Agg_Horarios.php');
   }
-
+  
 ?>

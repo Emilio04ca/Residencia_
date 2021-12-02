@@ -31,13 +31,11 @@
         function valida_datos()
         {
           formulario = document.priv;
-          if (formulario.Privilegio.value != "1")
+          if (formulario.Privilegio.value != 1)
           {
                     formulario.Clave.value="";
                     formulario.Nombre.value="";
-                    formulario.Tipo.value="";
-                    
-                    
+                    formulario.Tipo.value="";            
             Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -51,7 +49,20 @@
                     })
                     return false;
                   }
-                  formulario.submit();
+                  Swal.fire({
+                    title: 'Deseas Registrar este Maestro?',
+                    showDenyButton: true,
+                    confirmButtonText: 'Registrar',
+                    denyButtonText: `No Registrar`,
+                  }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                      formulario.submit();
+                    } else if (result.isDenied) {
+                      return false; 
+                    }
+                  })
+                  
         }
       </script>
   
@@ -65,15 +76,15 @@
       <div class="container justify-items-center n">
           <div class="row">
             <div class="col-xs-12 col-lg-3">
-              <form name="priv" action="phpmate/insertar.php" method="POST">
-              <input name="Privilegio" type="hidden" value="<?php $_SESSION ["usuario"]["Privilegios"];?>">
+              <form name="priv" action="php_s/php2/insertar.php" method="POST">
+              <input name="Privilegio" type="hidden" value="<?php echo $_SESSION ["usuario"]['Privilegios']?>">
                 <h1 class="text-center"><strong>Agregar Docente</strong></h1>
                 <br>
                 <input type="text" required placeholder="Clave_RFC" name="Clave_RFC" class="form-control">
                 <br>
                 <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
                 <br>
-                <input type="text" required placeholder="Ape_paterno" name="Ape_paterno" class="form-control">
+                <input type="text" required placeholder="Ape_paterno" name="Ape_Paterno" class="form-control">
                 <br>
                 <input type="text" required placeholder="Ape_Materno" name="Ape_Materno" class="form-control">
                 <br>
@@ -110,7 +121,7 @@
   
                         ?>
                         <td><a href="Consultas_/editar_Docente.php?id=<?php echo $row['Clave_RFC'] ?>" class="btn btn-primary">Editar</a></td>
-                        <td><a href="php/delete.php?id=<?php echo $row['Clave_RFC'] ?>"  class="btn btn-danger" >Eliminar</a></td>
+                        <td><a href="php_s/php2/delete.php?id=<?php echo $row['Clave_RFC'] ?>"  class="btn btn-danger" >Eliminar</a></td>
                           <?php
                         }
                           ?>

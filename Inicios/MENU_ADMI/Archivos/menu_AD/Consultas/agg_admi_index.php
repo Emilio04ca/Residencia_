@@ -22,9 +22,36 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Css-Scripts/bootstrap.min.css" >
+    <script type="text/javascript"> 
+        function ValidarDatos()
+        {
+          formulario = document.Consultar;
+                    Swal.fire({
+                    title: 'Deseas registrar un nuevo usuario?',
+                    showDenyButton: true,
+                    confirmButtonText: 'Registrar',
+                    denyButtonText: `No Registrar`,
+                  }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                      formulario.submit();
+                    } else if (result.isDenied) {
+                    formulario.Clave_RFC.value="";
+                    formulario.Nombre.value="";
+                    formulario.Apellido_p.value="";
+                    formulario.Apellido_m.value="";
+                    formulario.Contrasena.value="";
+                    formulario.Tipo.value="";
+                    formulario.Privilegios.value="";
+                      return false; 
+                    }
+                  })
+        }
+      </script>
   </head>
   <body>
         <?php include 'Consultas_/menu.php';?>
@@ -36,7 +63,7 @@
       <div class="container justify-items-center n">
         <div class="row">
           <div class="col-xs-12 col-lg-3"> 
-            <form action="php_s/php/ins_admi.php" method="POST">
+            <form name="Consultar" action="php_s/php/ins_admi.php" method="POST">
               <h5 class="text-center"><strong>Agregar Admi</strong></h5>
               <input type="text" required placeholder="Clave_RFC" name="Clave_RFC" class="form-control">
               <br>
@@ -64,9 +91,8 @@
                         </select>
                     </p>
                 </center>
-             
-              <input type="submit" value="Agregar" class="btn btn-primary btn-block">
-            </form>
+                <input type="button" value="Agregar" class="btn btn-primary btn-block" onclick="ValidarDatos();">
+            </form> 
           </div>
           <div class="col-xs-12 col-lg-8 p-3">
           <h3 class="text-center"><strong>Consulta Administrador</strong></h3>
@@ -109,6 +135,7 @@
                     </tr>
                   <?php 
                       }
+                      mysqli_close($con);
                   ?>
                   </tbody>
               </table>

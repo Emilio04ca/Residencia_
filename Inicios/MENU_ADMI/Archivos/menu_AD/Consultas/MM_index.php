@@ -50,7 +50,24 @@
                     })
                     return false;
                   }
-                  formulario.submit();
+                  Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      formulario.submit();
+                      Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                      )
+                    }
+                  })      
         }
       </script>
   </head>
@@ -62,7 +79,7 @@
         <div class="container justify-items-center n">
           <div class="row">
             <div class="col-xs-12 col-lg-3">
-              <form name="priv" action="phpmm/insertar.php" method="POST">
+              <form name="priv" action="php_s/phpmm/insertar.php" method="POST">
                 <h5 class="text-center"><strong>Agregar M-M</strong></h5>
                 <br>
                 <input name="Privilegio" type="hidden" value="<?php $_SESSION ["usuario"]["Privilegios"];?>">
@@ -70,12 +87,47 @@
                 <br>
                 <input type="text" required placeholder="Clave_RFC" name="Clave_RFC" class="form-control">
                 <br>
-                <input type="text" required placeholder="Especialidad" name="Especialidad" class="form-control">
-                <br>
-                <input type="text" required placeholder="Grupo" name="Grupo" class="form-control">
-                <br>
-                <input type="text" required placeholder="Semestre" name="Semestre" class="form-control">
-                <br>
+              <CENTER>
+                <p>Carrera:
+                  <select name="Especialidad" class= "form-control">
+                    <option utf8_decode value="COMPONENTE BASICO Y PROPEDEUTICO">COM. BAS Y PROPEDEUTICO</option>
+                    <option utf8_decode value="CONTABILIDAD">CONTABILIDAD</option>
+                    <option utf8_decode value="OFIMÁTICA">OFIMÁTICA</option>
+                    <option utf8_decode value="MANTENIMIENTO AUTOMOTRIZ">MANTENIMIENTO AUTOMOTRIZ</option>
+                    <option value="PROGRAMACIÓN">PROGRAMACIÓN</option>
+                  </select>
+                </p>
+                <p>Grupo:
+                  <select name="Grupo"  class= "form-control">
+                    <option value="1A">1A</option>
+                    <option value="1B">1B</option>
+                    <option value="1C">1C</option>
+                    <option value="1D">1D</option>
+                    <option value="1E">1E</option>
+                    <option value="1F">1F</option>
+                    <option value="2A">2A</option>
+                    <option value="2B">2B</option>
+                    <option value="3A">3A</option>
+                    <option value="3B">3B</option>
+                    <option value="4A">4A</option>
+                    <option value="4B">4B</option>
+                    <option value="5A">5A</option>
+                    <option value="5B">5B</option>
+                    <option value="6A">6A</option>
+                    <option value="6B">6B</option>
+                  </select>
+                </p>
+                <p>Semestre:
+                  <select name="Semestre" class= "form-control" >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                </p>
+      </CENTER>
                 <input type="button" value="Agregar" class="btn btn-primary btn-block" onclick="valida_datos();">
               </form>
             </div>
@@ -117,7 +169,7 @@
                     </tr>
                     <?php
                     }
-                   
+                    mysqli_close($con);
                     ?>
                   </tbody>
                 

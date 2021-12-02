@@ -23,7 +23,7 @@ foreach ($fileContacts as $contact)
         $Periodo        = !empty($contactList[5])  ? ($contactList[5]) : '';
        
         
-    $insertar = "INSERT INTO info_materias( 
+    $insertar = "INSERT INTO calificaciones( 
             Num_Ctrl,
             Clave_Materia,
             Calificacion,
@@ -40,7 +40,12 @@ foreach ($fileContacts as $contact)
         )";
         mysqli_query($con, $insertar);
     }
+    echo '<div>'. $i. "). " .$contact.'</div>';
 	$i++;
 	
 }
+echo '<p style="text-aling:center; color:#333;">Total de Registros: '. $cantidad_regist_agregados .'</p>';
+
 ?>
+
+<a href="index.php">Atras</a>

@@ -23,6 +23,6 @@ $insetarData = "INSERT INTO maestro_materia(
  $query = mysqli_query($con, $insetarData);
 
  if($query){
-    header('location: http://localhost:8080/Edel%20Administrador/SIIE(CBTIS)/Inicios/excel_cargar/crud/CRUD_Materia%20-%20Maestro.php');
+    header('location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/MM_index.php');
   }
 ?>
