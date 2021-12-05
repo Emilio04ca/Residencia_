@@ -5,7 +5,7 @@ if (($_SESSION ["usuario"]['Clave_RFC'] == null)) {
 }
 else
 {
- include ('phpmate/actualizar.php');
+ include ('../php_s/Consultar/cons_a_materia.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -31,49 +31,74 @@ else
       <script type="text/javascript">
         function valida_datos()
         {
+          formulario = document.actaulizar;
           Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                    }).then((result) => {
+                    title: 'Deseas Actulizar?',
+                    text: "Si es asi, prosigue con la operacion!",
+                    showDenyButton: true,
+                    confirmButtonText: 'Save',
+                    denyButtonText: `Don't save`,
+                  }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
-                        formulario.submit();
-                        
+                      formulario.submit();
+                    } else if (result.isDenied) {
+                      return false; 
                     }
-                    })
+                  })
         }
       </script>
   </head>
   <body>
     <?php include 'menu.php';?>
-    <script src="script.js"></script>
-    
-      <form action="phpmate/update.php" method="POST">
-        <h1 class="text-center"><strong>Actualizar Materia</strong></h1>
-        <br>
+    <br>
+    <br>
+      <form name="actaulizar" action="../php_s/Actualizar/update_materias.php" method="POST">
+        <center><h1><strong>Actualizar Materia</strong></h1></center>
+        <input name="Clave" type="hidden" value="<?php echo $row['Clave'];?>">
         <table>
           <tbody>
               <tr>
                 <th>Clave</th>
-                <td id="non"><input type="hidden" value=""> <?php echo $row['Clave'];?></td>
+                <td id="non"><input type="hidden" value=""> <?php echo utf8_encode($row['Clave']);?></td>
               </tr>
               <tr>
                 <th>Nombre</th>
-                <td id="non"><input name="Nombre" type="text" value="<?php echo $row['Nombre'];?>"></td>
+                <td id="non"><input type="text" name="Nombre" value="<?php echo utf8_encode($row['Nombre']);?>"></td>
+              </tr>
+              <tr>
+                <th>Abreviacion</th>
+                <td id="non"><input  type="text" name="Nom_Abreviado" value="<?php echo utf8_encode($row['Nom_Abreviado']);?>"></td>
+              </tr>
+              <tr>
+              <th>Semestre</th>
+              <td id="non">
+                      <select name="Semestre" class= "form-control">
+                        <option value="">Selecciona</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                      </select>
+               </td>
               </tr>
               <tr>
                 <th>Tipo</th>
-                <td id="non"><input name="Tipo" type="text" value="<?php echo $row['Tipo'];?>"></td>
+                <td id="non">
+                    <select name="Tipo" class= "form-control">
+                        <option value="">Selecciona</option>
+                        <option value="Basica">Basica</option>
+                        <option value="Profesional">Profesional</option>
+                    </select>
+                </td>
               </tr>
           </tbody>
         </table>
             <br>  
             <div align="center">
-              <input name="aceptar" type="button" value="Actualizar" class="boton" onclick="valida_datos();"> 
+            <input name="aceptar" type="button" value="Actualizar" class="boton" onclick="valida_datos();">
             </div>
       </form>
     <!-- Optional JavaScript -->

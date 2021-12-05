@@ -15,9 +15,16 @@
   <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+      $(window).load(function() {
+        $(".loader").fadeOut("slow");
+      });
+    </script>
 </head>
 <body>
+  <div class="loader"></div>
   <?php
     include 'Menu.php';
   ?>

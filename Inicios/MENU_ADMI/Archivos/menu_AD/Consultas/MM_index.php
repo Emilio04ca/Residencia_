@@ -24,81 +24,81 @@
         .n{
             margin-top: 50px;
         }
+        .tamaño
+        {
+          width: 400px;
+        }
     </style>
     <script type="text/javascript">
         function valida_datos()
         {
           formulario = document.priv;
-          if (formulario.Privilegio.value != "1")
-          {
-                    formulario.Clave.value="";
-                    formulario.Clave_RFC.value="";
-                    formulario.Especialidad.value="";
-                    formulario.Grupo.value="";
-                    formulario.Semestre.value="";
-                    
-            Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        toast: true,
-                        position: 'top',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        allowEnterKey:false,
-                        stopKeydownPropagation:false,
-                        text: 'No tienes la autorizacion para agregar'
-                    })
-                    return false;
-                  }
-                  Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      formulario.submit();
-                      Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                      )
-                    }
-                  })      
+          if (formulario.Privilegio.value != 1)
+            {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                toast: true,
+                position: 'top',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey:false,
+                stopKeydownPropagation:false,
+                text: 'No tienes la autorizacion para agregar'
+                })
+                formulario.Clave.value="";
+                formulario.Clave_RFC.value="";
+                formulario.Especialidad.value="";
+                formulario.Grupo.value="";
+                formulario.Semestre.value="";
+                return false;
+            }
+              else
+                {
+                  if (formulario.Grupo.value != "null" || formulario.Semestre.value != "null"
+                      || formulario.Especialidad.value != "null" || formulario.Clave_Maestro.value != "null" || formulario.Periodo.value != "null") 
+                    {
+                      Swal.fire({
+                        title: 'Deseas Actulizar?',
+                        text: "Si es asi, prosigue con la operacion!",
+                        showDenyButton: true,
+                        confirmButtonText: 'Save',
+                        denyButtonText: `Don't save`,
+                            }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+                        if (result.isConfirmed) {
+                          formulario.submit();
+                          formulario.Grupo.value="";
+                          formulario.Semestre.value="";
+                          formulario.Especialidad.value=""; 
+                          formulario.Clave_Maestro.value="";
+                          formulario.Periodo.value=""; 
+                        } else if (result.isDenied) {
+                          return false; 
+                        }
+                      })
+                    } 
+                }   
         }
       </script>
   </head>
   <body>
   <?php include 'Consultas_/menu.php';?>
-    <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
         <br>
         <br>
         <div class="container justify-items-center n">
           <div class="row">
             <div class="col-xs-12 col-lg-3">
-              <form name="priv" action="php_s/phpmm/insertar.php" method="POST">
+              <form name="priv" action="php_s/Insertar/insertar_ma_do.php" method="POST">
                 <h5 class="text-center"><strong>Agregar M-M</strong></h5>
                 <br>
-                <input name="Privilegio" type="hidden" value="<?php $_SESSION ["usuario"]["Privilegios"];?>">
-                <input type="text" required placeholder="Clave" name="Clave" class="form-control">
+                <input name="Privilegio" type="hidden" value="<?php echo $_SESSION ["usuario"]['Privilegios']?>">
+                <input type="text" required placeholder="Clave_Materia" name="Clave_Materia" class="form-control">
                 <br>
-                <input type="text" required placeholder="Clave_RFC" name="Clave_RFC" class="form-control">
-                <br>
-              <CENTER>
-                <p>Carrera:
-                  <select name="Especialidad" class= "form-control">
-                    <option utf8_decode value="COMPONENTE BASICO Y PROPEDEUTICO">COM. BAS Y PROPEDEUTICO</option>
-                    <option utf8_decode value="CONTABILIDAD">CONTABILIDAD</option>
-                    <option utf8_decode value="OFIMÁTICA">OFIMÁTICA</option>
-                    <option utf8_decode value="MANTENIMIENTO AUTOMOTRIZ">MANTENIMIENTO AUTOMOTRIZ</option>
-                    <option value="PROGRAMACIÓN">PROGRAMACIÓN</option>
-                  </select>
-                </p>
+                <CENTER>
                 <p>Grupo:
                   <select name="Grupo"  class= "form-control">
+                  <option value="">Selecciona</option>
                     <option value="1A">1A</option>
                     <option value="1B">1B</option>
                     <option value="1C">1C</option>
@@ -119,6 +119,7 @@
                 </p>
                 <p>Semestre:
                   <select name="Semestre" class= "form-control" >
+                  <option value="">Selecciona</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -127,52 +128,78 @@
                     <option value="6">6</option>
                   </select>
                 </p>
-      </CENTER>
-                <input type="button" value="Agregar" class="btn btn-primary btn-block" onclick="valida_datos();">
-              </form>
-            </div>
-            <div class="col-xs-12 col-lg-8 p-3">
-              <h1 class="text-center"><strong>Consulta Materia Maestro</strong></h1>
-              <form action="#" method="post">
-                <center>
-                  
-                  <input type="submit" value="Consultar" width="100px" >
-                </center>
+                <p>Carrera:
+                  <select name="Especialidad" class= "form-control">
+                  <option value="">Selecciona</option>
+                    <option utf8_decode value="COMPONENTE BASICO Y PROPEDEUTICO">COM. BAS Y PROPEDEUTICO</option>
+                    <option utf8_decode value="CONTABILIDAD">CONTABILIDAD</option>
+                    <option utf8_decode value="OFIMÁTICA">OFIMÁTICA</option>
+                    <option utf8_decode value="MANTENIMIENTO AUTOMOTRIZ">MANTENIMIENTO AUTOMOTRIZ</option>
+                    <option value="PROGRAMACIÓN">PROGRAMACIÓN</option>
+                  </select>
+                </p>
+                <input type="text" required placeholder="Clave_Maestro" name="Clave_Maestro" class="form-control">
                 <br>
-              </form>
-              <table class="table">
-                <thead class="table">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Clave</th>
-                    <th scope="col">Clave_RFC</th>
-                    <th scope="col">Especialidad</th>
-                    <th scope="col">Grupo</th>
-                    <th scope="col">Semestre</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Eliminar</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                    include("php_s/phpmm/mat-mae.php");
-                    while($row= $query->fetch_assoc()){
-                  ?> 
-                    <tr>
-                        <td><?php echo utf8_decode($row['Clave'])?></td>
-                        <td><?php echo utf8_decode($row['Clave_RFC'])?></td>
-                        <td><?php echo utf8_decode($row['Especialidad'])?></td>
-                        <td><?php echo utf8_decode($row['Grupo'])?></td>
-                        <td><?php echo utf8_decode($row['Semestre'])?></td>
-                        <td><a href="editar_alumno.php?id=<?php echo $row['Num_Ctrl'] ?>" class="btn btn-primary">Editar</a></td>
-                        <td><a href="php/delete.php?id=<?php echo $row['Num_Ctrl'] ?>"  class="btn btn-danger" >Eliminar</a></td>
-                    </tr>
+                <p>Periodo:
+                  <select name="Periodo" class="form-control" >
+                  <option value="">Selecciona</option>
+                    <?php
+                    include 'php_s/Consultar/conexion.php';
+                    $sql= "SELECT DISTINCT Periodo FROM datos_alumnos";
+                    $query=mysqli_query($con,$sql);
+                    while($row=mysqli_fetch_array($query)) {
+                    ?>
+                    <option value="<?php echo utf8_decode($row['Periodo'])?>"><?php echo utf8_decode($row['Periodo'])?></option>
                     <?php
                     }
                     mysqli_close($con);
                     ?>
-                  </tbody>
+                  </select>
+                </p>  
+                </CENTER>
+                <input type="button" value="Agregar" class="btn btn-primary btn-block" onclick="valida_datos();">
+              </form>
+            </div>
+            <div class="col-xs-12 col-lg-8 p-3">
+              <h4 class="text-center"><strong>Consulta Materia Maestro</strong></h4>
+              
+              <form action="Consultas_/Consultar_MM.php" method="post">
+              <center>
+              <div class="tamaño" style="display: flex;">
                 
+                    <select name="Periodo" width="150px">
+                    <option value="">Selecciona</option>
+                      <?php
+                      include 'php_s/Consultar/conexion.php';
+                      $sql= "SELECT DISTINCT Periodo FROM datos_alumnos";
+                      $query=mysqli_query($con,$sql);
+                      while($row=mysqli_fetch_array($query)) {
+                      ?>
+                      <option value="<?php echo utf8_decode($row['Periodo'])?>"><?php echo utf8_decode($row['Periodo'])?></option>
+                      <?php
+                      }
+                      mysqli_close($con);
+                      ?>
+                  </select>
+                  <input type="submit" value="Consultar" width="100px" >
+                  
+                </div>
+                </center>
+                <br>
+              </form>
+              
+              <table class="table">
+                <thead class="table">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Clave_Materia</th>
+                    <th scope="col">Grupo</th>
+                    <th scope="col">Semestre</th>
+                    <th scope="col">Especialidad</th>
+                    <th scope="col">Clave_Maestro</th>
+                    <th scope="col">Periodo</th>
+                  </tr>
+                </thead>
               </table>
             
             </div>

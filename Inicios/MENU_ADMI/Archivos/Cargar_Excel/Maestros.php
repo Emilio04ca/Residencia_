@@ -29,6 +29,26 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script> 
+        <script type="text/javascript">
+        function ValidarDatos()
+        {
+          formulario = document.Valores;
+          Swal.fire({
+            title: 'Que deseas hacer?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Registrar',
+            denyButtonText: `Verificar Datos`,
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              Subir();
+            } else if (result.isDenied) {
+              formulario.submit();
+            }
+          })
+        }
+      </script>
 	</head>
 	<body>
   <?php include '../menu_AD/Consultas/Consultas_/menu.php';?>
@@ -39,16 +59,16 @@
             <h3>Insertar registros Maestros</h3>
           </div>
         </header>
-    <form action="files.php" method="post" enctype="multipart/form-data" id="filesForm">
+    <form action="Import/verificar_dat_docente.php" method="post" enctype="multipart/form-data" name="Valores" id="filesForm">
         <div class="col-md-4 offset-md-4">
             <input class="form-control" type="file" name="fileContacts" id="cuadr"><br>
-            <center><button type="button" onclick="uploadContacts()" class="btn btn-primary form-control" >Cargar</button></center>
+            <center><button type="button" onclick="ValidarDatos();" class="btn btn-primary form-control" >Cargar</button></center>
         </div>
     </form>
   </body>
 </html>
 <script type="text/javascript">
-    function uploadContacts()
+    function Subir()
     {
         //obteniendo el valor que se puso en campo text del formulario
         miCampoTexto = document.getElementById("cuadr").value;
@@ -61,58 +81,19 @@
         })
         }
         else{
-            Swal.fire({
-              title: 'Deseas hacer cambios en la infrmacion de los estudiantes?',
-              icon: 'question',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Si, claro!',
-              allowOutsideClick: false,
-                allowEscapeKey: false,
-                allowEnterKey:false,
-                stopKeydownPropagation:false,
-            }).then((result) => {
-              if (result.isConfirmed) {
-                let timerInterval
-                Swal.fire({
-                  title: 'Espera 1 minuto para que los cambios se hagan correctamente.',
-                  html: ' <b></b>.',
-                  timer: 60000,
-                  timerProgressBar: true,
-                  allowOutsideClick: false,
-                    allowEscapeKey:false,
-                    allowEnterKey:false,
-                    stopKeydownPropagation:false,
-                  didOpen: () => {
-                    Swal.showLoading()
-                    const b = Swal.getHtmlContainer().querySelector('b')
-                    timerInterval = setInterval(() => {
-                     b.textContent = Swal.getTimerLeft()
-                    }, 100)
-                  },
-                  willClose: () => {
-                    clearInterval(timerInterval)
-                  }
-                }).then((result) => {
-                 /* Read more about handling dismissals below */
-                  if (result.dismiss === Swal.DismissReason.timer) {
-                    console.log('I was closed by the timer')
-                    miCampoTexto.innerHTML = "";
-
-                  }
-            })
-              }
-            })
-        var Form = new FormData($('#filesForm')[0]);
-        $.ajax({
-
-            url: "Import/import_Mestro.php",
-            type: "post",
-            data : Form,
-            processData: false,
-            contentType: false,
-        }); 
+          Swal.fire('Se te notificara cuando ya se termino el registro, por favor no cierres!', '', 'success')
+                      var Form = new FormData($('#filesForm')[0]);
+                        $.ajax({
+                          url: "Import/import_Mestro.php",
+                            type: "post",
+                            data : Form,
+                            processData: false,
+                            contentType: false,
+                            success: function(data)
+                                      {
+                                        Swal.fire('Registros Exitosos!', '', 'success')
+                                      }
+                        }); 
     }
 }
 

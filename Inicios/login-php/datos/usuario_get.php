@@ -104,8 +104,8 @@ class UsuarioDao extends Conexion
     }
      public static function getNum_Ctrl($usuario)
     {
-        $query = "SELECT info_estudiantes.Num_Ctrl, info_estudiantes.Nombre, info_estudiantes.Ape_paterno, info_estudiantes.Ape_Materno,info_estudiantes.Semestre, info_estudiantes.Especialidad, info_estudiantes.Grupo, info_estudiantes.Periodo, info_estudiantes.Status, login_est.Contrasena, login_est.Estado FROM info_estudiantes
- INNER JOIN login_est ON info_estudiantes.Num_Ctrl = login_est.Num_Ctrl WHERE login_est.Contrasena = :Contrasena AND login_est.Num_Ctrl= :Num_Ctrl ";
+        $query = "SELECT datos_alumnos.Num_Ctrl, datos_alumnos.Nombre, datos_alumnos.Ape_paterno, datos_alumnos.Ape_Materno,datos_alumnos.Semestre, datos_alumnos.Especialidad, datos_alumnos.Grupo, datos_alumnos.Periodo, datos_alumnos.Vigente, login_est.Contrasena, login_est.Estado FROM datos_alumnos
+ INNER JOIN login_est ON datos_alumnos.Num_Ctrl = login_est.Num_Ctrl WHERE login_est.Contrasena = :Contrasena AND login_est.Num_Ctrl= :Num_Ctrl ";
 
         self::getConexion();
 
@@ -127,7 +127,7 @@ class UsuarioDao extends Conexion
         $usuario->setEspecialidad($filas["Especialidad"]);
         $usuario->setGrupo($filas["Grupo"]);
         $usuario->setPeriodo($filas["Periodo"]);
-        $usuario->setStatus($filas["Status"]);
+        $usuario->setStatus($filas["Vigente"]);
         $usuario->setContrasena($filas["Contrasena"]);
         $usuario->setEstado($filas["Estado"]);
 

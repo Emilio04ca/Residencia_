@@ -10,7 +10,7 @@
       if (($_SESSION ["usuario"]['Clave_RFC'] != null)) 
         {
           if ($_SESSION ["usuario"]["Privilegios"] == '1') 
-            {
+            { 
     // code...
 ?>
 <?php
@@ -26,19 +26,18 @@ if (isset($_POST['Carrera'])) {
           $Carrera = utf8_decode($_POST['Carrera']);
           $Semestre = $_POST['Semestre'];
           $Grupo = $_POST['Grupo'];
-          include("php_s/php/conexion.php");
-          $consulta = "SELECT * FROM horario WHERE Nombre='$nombre'";
+          include("php_s/Consultar/conexion.php");
+          $consulta = "SELECT * FROM datos_horario WHERE Nombre='$nombre'";
           $querys=mysqli_query($con,$consulta);
           $cant_duplicidad = mysqli_num_rows($querys);
                if($cant_duplicidad != 0)
                      {
                         mysqli_close($con);
-                        echo '<script type="text/javascript">alert("¡Esto ya se registro!");</script>';
-                        
+                        echo '<script type="text/javascript">alert("¡Esto ya se registro!");</script>';   
                      }
                      else
                       {
-                          $sql = "INSERT INTO horario(Carrera, Semestre, Grupo, Nombre) VALUES('$Carrera','$Semestre','$Grupo','$nombre')";
+                          $sql = "INSERT INTO datos_horario(Carrera, Semestre, Grupo, Nombre) VALUES('$Carrera','$Semestre','$Grupo','$nombre')";
                           $query = mysqli_query($con, $sql);
                           if($query){
                             mysqli_close($con);
@@ -57,8 +56,8 @@ if (isset($_POST['Carrera'])) {
     <title>Consulta Alumno</title> 
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Css-Scripts/style.css">
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,7 +68,7 @@ if (isset($_POST['Carrera'])) {
         {
           formulario = document.Consultar;
                     Swal.fire({
-                    title: 'Deseas registrar un nuevo usuario?',
+                    title: 'Deseas registrar un nuevo Horario?',
                     showDenyButton: true,
                     confirmButtonText: 'Registrar',
                     denyButtonText: `No Registrar`,
@@ -89,12 +88,9 @@ if (isset($_POST['Carrera'])) {
       </script>
   </head>
   <body>
-        <?php include 'Consultas_/menu.php';?>
-        <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
-      
+        <?php include 'Consultas_/menu.php';?>      
         <br>
         <br>   
-     
       <div class="container justify-items-center n">
         <div class="row">
           <div class="col-xs-12 col-lg-3"> 
@@ -176,17 +172,23 @@ if (isset($_POST['Carrera'])) {
                   </thead>
                   <tbody>
                   <?php
-                    include("php_s/php/consultar_horarios.php");
+                    include("php_s/Consultar/consultar_horarios.php");
                     while($row= $resultado->fetch_assoc()){
                   ?> 
                     <tr>
                         <td><?php echo utf8_decode($row['id'])?></td>
-                        <td><?php echo utf8_decode($row['Carrera'])?></td>
+                        <td><?php echo utf8_encode($row['Carrera']);?></td>
                         <td><?php echo utf8_decode($row['Semestre'])?></td>
                         <td><?php echo utf8_decode($row['Grupo'])?></td>
                         <td><?php echo utf8_decode($row['Nombre'])?></td>
-                        <td><a href="php_s/php/delete_horario.php?Carrera=<?php echo $row['Carrera']?>&Grupo=<?php echo $row['Grupo']?>&Nombre=<?php echo $row['Nombre']?>"  class="btn btn-danger" >Eliminar</a></td>
-                    </tr>
+                        <?php
+                          if ($_SESSION ["usuario"]["Privilegios"] == '1') {
+                        ?>
+                        <td><a href="php_s/Eliminar/delete_horario.php?Carrera=<?php echo utf8_encode($row['Carrera']);?>&Grupo=<?php echo $row['Grupo']?>&Nombre=<?php echo $row['Nombre']?>"  class="btn btn-danger" >Eliminar</a></td>
+                        <?php
+                          }
+                        ?>      
+                      </tr>
                     <?php
                     }
                     mysqli_close($con);

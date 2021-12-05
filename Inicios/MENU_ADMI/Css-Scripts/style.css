@@ -180,6 +180,9 @@ nav .navbar .links li:hover .js-sub-menu{
   border-radius: 50%;
   border-left-color: #09f;
 }
+select{
+  width: 100%;
+}
 
 
 

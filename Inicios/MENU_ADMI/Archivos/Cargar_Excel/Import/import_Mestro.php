@@ -19,17 +19,20 @@ foreach ($fileContacts as $contact)
 		$Nombre            	= !empty($contactList[1])  ? ($contactList[1]) : '';
 		$Apellido_P        	= !empty($contactList[2])  ? ($contactList[2]) : '';
         $Apellido_M        	= !empty($contactList[3])  ? ($contactList[3]) : '';
+        $Area        	    = !empty($contactList[4])  ? ($contactList[4]) : '';
         
-    $insertar = "INSERT INTO info_maestros( 
-            Clave_RFC,
+    $insertar = "INSERT INTO datos_docentes( 
+            Clave_Docente,
             Nombre,
-            Ape_paterno	,
-            Ape_materno	
+            Ape_paterno,
+            Ape_materno,
+            Area	
         ) VALUES(
             '$clave',
             '$Nombre',
             '$Apellido_P',
-            '$Apellido_M'
+            '$Apellido_M',
+            '$Area'
         )";
         mysqli_query($con, $insertar);
     }

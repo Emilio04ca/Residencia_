@@ -32,36 +32,59 @@
         {
           formulario = document.priv;
           if (formulario.Privilegio.value != 1)
-          {
-                    formulario.Clave.value="";
-                    formulario.Nombre.value="";
-                    formulario.Tipo.value="";            
+          {                  
             Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        toast: true,
-                        position: 'top',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        allowEnterKey:false,
-                        stopKeydownPropagation:false,
-                        text: 'No tienes la autorizacion para agregar Materias'
-                    })
-                    return false;
-                  }
-                  Swal.fire({
-                    title: 'Deseas Registrar este Maestro?',
-                    showDenyButton: true,
-                    confirmButtonText: 'Registrar',
-                    denyButtonText: `No Registrar`,
-                  }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                      formulario.submit();
-                    } else if (result.isDenied) {
-                      return false; 
+                icon: 'error',
+                title: 'Oops...',
+                toast: true,
+                position: 'top',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey:false,
+                stopKeydownPropagation:false,
+                text: 'No tienes la autorizacion para agregar Materias'
+            })
+              formulario.Clave_RFC.value="";
+              formulario.Nombre.value="";
+              formulario.Ape_Paterno.value="";
+              formulario.Ape_Materno.value="";     
+              return false;
+          }
+          else
+            {
+              if (formulario.Clave_Docente.value == "null" || formulario.Nombre.value == "null" || formulario.Ape_Paterno.value == "null" 
+                        || formulario.Ape_Materno.value == "null")  
+                    {      
+                      Swal.fire({
+                                  icon: 'error',
+                                  title: 'Oops...',
+                                  toast: true,
+                                  position: 'top',
+                                  allowOutsideClick: false,
+                                  allowEscapeKey: false,
+                                  allowEnterKey:false,
+                                  stopKeydownPropagation:false,
+                                  text: 'verifica que los campos esten llenos'
+                              })
+                              return false;
                     }
-                  })
+                    else
+                      {
+                        Swal.fire({
+                          title: 'Deseas Registrar este Maestro?',
+                          showDenyButton: true,
+                          confirmButtonText: 'Registrar',
+                          denyButtonText: `No Registrar`,
+                        }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+                        if (result.isConfirmed) {
+                          formulario.submit();
+                        } else if (result.isDenied) {
+                          return false; 
+                        }
+                      })
+                      }
+            }
                   
         }
       </script>
@@ -69,25 +92,33 @@
   </head>
   <body>
   <?php include 'Consultas_/menu.php';?>
-    <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
-        
-      <br>
+      <br> 
 
       <div class="container justify-items-center n">
           <div class="row">
             <div class="col-xs-12 col-lg-3">
-              <form name="priv" action="php_s/php2/insertar.php" method="POST">
+              <form name="priv" action="php_s/Insertar/insertar_docente.php" method="POST">
               <input name="Privilegio" type="hidden" value="<?php echo $_SESSION ["usuario"]['Privilegios']?>">
                 <h1 class="text-center"><strong>Agregar Docente</strong></h1>
                 <br>
-                <input type="text" required placeholder="Clave_RFC" name="Clave_RFC" class="form-control">
+                <input type="text" required placeholder="Clave_RFC" name="Clave_Docente" class="form-control">
                 <br>
                 <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
                 <br>
                 <input type="text" required placeholder="Ape_paterno" name="Ape_Paterno" class="form-control">
                 <br>
                 <input type="text" required placeholder="Ape_Materno" name="Ape_Materno" class="form-control">
-                <br>
+                <center>
+                <p>Area:
+                  <select name="Area" class="form-control" >
+                    <option value="">Selecciona</option>
+                    <option value="Sin Seccionar">Sin Seccionar</option>
+                    <option value="Sin Seccionar">Sin Seccionar</option>
+                    <option value="Sin Seccionar">Sin Seccionar</option>
+                  </select>
+                </p> 
+                </center>
+
                 <input type="button" value="Agregar" class="btn btn-primary btn-block" onclick="valida_datos();">
               </form>
             </div>
@@ -101,33 +132,36 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Ape_paterno</th>
                     <th scope="col">Ape_Materno	</th>
+                    <th scope="col">Area</th>
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                    include("php_s/phpmm/Consulta_M.php");
-                    while($row= $resultado->fetch_assoc()){
+                    include("php_s/Consultar/consulta_docente.php");
+                    while($row= $resultado->fetch_assoc()){ 
                   ?> 
                     <tr>
-                        <td><?php echo utf8_encode($row['Clave_RFC'])?></td>
+                        <td><?php echo utf8_encode($row['Clave_Docente'])?></td>
                         <td><?php echo utf8_encode($row['Nombre'])?></td>
                         <td><?php echo utf8_encode($row['Ape_paterno'])?></td>
                         <td><?php echo utf8_encode($row['Ape_Materno'])?></td>
+                        <td><?php echo utf8_encode($row['Area'])?></td>
 
                         <?php 
                         if ($_SESSION ["usuario"]["Privilegios"] == '1') {
   
                         ?>
-                        <td><a href="Consultas_/editar_Docente.php?id=<?php echo $row['Clave_RFC'] ?>" class="btn btn-primary">Editar</a></td>
-                        <td><a href="php_s/php2/delete.php?id=<?php echo $row['Clave_RFC'] ?>"  class="btn btn-danger" >Eliminar</a></td>
+                        <td><a href="Consultas_/editar_Docente.php?id=<?php echo $row['Clave_Docente'] ?>" class="btn btn-primary">Editar</a></td>
+                        <td><a href="php_s/Eliminar/delete_maestro.php?id=<?php echo $row['Clave_Docente'] ?>"  class="btn btn-danger" >Eliminar</a></td>
                           <?php
                         }
                           ?>
                     </tr>
                     <?php
-                    }           
+                    }   
+                    mysqli_close($con);        
                     ?>
                   </tbody>
 

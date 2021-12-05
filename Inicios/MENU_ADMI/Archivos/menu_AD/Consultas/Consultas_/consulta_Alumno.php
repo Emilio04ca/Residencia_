@@ -19,50 +19,98 @@
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Css-Scripts/bootstrap.min.css">
       <script type="text/javascript"> 
-        function Resultado(){
-          Swal.fire({
-            
-                        icon: 'error',
-                        title: 'Oops...',
-                        
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        allowEnterKey:false,
-                        stopKeydownPropagation:false,
-                        text: 'No se encontro ese alumno con el numero de control ingresado'
-                    })
-        }
-        function ValidarDatos()
-        {
-          formulario = document.priv;
-                    Swal.fire({
-                    title: 'Do you want to save the changes?',
-                    showDenyButton: true,
-                    confirmButtonText: 'Save',
-                    denyButtonText: `Don't save`,
-                  }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                      formulario.submit();
-                    } else if (result.isDenied) {
-                      return false; 
-                    }
+        function Resultado()
+          {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',            
+              allowOutsideClick: false,
+              allowEscapeKey: false,
+              allowEnterKey:false,
+              stopKeydownPropagation:false,
+              text: 'No se encontro ese alumno con el numero de control ingresado'
+            })
+          }
+          function ValidarDatos()
+          {
+            formulario = document.priv;
+              if (formulario.Privilegio.value != 1)
+              {  
+                Swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      toast: true,
+                      position: 'top',
+                      allowOutsideClick: false,
+                      allowEscapeKey: false,
+                      allowEnterKey:false,
+                      stopKeydownPropagation:false,
+                      text: 'No tienes la autorizacion para agregar Materias'                              
                   })
-        }
+                  formulario.Num_Ctrl.value="";
+                  formulario.Nombre.value="";
+                  formulario.Apellido_p.value="";   
+                  formulario.Apellido_m.value="";
+                  formulario.Semestre.value="";
+                  formulario.Especialidad.value=""; 
+                  formulario.Grupo.value="";
+                  formulario.Turno.value="";
+                  formulario.Periodo.value="";  
+                  return false;     
+              }
+              else
+                {
+                  if (formulario.Num_Ctrl.value == "null" || formulario.Nombre.value == "null" || formulario.Apellido_p.value == "null" 
+                          || formulario.Apellido_m.value == "null" || formulario.Semestre.value == "null" || formulario.Especialidad.value == "null"
+                          || formulario.Grupo.value == "null" || formulario.Turno.value == "null" || formulario.Periodo.value == "null")  
+                      {      
+                        Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    toast: true,
+                                    position: 'top',
+                                    allowOutsideClick: false,
+                                    allowEscapeKey: false,
+                                    allowEnterKey:false,
+                                    stopKeydownPropagation:false,
+                                    text: 'verifica que los campos esten llenos'
+                                })
+                                return false;
+                      }
+                      else
+                        {
+                            Swal.fire({
+                                  title: 'Deseas Actulizar?',
+                                  text: "Si es asi, prosigue con la operacion!",
+                                  showDenyButton: true,
+                                  confirmButtonText: 'Save',
+                                  denyButtonText: `Don't save`,
+                                }).then((result) => {
+                                /* Read more about isConfirmed, isDenied below */
+                                if (result.isConfirmed) 
+                                {
+                                          formulario.submit();
+                                } 
+                                        else if (result.isDenied) 
+                                {
+                                  return false; 
+                                }
+                              })
+                        }
+                }
+          }
       </script>
   </head>
   <body>
-    <?php include 'menu.php';?>
-    <script src="script.js"></script>      
+    <?php include 'menu.php';?>     
         <br>
         <br>
-        
-      
       <div class="container justify-items-center n">
         <div class="row">
           <div class="col-xs-12 col-lg-3"> 
-            <form name="priv" action="../php_s/php/insertar.php" method="POST">
+            <form name="priv" action="../php_s/Insertar/insertar_alumno.php" method="POST">
               <h4 class="text-center"><strong>Agregar Alumno</strong></h4>
+                <input name="Privilegio" type="hidden" value="<?php echo $_SESSION ["usuario"]['Privilegios']?>">
                 <input type="text" required placeholder="No. de Control" name="Num_Ctrl" class="form-control">
                   <br>
                 <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
@@ -72,7 +120,7 @@
                 <input type="text" required placeholder="Apellido M" name="Apellido_m" class="form-control">
                   <br>
                   <CENTER>
-              <p>Semestre:
+                <p>Semestre:
                   <select name="Semestre" class="form-control" >
                   <option value="">Selecciona</option>
                     <option value="1">1</option>
@@ -114,12 +162,20 @@
                     <option value="6B">6B</option>
                   </select>
                 </p>  
+                <p>Turno:
+                  <select name="Turno" class="form-control" >
+                    <option value="">Selecciona</option>
+                    <option value="matutino">matutino</option>
+                    <option value="Vespertino">Vespertino</option>
+                    <option value="1C">1C</option>
+                  </select>
+                </p>  
                 <p>Periodo:
                   <select name="Periodo" class="form-control" >
                   <option value="">Selecciona</option>
                     <?php
-                    include '../php_s/php/conexion.php';
-                    $sql= "SELECT DISTINCT Periodo FROM info_estudiantes";
+                    include '../php_s/Consultar/conexion.php';
+                    $sql= "SELECT DISTINCT Periodo FROM datos_alumnos";
                     $query=mysqli_query($con,$sql);
                     while($row=mysqli_fetch_array($query)) {
                     ?>
@@ -130,7 +186,7 @@
                     ?>
                   </select>
                 </p>         
-              </CENTER>
+                  </CENTER>
                 <input type="button" value="Agregar" class="btn btn-primary btn-block" onclick="ValidarDatos();">
             </form>
           </div>
@@ -150,17 +206,19 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido Paterno</th>
                     <th scope="col">Apellido Materno</th>
+                    <th scope="col">Especialidad</th>
                     <th scope="col">Semestre</th>
-                    <th scope="col">Carrera</th>
                     <th scope="col">Grupo</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Turno</th>
+                    <th scope="col">Periodo</th>
+                    <th scope="col">Vigente</th>
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                        include("../php_s/php/alumno.php");
+                        include("../php_s/Consultar/alumno_consultar.php");
                         $cant_duplicidad = mysqli_num_rows($query);
                         if($cant_duplicidad == 0)
                         {
@@ -169,24 +227,24 @@
                           echo "</script>";
                         }
                         else{
-                        while($row=mysqli_fetch_array($query)) {
-                          
+                        while($row=mysqli_fetch_array($query)) {    
                   ?>       
                     <tr>
-                        <td><?php echo utf8_decode($row['Num_Ctrl'])?></td>
-                        <td><?php echo utf8_decode($row['Nombre'])?></td>
-                        <td><?php echo utf8_decode($row['Ape_paterno'])?></td>
-                        <td><?php echo utf8_decode($row['Ape_Materno'])?></td>
-                        <td><?php echo utf8_decode($row['Semestre'])?></td>
-                        <td><?php echo utf8_decode($row['Especialidad']) ?></td>
-                        <td><?php echo utf8_decode($row['Grupo']) ?></td>
-                        <td><?php echo utf8_decode($row['Status'])?></td>
+                        <td><?php echo utf8_encode($row['Num_Ctrl'])?></td>
+                        <td><?php echo utf8_encode($row['Nombre'])?></td>
+                        <td><?php echo utf8_encode($row['Ape_paterno'])?></td>
+                        <td><?php echo utf8_encode($row['Ape_Materno'])?></td>
+                        <td><?php echo utf8_encode($row['Especialidad']) ?></td>
+                        <td><?php echo utf8_encode($row['Semestre'])?></td>
+                        <td><?php echo utf8_encode($row['Grupo']) ?></td>
+                        <td><?php echo utf8_encode($row['Turno']) ?></td>
+                        <td><?php echo utf8_encode($row['Periodo']) ?></td>
+                        <td><?php echo utf8_encode($row['Vigente'])?></td>
                         <?php
                           if ($_SESSION ["usuario"]["Privilegios"] == '1') {
-
                         ?>
-                        <td><a href="editar_alumno.php?id=<?php echo $row['Num_Ctrl'] ?>" class="btn btn-primary">Editar</a></td>
-                        <td><a href="php/delete.php?id=<?php echo $row['Num_Ctrl'] ?>"  class="btn btn-danger" >Eliminar</a></td>
+                          <td><a href="editar_alumno.php?id=<?php echo $row['Num_Ctrl'] ?>" class="btn btn-primary">Editar</a></td>
+                          <td><a href="../php_s/Eliminar/delete_alumno.php?id=<?php echo $row['Num_Ctrl'] ?>"  class="btn btn-danger" >Eliminar</a></td>
                         <?php
                           }
                           mysqli_close($con);
@@ -196,7 +254,6 @@
                   }
                 }
                   ?>
-                     
                 </tbody> 
               </table>
           </div>

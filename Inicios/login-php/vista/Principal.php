@@ -86,11 +86,11 @@
 		<table width="700px" border="0" align="center" cellspacing="0" cellpadding="0">
 				<tbody>
 					<tr>
-						<td align="left"  height="269px"> 
+						<td align="left"  height="280px"> 
 							<img class="titulos" src="../image_info/Alumno.png" onclick="mostrar('p');" id="img_personal" 
 							onmouseover="cambiar_imagen('img_personal','AlumnoOver.png',1)" onmouseout="cambiar_imagen('img_personal','Alumno.png')">
 						</td>	
-						<td align="center" width="269px">
+						<td align="center" height="270px">
 							<div align="center" style="display:none;" id="a" class="box">
 								<h2>Autentificación para acceso al sistema </h2>
 								<label for="username" id="user">Usuario</label>
@@ -108,7 +108,7 @@
 						  		<input type="submit" value="Acceso">
 						  	</div>
 						</td>
-						<td align="right" height="269px"> 
+						<td align="right" height="280px"> 
 							<img class="titulos" src="../image_info/Personal.png" onclick="mostrar('a');" id="img_alumnos" 
 							onmouseover="cambiar_imagen('img_alumnos','Personalover.png',1)" onmouseout="cambiar_imagen('img_alumnos','Personal.png')">
 						</td>

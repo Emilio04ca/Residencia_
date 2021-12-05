@@ -41,11 +41,10 @@
   </head>
   <body>
     <?php include 'menu.php';?>
-    <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
       <br>
       <br>
       <h1 class="text-center"><strong>Consulta Calificaciones</strong></h1>
-        <form action="Consulta_Cali.php" method="POST">
+        <form action="" method="POST">
               <center>
                 <input type="text" name="buscar" required style="margin: auto; text-align: center;" placeholder="Numero de control">
                 <input type="submit" value="Buscar" width="100px">
@@ -69,7 +68,7 @@
                   </table>
               </div>
                 <?php
-                      include("../php_s/php/calif.php");
+                      include("../php_s/Consultar/consultar_calif.php");
                       $cant_duplicidad = mysqli_num_rows($query);
                               if($cant_duplicidad == 0)
                               {

@@ -17,35 +17,43 @@ foreach ($fileContacts as $contact)
 		$contactList = explode(",", $contact);
 		$Num_Ctrl       = !empty($contactList[0])  ? ($contactList[0]) : '';
 		$Materia        = !empty($contactList[1])  ? ($contactList[1]) : '';
-		$Calificacion   = !empty($contactList[2])  ? ($contactList[2]) : '';
-        $Asistencia     = !empty($contactList[3])  ? ($contactList[3]) : '';
-        $Unidad         = !empty($contactList[4])  ? ($contactList[4]) : '';
-        $Periodo        = !empty($contactList[5])  ? ($contactList[5]) : '';
+		$Semestre       = !empty($contactList[2])  ? ($contactList[2]) : '';
+        $Grupo          = !empty($contactList[3])  ? ($contactList[3]) : '';
+        $Calificacion   = !empty($contactList[4])  ? ($contactList[4]) : '';
+        $Asistencia     = !empty($contactList[5])  ? ($contactList[5]) : '';
+        $Unidad         = !empty($contactList[6])  ? ($contactList[6]) : '';
+        $Periodo        = !empty($contactList[7])  ? ($contactList[7]) : '';
+        $Acreditacion   = !empty($contactList[8])  ? ($contactList[8]) : '';
        
         
-    $insertar = "INSERT INTO calificaciones( 
+    $insertar = "INSERT INTO datos_calificaciones( 
             Num_Ctrl,
             Clave_Materia,
+            Semestre,
+            Grupo,
             Calificacion,
             Asistencia,
             Unidad,
-            Periodo
+            Periodo,
+            Acreditacion
+
         ) VALUES(
             '$Num_Ctrl',
             '$Materia',
+            '$Semestre',
+            '$Grupo',
             '$Calificacion',
             '$Asistencia',
             '$Unidad',
-            '$Periodo'
+            '$Periodo',
+            '$Acreditacion'
+
         )";
         mysqli_query($con, $insertar);
     }
-    echo '<div>'. $i. "). " .$contact.'</div>';
 	$i++;
 	
 }
-echo '<p style="text-aling:center; color:#333;">Total de Registros: '. $cantidad_regist_agregados .'</p>';
+
 
 ?>
-
-<a href="index.php">Atras</a>

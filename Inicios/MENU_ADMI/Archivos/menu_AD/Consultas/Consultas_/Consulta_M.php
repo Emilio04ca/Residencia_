@@ -14,14 +14,13 @@
     <title>CRUD_Materia</title>
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Css-Scripts/style.css">
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Css-Scripts/bootstrap.min.css" >
-   
     <style>
         .n{
             margin-top: 50px;
@@ -32,47 +31,67 @@
         {
           formulario = document.priv;
           if (formulario.Privilegio.value != 1)
-          {
-            formulario.Clave.value="";
-            formulario.Nombre.value="";
-            formulario.Tipo.value="";      
-            Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        toast: true,
-                        position: 'top',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        allowEnterKey:false,
-                        stopKeydownPropagation:false,
-                        text: 'No tienes la autorizacion para agregar Materias'
-                    })
-                    return false;
-          }
-          else
-          {
-            if (formulario.Clave.value == "" || formulario.Nombre.value == ""
-            || formulario.Semestre.value == "" || formulario.Tipo.value == "") 
-                {
-                  formulario.Clave.value="";
-                  formulario.Nombre.value="";
-                  formulario.Tipo.value="";      
-                  Swal.fire({
-                              icon: 'error',
-                              title: 'Oops...',
-                              toast: true,
-                              position: 'top',
-                              allowOutsideClick: false,
-                              allowEscapeKey: false,
-                              allowEnterKey:false,
-                              stopKeydownPropagation:false,
-                              text: 'verifica que los campos esten llenos'
-                          })
-                          return false;
-                }
-
-          }
-                  formulario.submit();
+            {    
+              Swal.fire({
+                          icon: 'error',
+                          title: 'Oops...',
+                          toast: true,
+                          position: 'top',
+                          allowOutsideClick: false,
+                          allowEscapeKey: false,
+                          allowEnterKey:false,
+                          stopKeydownPropagation:false,
+                          text: 'No tienes la autorizacion para agregar Materias'
+                      })
+                      formulario.Clave.value="";
+                      formulario.Nombre.value="";
+                      formulario.Tipo.value=""; 
+                      formulario.Abreviatura.value="";
+                      return false;
+            }
+            else
+              {
+                if (formulario.Clave.value == "" || formulario.Nombre.value == ""
+                || formulario.Semestre.value == "" || formulario.Tipo.value == "") 
+                    {
+                      formulario.Clave.value="";
+                      formulario.Nombre.value="";
+                      formulario.Tipo.value="";      
+                      Swal.fire({
+                                  icon: 'error',
+                                  title: 'Oops...',
+                                  toast: true,
+                                  position: 'top',
+                                  allowOutsideClick: false,
+                                  allowEscapeKey: false,
+                                  allowEnterKey:false,
+                                  stopKeydownPropagation:false,
+                                  text: 'verifica que los campos esten llenos'
+                              })
+                              return false;
+                    }
+                    else
+                    {
+                      Swal.fire({
+                        title: 'Deseas registrar un nuevo usuario?',
+                        showDenyButton: true,
+                        confirmButtonText: 'Registrar',
+                        denyButtonText: `No Registrar`,
+                        }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+                        if (result.isConfirmed) {
+                          formulario.submit();
+                        } else if (result.isDenied) {
+                        formulario.Clave.value="";
+                        formulario.Nombre.value="";
+                        formulario.Semestre.value="";
+                        formulario.Semestre.value="";
+                        formulario.Tipo.value="";
+                          return false; 
+                        }
+                      })
+                    }
+              }
         }
       </script>
   
@@ -84,13 +103,15 @@
       <div class="container justify-items-center n">
           <div class="row">
             <div class="col-xs-12 col-lg-3">
-              <form name="priv" action="phpmate/insertar.php" method="POST">
+              <form name="priv" action="../php_s/Insertar/insertar_materia.php" method="POST">
               <input name="Privilegio" type="hidden" value="<?php echo $_SESSION ["usuario"]['Privilegios']?>">
-                <h1 class="text-center"><strong>Agregar Materias</strong></h1>
+               <h1 class="text-center"><strong>Agregar Materias</strong></h1>
                 <br>
                 <input type="text" required placeholder="Clave" name="Clave" class="form-control">
                 <br>
                 <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
+                <br>
+                <input type="text" required placeholder="Abreviatura" name="Abreviatura" class="form-control">
                 <br>
                 <center><p>Semestre:
                         <select name="Semestre" class= "form-control">
@@ -104,7 +125,7 @@
                         </select>
                 </p>
                 <br>
-                <p>Semestre:
+                <p>Tipo:
                         <select name="Tipo" class= "form-control">
                         <option value="">Selecciona</option>
                         <option value="Basica">Basica</option>
@@ -116,7 +137,7 @@
               </form>
             </div>
             <div class="col-xs-12 col-lg-8 p-3">
-              <h1 align="center"><strong>Consulta Materia Maestro</strong></h1>   
+              <h1 class="text-center"><strong>Consulta Materia Maestro</strong></h1>   
               <br>
               <form  action="" method="post">
                 <center>
@@ -128,6 +149,7 @@
                   <tr>
                     <th scope="col">Clave</th>
                     <th scope="col">Nombre</th>
+                    <th scope="col">Abreviatura</th>
                     <th scope="col">Semestre</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Editar</th>
@@ -136,17 +158,18 @@
                 </thead>
                 <tbody>
                   <?php
-                    include("../php_s/phpmm/Consulta_Materia.php");
+                    include("../php_s/Consultar/Consulta_Materia.php");
                     while($row= $resultado->fetch_assoc()){
                   ?> 
                     <tr>
                         <td><?php echo utf8_encode($row['Clave'])?></td>
-                        <td><?php echo utf8_encode($row['Nombre'])?></td>
+                        <td><?php echo utf8_encode($row['Nombre']);?></td>
+                        <td><?php echo utf8_encode($row['Nom_Abreviado'])?></td>
                         <td><?php echo utf8_encode($row['Semestre'])?></td>
                         <td><?php echo utf8_encode($row['Tipo'])?></td>
                         
-                        <td><a href="editar_Docente.php?id=<?php echo $row['Clave'] ?>" class="btn btn-primary">Editar</a></td>
-                        <td><a href="php/delete.php?id=<?php echo $row['Clave'] ?>"  class="btn btn-danger" >Eliminar</a></td>
+                        <td><a href="editar_Materia.php?id=<?php echo $row['Clave'] ?>" class="btn btn-primary">Editar</a></td>
+                        <td><a href="../php_s/Eliminar/delete_materia.php?id=<?php echo utf8_encode($row['Clave'])?>"  class="btn btn-danger" >Eliminar</a></td>
                     </tr>
                     <?php
                     }

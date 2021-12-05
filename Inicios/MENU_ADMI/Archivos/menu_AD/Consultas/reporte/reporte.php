@@ -5,8 +5,8 @@
 	$carrera = utf8_decode($_POST['carrera']);
     $semestre = $_POST ['semestre'];
 	
-	$query = "SELECT info_estudiantes.Num_Ctrl, info_estudiantes.Nombre, info_estudiantes.Ape_paterno, info_estudiantes.Semestre, info_estudiantes.Especialidad, login_est.Contrasena FROM info_estudiantes
- INNER JOIN login_est ON info_estudiantes.Num_Ctrl = login_est.Num_Ctrl WHERE info_estudiantes.Semestre= '$semestre' AND info_estudiantes.Especialidad='$carrera'";
+	$query = "SELECT datos_alumnos.Num_Ctrl, datos_alumnos.Nombre, datos_alumnos.Ape_paterno, datos_alumnos.Semestre, datos_alumnos.Especialidad, login_est.Contrasena FROM datos_alumnos
+ INNER JOIN login_est ON datos_alumnos.Num_Ctrl = login_est.Num_Ctrl WHERE datos_alumnos.Semestre= '$semestre' AND datos_alumnos.Especialidad='$carrera'";
 	$resultado = $mysqli->query($query);
 	
 	$pdf = new PDF();

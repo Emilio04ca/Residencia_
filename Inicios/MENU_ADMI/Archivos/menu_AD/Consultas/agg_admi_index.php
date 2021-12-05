@@ -22,10 +22,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Css-Scripts/bootstrap.min.css" >
+    <script type="text/javascript">
+      $(window).load(function() {
+        $(".loader").fadeOut("slow");
+      });
+    </script>
     <script type="text/javascript"> 
         function ValidarDatos()
         {
@@ -54,16 +60,15 @@
       </script>
   </head>
   <body>
+    <div class="loader"></div>
         <?php include 'Consultas_/menu.php';?>
-        <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
-      
         <br>
         <br>   
      
       <div class="container justify-items-center n">
         <div class="row">
           <div class="col-xs-12 col-lg-3"> 
-            <form name="Consultar" action="php_s/php/ins_admi.php" method="POST">
+            <form name="Consultar" action="php_s/Insertar/insertar_admi.php" method="POST">
               <h5 class="text-center"><strong>Agregar Admi</strong></h5>
               <input type="text" required placeholder="Clave_RFC" name="Clave_RFC" class="form-control">
               <br>
@@ -118,7 +123,7 @@
                   <tbody>
                     
                   <?php
-                    include("php_s/php/edit_admi.php");
+                    include("php_s/Consultar/consultar_admi.php");
                     require_once("Cripto/mcript.php");
                     while($row= $query->fetch_assoc()){
                   ?>      
@@ -130,7 +135,7 @@
                         <td><?php echo $dato_desencriptado = $desencriptar($row['Contrasena'])?></td>
                         <td><?php echo utf8_decode($row['Usuario']) ?></td>
                         <td><?php echo utf8_decode($row['Privilegios'])?></td>
-                        <td><a href="php_s/php/Eliminar_Admi.php?id=<?php echo $row['Clave_RFC'] ?>"  class="btn btn-danger" >Eliminar</a></td>
+                        <td><a href="php_s/Eliminar/Eliminar_Admi.php?id=<?php echo $row['Clave_RFC'] ?>"  class="btn btn-danger" >Eliminar</a></td>
                         
                     </tr>
                   <?php 

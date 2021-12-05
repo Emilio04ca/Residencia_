@@ -32,10 +32,7 @@
         {
           formulario = document.priv;
           if (formulario.Privilegio.value != 1)
-          {
-            formulario.Clave.value="";
-            formulario.Nombre.value="";
-            formulario.Tipo.value="";      
+          {     
             Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -47,6 +44,10 @@
                         stopKeydownPropagation:false,
                         text: 'No tienes la autorizacion para agregar Materias'
                     })
+                    formulario.Clave.value="";
+                    formulario.Nombre.value="";
+                    formulario.Tipo.value=""; 
+                    formulario.Abreviatura.value="";
                     return false;
           }
           else
@@ -56,7 +57,8 @@
                 {
                   formulario.Clave.value="";
                   formulario.Nombre.value="";
-                  formulario.Tipo.value="";      
+                  formulario.Tipo.value="";  
+                  formulario.Abreviatura.value="";    
                   Swal.fire({
                               icon: 'error',
                               title: 'Oops...',
@@ -70,25 +72,30 @@
                           })
                           return false;
                 }
+                else
+            {
+              Swal.fire({
+                      title: 'Deseas registrar un nuevo usuario?',
+                      showDenyButton: true,
+                      confirmButtonText: 'Registrar',
+                      denyButtonText: `No Registrar`,
+                    }).then((result) => {
+                      /* Read more about isConfirmed, isDenied below */
+                      if (result.isConfirmed) {
+                        formulario.submit();
+                      } else if (result.isDenied) {
+                      formulario.Clave.value="";
+                      formulario.Nombre.value="";
+                      formulario.Semestre.value="";
+                      formulario.Semestre.value="";
+                      formulario.Tipo.value="";
+                        return false; 
+                      }
+                    })
+            }
 
-          }
-          Swal.fire({
-                    title: 'Deseas registrar un nuevo usuario?',
-                    showDenyButton: true,
-                    confirmButtonText: 'Registrar',
-                    denyButtonText: `No Registrar`,
-                  }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                      formulario.submit();
-                    } else if (result.isDenied) {
-                    formulario.Clave.value="";
-                    formulario.Nombre.value="";
-                    formulario.Semestre.value="";
-                    formulario.Tipo.value="";
-                      return false; 
-                    }
-                  })
+          } 
+          
         }
       </script>
   
@@ -101,13 +108,15 @@
       <div class="container justify-items-center n">
           <div class="row">
             <div class="col-xs-12 col-lg-3">
-              <form name="priv" action="php_s/phpmate/insertar.php" method="POST">
+              <form name="priv" action="php_s/Insertar/insertar_materia.php" method="POST">
               <input name="Privilegio" type="hidden" value="<?php echo $_SESSION ["usuario"]['Privilegios']?>">
                 <h1 class="text-center"><strong>Agregar Materias</strong></h1>
                 <br>
                 <input type="text" required placeholder="Clave" name="Clave" class="form-control">
                 <br>
                 <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
+                <br>
+                <input type="text" required placeholder="Abreviatura" name="Abreviatura" class="form-control">
                 <br>
                 <center>
                   <p>Semestre:
@@ -122,7 +131,7 @@
                         </select>
                 </p>
                 <br>
-                <p>Semestre:
+                <p>tipo:
                         <select name="Tipo" class= "form-control">
                         <option value="">Selecciona</option>
                         <option value="Basica">Basica</option>
@@ -147,10 +156,11 @@
                   <tr>
                     <th scope="col">Clave</th>
                     <th scope="col">Nombre</th>
+                    <th scope="col">Abreviatura</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Semestre</th>
                     <th scope="col">Editar</th>
-                    <th scope="col">Eliminar</th>
+                    
                   </tr>
                 </thead>
               </table>

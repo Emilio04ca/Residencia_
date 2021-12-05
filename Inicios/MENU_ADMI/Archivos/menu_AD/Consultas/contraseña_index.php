@@ -30,15 +30,11 @@
   </head>
   <body>
   <?php include 'Consultas_/menu.php';?>
-    <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
-        
       <br>
-      
-     
+      <br>
       <div class="container justify-items-center n">
         <div class="row">
-          <div class="col-xs-12 col-lg-3">
-            
+          <div class="col-xs-12 col-lg-3"> 
             <form  method="POST" action="reporte/reporte.php">
               <h4 class="text-center"><strong>Descarga Grupal</strong></h4>
               <br>

@@ -22,50 +22,77 @@
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Css-Scripts/bootstrap.min.css" >
     <script type="text/javascript">
         function valida_datos()
-        {
-          formulario = document.priv;
-          if (formulario.Privilegio.value != 1)
           {
-                    formulario.Num_Ctrl.value="";
-                    formulario.Nombre.value="";
-                    formulario.Apellido_p.value="";
-                    formulario.Apellido_m.value="";
-                    formulario.Semestre.value="";
-                    formulario.Carrera.value="";
-                    formulario.Status.value="";
-            Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        toast: true,
-                        position: 'top',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        allowEnterKey:false,
-                        stopKeydownPropagation:false,
-                        text: 'No tienes la autorizacion para agrgar Alumnos'
-                    })
-                    return false;
-                  }
-                  Swal.fire({
-                    title: 'Deseas Registrar este Alumno?',
-                    showDenyButton: true,
-                    confirmButtonText: 'Registrar',
-                    denyButtonText: `No Registrar`,
-                  }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                      formulario.submit();
-                    } else if (result.isDenied) {
-                      return false; 
+            formulario = document.priv;
+            if (formulario.Privilegio.value != 1)
+            {
+              formulario.Num_Ctrl.value="";
+              formulario.Nombre.value="";
+              formulario.Apellido_p.value="";   
+              formulario.Apellido_m.value="";
+              formulario.Semestre.value="";
+              formulario.Especialidad.value=""; 
+              formulario.Grupo.value="";
+              formulario.Turno.value="";
+              formulario.Periodo.value="";    
+              Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    toast: true,
+                    position: 'top',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    allowEnterKey:false,
+                    stopKeydownPropagation:false,
+                    text: 'No tienes la autorizacion para agregar Materias'                              
+                })
+                return false;     
+            }
+            else
+              {
+                if (formulario.Num_Ctrl.value == "null" || formulario.Nombre.value == "null" || formulario.Apellido_p.value == "null" 
+                        || formulario.Apellido_m.value == "null" || formulario.Semestre.value == "null" || formulario.Especialidad.value == "null"
+                        || formulario.Grupo.value == "null" || formulario.Turno.value == "null" || formulario.Periodo.value == "null")  
+                    {      
+                      Swal.fire({
+                                  icon: 'error',
+                                  title: 'Oops...',
+                                  toast: true,
+                                  position: 'top',
+                                  allowOutsideClick: false,
+                                  allowEscapeKey: false,
+                                  allowEnterKey:false,
+                                  stopKeydownPropagation:false,
+                                  text: 'verifica que los campos esten llenos'
+                              })
+                              return false;
                     }
-                  })
-                  
-        }
+                    else
+                      {
+                          Swal.fire({
+                                title: 'Deseas Actulizar?',
+                                text: "Si es asi, prosigue con la operacion!",
+                                showDenyButton: true,
+                                confirmButtonText: 'Save',
+                                denyButtonText: `Don't save`,
+                              }).then((result) => {
+                              /* Read more about isConfirmed, isDenied below */
+                              if (result.isConfirmed) 
+                              {
+                                        formulario.submit();
+                              } 
+                                      else if (result.isDenied) 
+                              {
+                                return false; 
+                              }
+                            })
+                      }
+              }
+          }
       </script>
   </head>
   <body>
         <?php include 'Consultas_/menu.php';?>
-        <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
       
         <br>
         <br>
@@ -73,18 +100,18 @@
       <div class="container justify-items-center n">
         <div class="row">
           <div class="col-xs-12 col-lg-3"> 
-            <form   name="priv" action="php_s/php/insertar.php" method="POST">
+          <form name="priv" action="php_s/Insertar/insertar_alumno.php" method="POST">
               <h4 class="text-center"><strong>Agregar Alumno</strong></h4>
               <input name="Privilegio" type="hidden" value="<?php echo $_SESSION ["usuario"]['Privilegios']?>">
-              <input type="text" required placeholder="No. de Control" name="Num_Ctrl" class="form-control">
-              <br>
-              <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
-              <br>
-              <input type="text" required placeholder="Apellido P" name="Apellido_p" class="form-control">
-              <br>
-              <input type="text" required placeholder="Apellido M" name="Apellido_m" class="form-control">
-              <br>
-              <CENTER>
+                <input type="text" required placeholder="No. de Control" name="Num_Ctrl" class="form-control">
+                  <br>
+                <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
+                  <br>
+                <input type="text" required placeholder="Apellido P" name="Apellido_p" class="form-control">
+                  <br>
+                <input type="text" required placeholder="Apellido M" name="Apellido_m" class="form-control">
+                  <br>
+                  <CENTER>
               <p>Semestre:
                   <select name="Semestre" class="form-control" >
                   <option value="">Selecciona</option>
@@ -127,12 +154,20 @@
                     <option value="6B">6B</option>
                   </select>
                 </p>  
+                <p>Turno:
+                  <select name="Turno" class="form-control" >
+                    <option value="">Selecciona</option>
+                    <option value="matutino">matutino</option>
+                    <option value="Vespertino">Vespertino</option>
+                    <option value="1C">1C</option>
+                  </select>
+                </p>  
                 <p>Periodo:
                   <select name="Periodo" class="form-control" >
                   <option value="">Selecciona</option>
                     <?php
-                    include 'php_s/php/conexion.php';
-                    $sql= "SELECT DISTINCT Periodo FROM info_estudiantes";
+                    include 'php_s/Consultar/conexion.php';
+                    $sql= "SELECT DISTINCT Periodo FROM datos_alumnos";
                     $query=mysqli_query($con,$sql);
                     while($row=mysqli_fetch_array($query)) {
                     ?>
@@ -144,7 +179,7 @@
                   </select>
                 </p>         
               </CENTER>
-              <input type="button" value="Agregar" class="btn btn-primary btn-block" onclick="valida_datos();">
+                <input type="button" value="Agregar" class="btn btn-primary btn-block" onclick="valida_datos();">
             </form>
           </div>
           <div class="col-xs-12 col-lg-8 p-3">

@@ -21,12 +21,12 @@ function shuffle_nums($min,$max, $count)
 		$method = 'aes-256-cbc';
 		// Puedes generar una diferente usando la funcion $getIV()
 		$iv = base64_decode("C9fBxl1EWtYTL1/M8jfstw==");
-		 /*
-		 Encripta el contenido de la variable, enviada como parametro.
+		/*
+		Encripta el contenido de la variable, enviada como parametro.
 		  */
-		 $encriptar = function ($valor) use ($method, $clave, $iv) {
-		     return openssl_encrypt ($valor, $method, $clave, false, $iv);
-		 };
+		$encriptar = function ($valor) use ($method, $clave, $iv) {
+			return openssl_encrypt ($valor, $method, $clave, false, $iv);
+		};
 
 $fileContacts = $_FILES['fileContacts']; 
 $fileContacts = file_get_contents($fileContacts['tmp_name']); 
@@ -46,45 +46,48 @@ foreach ($fileContacts as $contact)
     if ($i!=0) 
     	{
 			$contactList = explode(",", $contact);
-			$Num_Ctrl          = !empty($contactList[0])  ? ($contactList[0]) : '';
-			$Nombre            = !empty($contactList[1])  ? ($contactList[1]) : '';
+			$Num_Ctrl          	= !empty($contactList[0])  ? ($contactList[0]) : '';
+			$Nombre            	= !empty($contactList[1])  ? ($contactList[1]) : '';
 			$Ape_paterno        = !empty($contactList[2])  ? ($contactList[2]) : '';
-	        $Ape_Materno        = !empty($contactList[3])  ? ($contactList[3]) : '';
-	        $Semestre          = !empty($contactList[4])  ? ($contactList[4]) : '';
-	        $Especialidad           = !empty($contactList[5])  ? ($contactList[5]) : '';
-	        $Grupo           = !empty($contactList[6])  ? ($contactList[6]) : '';
-	        $Periodo           = !empty($contactList[7])  ? ($contactList[7]) : '';
-	        $Status           = !empty($contactList[8])  ? ($contactList[8]) : '';
+	        $Ape_Materno        = !empty($contactList[3])  ? ($contactList[3]) : '';      
+	        $Especialidad       = !empty($contactList[4])  ? ($contactList[4]) : '';
+			$Semestre          	= !empty($contactList[5])  ? ($contactList[5]) : '';
+	        $Grupo           	= !empty($contactList[6])  ? ($contactList[6]) : '';
+			$Turno          	= !empty($contactList[7])  ? ($contactList[7]) : '';
+	        $Periodo           	= !empty($contactList[8])  ? ($contactList[8]) : '';
+	        $Vigente           	= !empty($contactList[9])  ? ($contactList[9]) : '';
 
-		    if( !empty($Num_Ctrl) )
+		    if( $Num_Ctrl !="")
 		    	{
-					$checkemail_duplicidad = ("SELECT Num_Ctrl FROM info_estudiantes WHERE Num_Ctrl='".($Num_Ctrl)."' ");
+					$checkemail_duplicidad = ("SELECT Num_Ctrl FROM datos_alumnos WHERE Num_Ctrl='".($Num_Ctrl)."' ");
 			        $ca_dupli = mysqli_query($con, $checkemail_duplicidad);
 			        $cant_duplicidad = mysqli_num_rows($ca_dupli);
 		    	 
 		    //No existe Registros Duplicados
 			if ( $cant_duplicidad == 0 ) 
 				{
-					$insertarData = "INSERT INTO info_estudiantes( 
+					$insertarData = "INSERT INTO datos_alumnos( 
 					   	Num_Ctrl, 
 					   	Nombre,
 					    Ape_paterno,
 					    Ape_Materno,
-					    Semestre,
 					    Especialidad,
+						Semestre,
 					    Grupo,
+						Turno,
 						Periodo,
-					    Status
+					    Vigente
 					) VALUES(
 						'$Num_Ctrl',
 					    '$Nombre',
 					    '$Ape_paterno',
 					    '$Ape_Materno',
-					    '$Semestre',
 					    '$Especialidad',
+					    '$Semestre',
 					    '$Grupo',
+					    '$Turno',
 					    '$Periodo',
-					    '$Status'
+						'$Vigente'
 					)";
 					
 					$insertarlogin = "INSERT INTO login_est( 
@@ -103,18 +106,20 @@ foreach ($fileContacts as $contact)
 	/**Caso Contrario actualizo el o los Registros ya existentes*/
 				else
 					{
-					    $updateData =  ("UPDATE info_estudiantes SET 
-					        Num_Ctrl = '".$Num_Ctrl. "', 
-					        Nombre='" .$Nombre. "',
-					        Ape_paterno='" .$Ape_paterno. "',
-					        Ape_Materno='" .$Ape_Materno. "',
-					        Semestre='" .$Semestre. "',
+					    $updateData =  ("UPDATE datos_alumnos SET 
+					        Num_Ctrl 	= '".$Num_Ctrl. "', 
+					        Nombre 		= '".$Nombre. "',
+					        Ape_paterno	='" .$Ape_paterno. "',
+					        Ape_Materno	='" .$Ape_Materno. "',
 					        Especialidad='" .$Especialidad. "',
-					        Grupo= '".$Grupo."',
-					        Periodo= '".$Periodo."',
-					        Status ='" .$Status. "'
-					        WHERE Num_Ctrl ='".$Num_Ctrl."'
+							Semestre	='" .$Semestre. "',
+					        Grupo		= '".$Grupo."',
+					        Periodo		= '".$Periodo."',
+							Turno		= '".$Turno."',
+					        Vigente 	=	'" .$Vigente. "'
+					        WHERE 		Num_Ctrl ='".$Num_Ctrl."'
 					    ");
+						mysqli_query($con, $updateData);
 				    }
     	}
     	else

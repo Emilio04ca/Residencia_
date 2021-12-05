@@ -5,7 +5,7 @@ if (($_SESSION ["usuario"]['Clave_RFC'] == null)) {
 }
 else
 {
- include ('phpmm/actualizar.php');
+ include ('../php_s/Consultar/cons_a_actualizar.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -30,51 +30,94 @@ else
       <script type="text/javascript">
         function valida_datos()
         {
+          formulario = document.actaulizar;
           Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                    }).then((result) => {
+                    title: 'Deseas Actulizar?',
+                    text: "Si es asi, prosigue con la operacion!",
+                    showDenyButton: true,
+                    confirmButtonText: 'Save',
+                    denyButtonText: `Don't save`,
+                  }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
-                        formulario.submit();
-                        
+                      formulario.submit();
+                    } else if (result.isDenied) {
+                      return false; 
                     }
-                    })
+                  })
         }
       </script>
   </head>
   <body>
     <?php include 'menu.php';?>
-    <script src="script.js"></script>
-
-      <form action="phpmm/update.php" method="POST">
-      <h1 class="text-center"><strong>Actualizar Materia-Maestro</strong></h1>
+<br>
+<br>
+      <center><h1><strong>Actualizar Materia-Maestro</strong></h1></center>
+      <form name="actaulizar" action="../php_s/Actualizar/update_ma_do.php" method="POST">
+      
+      <input name="Clave_Materia" type="hidden" value="<?php echo $row['Clave_Materia'];?>">
+      <input name="Especialidad" type="hidden" value="<?php echo utf8_encode($row['Especialidad']);?>">
       <br>
-         <table align="center" width="300px">
+        <table align="center" width="300px">
               <tbody>
+                <center>
                 <tr>
-                  <th>RFC</th>
-                  <td id="non"><input type="hidden" value=""> <?php echo $row['Clave'];?></td>
+                  <th>Clave_Materia</th>
+                  <td id="non"><input type="hidden" value=""> <?php echo $row['Clave_Materia'];?></td>
                 </tr>
                 <tr>
-                  <th>Nombre </th>
-                  <td id="non"><input name="Clave_RFC" type="text" value="<?php echo $row['Clave_RFC'];?>">  </td>
+                <th>Grupo </th>
+                <td id="non"> 
+                <select name="Grupo" class="form-control" >
+                    <option value="">Selecciona</option>
+                    <option value="1A">1A</option>
+                    <option value="1B">1B</option>
+                    <option value="1C">1C</option>
+                    <option value="1D">1D</option>
+                    <option value="1E">1E</option>
+                    <option value="1F">1F</option>
+                    <option value="2A">2A</option>
+                    <option value="2B">2B</option>
+                    <option value="3A">3A</option>
+                    <option value="3B">3B</option>
+                    <option value="4A">4A</option>
+                    <option value="4B">4B</option>
+                    <option value="5A">5A</option>
+                    <option value="5B">5B</option>
+                    <option value="6A">6A</option>
+                    <option value="6B">6B</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+              <th>Semestre</th>
+              <td id="non">
+                      <select name="Semestre" class= "form-control">
+                        <option value=""><?php echo $row['Semestre'];?></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                      </select>
+               </td>
+              </tr>
+              <tr>
+                <th>Especialidad</th>
+                <td id="non"> 
+                  <input type="hidden"> <?php echo utf8_encode($row['Especialidad']);?>
+                </td>
+                  
+                <!--<td id="non"><input name="Carrera" type="text"  value=""></td>-->
+              </tr>
+                <tr>
+                  <th>Clave_Maestro</th>
+                  <td id="non"><input name="Clave_Maestro" type="text" value="<?php echo $row['Clave_Maestro'];?>"></td>
                 </tr>
                 <tr>
-                  <th>Apellido Paterno </th>
-                  <td id="non"><input name="Especialidad" type="text" value="<?php echo $row['Especialidad'];?>"></td>
-                </tr>
-                <tr>
-                  <th>Apellido Materno </th>
-                  <td id="non"><input name="Grupo" type="text" value="<?php echo $row['Grupo'];?>"></td>
-                </tr>
-                <tr>
-                  <th>Apellido Materno </th>
-                  <td id="non"><input name="Semestre" type="text" value="<?php echo $row['Semestre'];?>"></td>
+                  <th>Periodo</th>
+                  <td id="non"><input name="Periodo" type="text" value="<?php echo $row['Periodo'];?>"></td>
                 </tr>
               </tbody>
             </table>
@@ -82,6 +125,7 @@ else
               <div align="center">
                 <input name="aceptar" type="button" value="Actualizar" class="boton" onclick="valida_datos();"> 
               </div>
+              </center>
       </form>
   
     <!-- Optional JavaScript -->

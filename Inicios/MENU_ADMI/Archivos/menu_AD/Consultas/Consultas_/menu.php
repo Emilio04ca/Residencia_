@@ -51,6 +51,7 @@
           </li>
           <li ><a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/agg_admi_index.php">Agg. Admi.</a></li>
           <li ><a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/Agg_Horarios.php">Agg. Horarios</a></li>
+          <li ><a href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/Carreras.php">Carreras</a></li>
         </ul>
       </div>
       <div class="close">

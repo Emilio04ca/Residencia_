@@ -319,6 +319,7 @@ td {
   font-size: 13px;
   color: #25496B;
   background-color: #E5E7E9;
+  text-align: center;
   border-color: gray;
   padding: 0px 0px 0px 0px;
 }
@@ -328,6 +329,15 @@ td {
 
 }
 input {
+  border-style: solid;
+  background-color:  #fff;
+  color:#014E82;
+  padding: 1px 3px 1px 3px;
+  font-size: 14px;
+  text-align: center;
+  width: 100%;
+}
+select{
   border-style: solid;
   background-color:  #fff;
   color:#014E82;
@@ -586,7 +596,6 @@ input {
 }
 
 
-
 .boton{
   border-style: solid;
   background-color:  #fff;
@@ -606,4 +615,14 @@ div#error2 {
   display: inline-block;
   position: relative;
   top: 5px;
+}
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url('images/pageLoader.gif') 50% 50% no-repeat rgb(249,249,249);
+  opacity: .8;
 }

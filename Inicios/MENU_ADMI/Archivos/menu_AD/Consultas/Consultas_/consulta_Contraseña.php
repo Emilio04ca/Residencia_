@@ -41,18 +41,11 @@ require_once("../Cripto/mcript.php");
     <script src="script.js"></script>
       <br>
       <br>
-      <h1 class="text-center"><strong>Consulta Contraseña</strong></h1>
-        <form action="consulta_Contraseña.php" method="POST">
-              <center>
-                <input type="text" name="buscar" required style="margin: auto; text-align: center;" placeholder="Numero de control">
-                <input type="submit" value="Buscar" width="100px">
-              </center>
-        </form>
       <div class="container justify-items-center n">
         <div class="row">
           <div class="col-xs-12 col-lg-3">            
             <form  method="POST" action="../reporte/reporte.php">
-              <h1 class="text-center"><strong>Descarga Grupal</strong></h1>
+              <h4 class="text-center"><strong>Descarga Grupal</strong></h4>
               <br>
               <p>Carrera:
                 <select name="carrera">
@@ -78,6 +71,14 @@ require_once("../Cripto/mcript.php");
             </form>
           </div>
           <div class="col-xs-12 col-lg-8 p-3">
+          <h4 class="text-center"><strong>Consulta Contraseña</strong></h4>
+            <form action="" method="POST">
+                  <center>
+                    <input type="text" name="buscar" required style="margin: auto; text-align: center;" placeholder="Numero de control">
+                    <input type="submit" value="Buscar" width="100px">
+                  </center>
+            </form>
+            <br>
             <table class="table">
               <thead class="table">
                 <tr>
@@ -90,7 +91,7 @@ require_once("../Cripto/mcript.php");
               </thead>
               <tbody>
                 <?php
-                    include("../php_s/phpcontra/contra.php");
+                    include("../php_s/Consultar/consulta_contra.php");
                         $cant_duplicidad = mysqli_num_rows($query);
                         if($cant_duplicidad == 0)
                         {

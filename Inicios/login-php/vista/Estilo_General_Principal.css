@@ -9,9 +9,9 @@
 }
 body {
 	
-	background: url('../image_info/leopardol.png') no-repeat  fixed center;
-	background-size: cover;
-	margin: auto;
+	background-size: 100%;
+  background-size: cover;
+  background: #fff url('http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/image_info/leopardol.png') no-repeat  fixed center;
 	
 	
 }
@@ -114,7 +114,7 @@ select {
 
 select:disabled {
 	background-color:#EEEEEE
-	color:#CC0000;
+
 }
 
 label{
@@ -462,7 +462,7 @@ legend {
 
 /*Codigo Experimento Login*/
 .box{
-  width: 300px;
+  width: 290px;
   padding: 1px;
   position: static;
   top: 40%;

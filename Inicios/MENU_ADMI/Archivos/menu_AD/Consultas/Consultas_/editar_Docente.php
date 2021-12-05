@@ -5,7 +5,7 @@ if (($_SESSION ["usuario"]['Clave_RFC'] == null)) {
 }
 else
 {
- include ('../php_s/php2/actualizar.php');
+ include ('../php_s/Consultar/cons_doc_actualizar.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -30,14 +30,15 @@ else
       <script type="text/javascript">
         function valida_datos()
         {
+          formulario = document.actualizar;
           Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
+                    title: 'Deseas Actulizar?',
+                    text: "Si es asi, prosigue con la operacion!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonText: 'Si, Claro!'
                     }).then((result) => {
                     if (result.isConfirmed) {
                         formulario.submit();
@@ -52,16 +53,16 @@ else
   <script src="script.js"></script>
         <br>
         <br>
-      <form  name="actualizar"action="php2/update.php" method="POST">
-        <h1 class="text-center"><strong>Actualizar Docente</strong></h1>
+      <form  name="actualizar"action="../php_s/Actualizar/update_docente.php" method="POST">
+        <center><h1 class="text-center"><strong>Actualizar Docente</strong></h1></center>
         <br>
-        <input name="Clave_RFC" type="hidden" value="<?php echo $row['Clave_RFC'];?>">
+        <input name="Clave_Docente" type="hidden" value="<?php echo $row['Clave_Docente'];?>">
         
         <table align="center" width="200px">
           <tbody>
             <tr>
               <th>RFC</th>
-              <td id="non"><input type="hidden" value=""> <?php echo $row['Clave_RFC'];?></td>
+              <td id="non"><input type="hidden" value=""> <?php echo $row['Clave_Docente'];?></td>
             </tr>
             <tr>
               <th>Nombre </th>
@@ -75,6 +76,17 @@ else
               <th>Apellido Materno </th>
               <td id="non"><input name="Ape_Materno" type="text" value="<?php echo $row['Ape_Materno'];?>"></td>
             </tr>
+            <tr>
+              <th>Apellido Materno </th>
+              <td id="non">
+                <select name="Area" class="form-control" >
+                    <option value="">Selecciona</option>
+                    <option value="INFO">Sin Seccionar</option>
+                    <option value="INFO">Sin Seccionar</option>
+                    <option value="INFO">Sin Seccionar</option>
+                  </select>
+                </td>
+            </tr> 
           </tbody>
         </table>
           <br>  

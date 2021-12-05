@@ -41,7 +41,7 @@ height: 22px;
 color: #cccccc;
 padding: 0px;
 margin: 0px;
-background-image: url(../../img/menu/glbnav_background.gif);
+
 }
 
 #globalNav img{
@@ -124,7 +124,7 @@ a.glink:hover{
 .CBTIS	{
 	width:	60px;
 	height: 70px;
-	position: ;
+	position: static;
 	background-position:  center;
 }
 

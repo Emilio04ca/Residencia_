@@ -62,60 +62,34 @@
         })
 
         }
-        else{
-            Swal.fire({
-              title: 'Deseas hacer nuevos registros?',
-              icon: 'question',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Si, claro!',
-              allowOutsideClick: false,
-                allowEscapeKey: false,
-                allowEnterKey:false,
-                stopKeydownPropagation:false,
-            }).then((result) => {
-              if (result.isConfirmed) {
-                let timerInterval
-                Swal.fire({
-                  title: 'Espera 1 minuto para que los cambios se hagan correctamente.',
-                  html: ' <b></b>.',
-                  timer: 60000,
-                  timerProgressBar: true,
-                  allowOutsideClick: false,
-                    allowEscapeKey:false,
-                    allowEnterKey:false,
-                    stopKeydownPropagation:false,
-                  didOpen: () => {
-                    Swal.showLoading()
-                    const b = Swal.getHtmlContainer().querySelector('b')
-                    timerInterval = setInterval(() => {
-                     b.textContent = Swal.getTimerLeft()
-                    }, 100)
-                  },
-                  willClose: () => {
-                    clearInterval(timerInterval)
-                  }
-                }).then((result) => {
-                 /* Read more about handling dismissals below */
-                  if (result.dismiss === Swal.DismissReason.timer) {
-                    console.log('I was closed by the timer')
-                    miCampoTexto.innerHTML = "";
-
-                  }
-            })
-              }
-            })
-        var Form = new FormData($('#filesForm')[0]);
-        $.ajax({
-
-            url: "Import/import_alumno.php",
-            type: "post",
-            data : Form,
-            processData: false,
-            contentType: false,
-        });        
-    }
+        else
+        {
+          Swal.fire({
+                    title: 'Deseas Registrar nuevos datos?',
+                    showDenyButton: true,
+                    confirmButtonText: 'Registrar',
+                    denyButtonText: `No Registrar`,
+                  }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                      Swal.fire('Se te notificara cuando ya se termino el registro, por favor no cierres!', '', 'success')
+                      var Form = new FormData($('#filesForm')[0]);
+                        $.ajax({
+                            url: "Import/import_alumno.php",
+                            type: "post",
+                            data : Form,
+                            processData: false,
+                            contentType: false,
+                            success: function(data)
+                                      {
+                                        Swal.fire('Registros Exitosos!', '', 'success')
+                                      }
+                        }); 
+                      } else if (result.isDenied) {
+                       
+                      }
+                    })    
+        }
 }
 </script>
 <script>

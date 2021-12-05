@@ -17,11 +17,17 @@ if (($_SESSION ["usuario"]['Num_Ctrl'] != '')) {
     <title> cambionip </title>
     <link rel="stylesheet" href="style.css">
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Boxicons CDN Link -->
-   
+   <script type="text/javascript">
+      $(window).load(function() {
+        $(".loader").fadeOut("slow");
+      });
+    </script>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     
 
       <script type="text/javascript">
         function cambio_cont(t)
@@ -189,6 +195,7 @@ if (($_SESSION ["usuario"]['Num_Ctrl'] != '')) {
 
    </head>
 <body>
+<div class="loader"></div>
 <?php
     include 'Menu.php';
   ?>
