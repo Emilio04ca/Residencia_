@@ -14,6 +14,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+<style>
+        input {
+  border-style: solid;
+  background-color:  #fff;
+  color:#014E82;
+  padding: 1px 3px 1px 3px;
+  font-size: 14px;
+  text-align: center;
+  width: 100px;
+}
+    </style>
 </head>
 <body>
                 <table class="table" >
@@ -60,6 +71,7 @@
                     $numerfinal = $i - 1;
                     ?>
 <center class="h1"><?php echo $numerfinal?> <br> Datos encontrados</center>
+<center><input type="button" value="Página anterior"  onClick="history.go(-1);"> </center>
             </tbody>
             </table>
 </body>
