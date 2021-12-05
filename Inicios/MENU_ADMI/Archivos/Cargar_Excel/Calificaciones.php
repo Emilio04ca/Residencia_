@@ -27,28 +27,47 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <!-- Latest compiled JavaScript -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <script type="text/javascript">
+        function ValidarDatos()
+        {
+          formulario = document.Valores;
+          Swal.fire({
+            title: 'Que deseas hacer?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Registrar',
+            denyButtonText: `Verificar Datos`,
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              Subir();
+            } else if (result.isDenied) {
+              formulario.submit();
+            }
+          })
+        }
+      </script>
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>   
 	</head>
 	<body>
   <?php include '../menu_AD/Consultas/Consultas_/menu.php';?>
-    <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
       <br>
-        <header>
+        <header></header>
           <div class="alert alert-info">
             <h3>Insertar calificaciones de Alumnos</h3>
           </div>
         </header>
        
-        <form action="files.php" method="post" enctype="multipart/form-data" id="filesForm">
+        <form name="Valores" action="Import/verificar_dat_cali.php" method="post" enctype="multipart/form-data" id="filesForm">
           <div class="col-md-4 offset-md-4">
               <input class="form-control" type="file" name="fileContacts" id="cuadr"><br>
-              <center><button type="button" onclick="uploadContacts()" class="btn btn-primary form-control" >Cargar</button></center>
+              <center><button type="button" onclick="ValidarDatos()" class="btn btn-primary form-control" >Cargar</button></center>
           </div>      
         </form>
   </body>
 </html>
 <script type="text/javascript">
-    function uploadContacts()
+    function Subir()
     {
        /* //obteniendo el valor que se puso en campo text del formulario
         miCampoTexto = document.getElementById("cuadr").value;
@@ -129,19 +148,31 @@
 
         }
         else{
-              var Form = new FormData($('#filesForm')[0]);
-                  $.ajax({
-
-                      url: "Import/import_cali.php",
-                      type: "post",
-                      data : Form,
-                      processData: false,
-                      contentType: false,
-                      success: function(data)
-                      {
-                          alert('Registros Agregados!');
-                      }
-                  });
+          Swal.fire({
+                    title: 'Deseas Registrar nuevos datos?',
+                    showDenyButton: true,
+                    confirmButtonText: 'Registrar',
+                    denyButtonText: `No Registrar`,
+                  }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                      Swal.fire('Se te notificara cuando ya se termino el registro!', '', 'success')
+                      var Form = new FormData($('#filesForm')[0]);
+                        $.ajax({
+                            url: "Import/import_cali.php",
+                            type: "post",
+                            data : Form,
+                            processData: false,
+                            contentType: false,
+                            success: function(data)
+                                      {
+                                        Swal.fire('Registros Exitosos!', '', 'success')
+                                      }
+                        });
+                    } else if (result.isDenied) {
+                       
+                    }
+                  })
         }
 }
 </script>
