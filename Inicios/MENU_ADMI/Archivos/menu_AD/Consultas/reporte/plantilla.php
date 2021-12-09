@@ -9,7 +9,7 @@ require 'fpdf/fpdf.php';
 			$this->SetFont('Arial','B',15);
 			$this->Cell(30);
 			$this->Cell(120,10, utf8_decode('Reporte De Contraseñas'),0,0,'C');
-			$this->Ln(20);
+			$this->Ln(15);
 		}
 		
 		function Footer()

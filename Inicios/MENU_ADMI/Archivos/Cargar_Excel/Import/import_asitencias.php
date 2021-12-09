@@ -21,8 +21,8 @@ foreach ($fileContacts as $contact)
         $Nombre_Materia       		= !empty($contactList[3])  ? ($contactList[3]) : '';
         $Grupo             	        = !empty($contactList[4])  ? ($contactList[4]) : '';
 		$Unidad                     = !empty($contactList[5])  ? ($contactList[5]) : '';
-		$Numero_Asitencias_Totales  = !empty($contactList[6])  ? ($contactList[6]) : '';
-    
+		$Numero_Asitencias_Totaless  = !empty($contactList[6])  ? ($contactList[6]) : '';
+        $Numero_Asitencias_Totaless = trim($Numero_Asitencias_Totaless);
        
         
     $insertar = "INSERT INTO clientes( 

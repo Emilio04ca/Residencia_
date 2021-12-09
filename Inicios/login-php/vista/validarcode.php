@@ -10,7 +10,7 @@ $resultado = array();
 $resultados = array();
 
 if ($var == "true") {
-    if ($_POST["usuario"] != null) {
+    if ($_POST["usuario"] != null || $_POST["contrasenas"] != null) {
 
         $Clave_RFC  = validar_campo($_POST["usuario"]);
         $cont = validar_campo($_POST["contrasenas"]);
@@ -31,11 +31,16 @@ if ($var == "true") {
             return print(json_encode($resultados));
             
         }
+        else
+        {
+            $resultado = array("estado" => "false");
+            return print(json_encode($resultado)); 
+        }
 
     }
     else
     {
-        if ($_POST["alumno"] != null) {
+        if ($_POST["alumno"] != null || $_POST["contrasena"] != null) {
 
         $Num_Ctrl  = validar_campo($_POST["alumno"]);
         $cont = validar_campo($_POST["contrasena"]);
@@ -60,23 +65,17 @@ if ($var == "true") {
             );
             return print(json_encode($resultado));
         }
-    }
-    else
-    {
-        if ($_POST['alumno'] == null && $_POST['usuario'] == null) {
+        else
+        {
             $resultado = array("estado" => "falso");
-            print(json_encode($resultado));
-            // code...
+            return print(json_encode($resultado)); 
         }
     }
+
+    
 }
 
 }
-else
-{
-    $resultado = array("estado" => "false");
-    return print(json_encode($resultado));
 
-}
 
 

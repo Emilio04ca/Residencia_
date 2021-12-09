@@ -18,10 +18,11 @@ foreach ($fileContacts as $contact)
 		$clave       		= !empty($contactList[0])  ? ($contactList[0]) : '';
 		$Nombre             = !empty($contactList[1])  ? ($contactList[1]) : '';
 		$Semestre           = !empty($contactList[2])  ? ($contactList[2]) : '';
-        $Tipo               = !empty($contactList[3])  ? ($contactList[3]) : '';
+        $Tipos               = !empty($contactList[3])  ? ($contactList[3]) : '';
+        $tipo = trim($Tipos);
        
         
-    $insertar = "INSERT INTO datos_materias( 
+    $insertar = "INSERT INTO datos_materias(
             Clave,
             Nombre,
             Semestre,

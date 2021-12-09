@@ -98,7 +98,7 @@
                       Swal.fire('Se te notificara cuando ya se termino el registro, por favor no cierres!', '', 'success')
                       var Form = new FormData($('#filesForm')[0]);
                         $.ajax({
-                            url: "/import/Materia_Relacion.php",
+                            url: "Import/Maestro_Materia.php",
                             type: "post",
                             data : Form,
                             processData: false,

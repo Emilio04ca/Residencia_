@@ -23,7 +23,8 @@ foreach ($fileContacts as $contact)
         $Asistencia     = !empty($contactList[5])  ? ($contactList[5]) : '';
         $Unidad         = !empty($contactList[6])  ? ($contactList[6]) : '';
         $Periodo        = !empty($contactList[7])  ? ($contactList[7]) : '';
-        $Acreditacion   = !empty($contactList[8])  ? ($contactList[8]) : '';
+        $Acreditacions   = !empty($contactList[8])  ? ($contactList[8]) : '';
+        $Acreditacion = trim($Acreditacions);
        
         
     $insertar = "INSERT INTO datos_calificaciones( 

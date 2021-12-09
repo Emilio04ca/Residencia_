@@ -32,9 +32,11 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Clave_Materia</th>
-                        <th scope="col">ID_Maestro</th>
-                        <th scope="col">Especilidad</th>
                         <th scope="col">Grupo</th>
+                        <th scope="col">Semestre</th>
+                        <th scope="col">Especialidad</th>
+                        <th scope="col">Turno</th>
+                        <th scope="col">Clave_Maestro</th>
                         <th scope="col">Periodo</th>
                     </tr>
                     <tr>
@@ -53,19 +55,23 @@
                         if ($i!=0) {
                             $contactList = explode(",", $contact);
                             $Clave_Materia       		= !empty($contactList[0])  ? ($contactList[0]) : '';
-                            $ID_Maestro                 = !empty($contactList[1])  ? ($contactList[1]) : '';
-                            $Especilidad             	= !empty($contactList[2])  ? ($contactList[2]) : '';
-                            $Grupo                      = !empty($contactList[3])  ? ($contactList[3]) : '';
-                            $Periodo                    = !empty($contactList[4])  ? ($contactList[4]) : '';
+                            $Grupo                      = !empty($contactList[1])  ? ($contactList[1]) : '';
+                            $Semestre             	    = !empty($contactList[2])  ? ($contactList[2]) : '';
+                            $Especialidad               = !empty($contactList[3])  ? ($contactList[3]) : '';
+                            $Turno                      = !empty($contactList[4])  ? ($contactList[4]) : '';
+                            $Clave_Maestro              = !empty($contactList[5])  ? ($contactList[5]) : '';
+                            $Periodo                    = !empty($contactList[6])  ? ($contactList[6]) : '';
                             
                                 if($Clave_Materia != "")
                                 {
                 ?>
                                             <td><?php echo utf8_encode($i)?></td>
                                             <td><?php echo utf8_encode($Clave_Materia)?></td>
-                                            <td><?php echo utf8_encode($ID_Maestro)?></td>
-                                            <td><?php echo utf8_encode($Especilidad)?></td>
                                             <td><?php echo utf8_encode($Grupo)?></td>
+                                            <td><?php echo utf8_encode($Semestre)?></td>
+                                            <td><?php echo utf8_encode($Especialidad)?></td>
+                                            <td><?php echo utf8_encode($Turno)?></td>
+                                            <td><?php echo utf8_encode($Clave_Maestro)?></td>
                                             <td><?php echo utf8_encode($Periodo)?></td>
                                         </tr>
                 <?php

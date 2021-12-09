@@ -13,6 +13,7 @@
 			var obj=null;
 			function mostrar(id)
 				{
+					document.acceso.tipo.value= id;
 					var targetId, srcElement, targetElement;
 					var targetElement = document.getElementById(id);
 					if (obj!=null) 
@@ -20,69 +21,122 @@
 					obj=targetElement;
 					targetElement.style.display = "";
 				}
-			/*function valida_datos()
+			function ValidarDatos()
 				{
 					formulario = document.acceso;
-					if(formulario.tipo.value =="a")
-					{
-						msj_usr = "usuario";
-						msj_pws = "contraseña";
-					}
-					else 
-					{
-						msj_usr = "número de control";
-						msj_pws = "nip";
 						if (formulario.tipo.value =="p")
 						{
+							if(isNaN(formulario.alumno.value))
+								{
+									window.alert("Introduce un número de solicitud numérico");	
+									formulario.alumno.focus();
+									return false;	
+								}
+								else
+									{			
+										if(isNaN(formulario.contrasena.value))
+										{
+											window.alert("Introduce un NIP numérico");
+											formulario.contrasena.focus();
+											//return false;	
+										}
+										else
+											{
+												if(formulario.contrasena.value.length>4)
+												{
+													window.alert("Introduce un NIP de 4 caracteres");
+													formulario.contrasena.focus();
+													return false;	
+												}
+												else
+													{
+														if(formulario.alumno.value=="")
+															{
+																window.alert("Por favor introduce tu numero de control");
+																formulario.usuario.focus();
+																return false;
+															}
+															else
+																{
+																	if(formulario.contrasena.value=="")
+																		{
+																			window.alert("Por favor introduce tu contraseña");
+																			formulario.contrasena.focus();
+																			return false;
+																		}
+																		else
+																		{
+																			if(formulario.alumno.value !=="" || formulario.contrasena.value !=="")
+																			return true;
+																			//formulario.submit();
+																		}
+																}
+													}
+											}
+									}							
+						}
+						else
+						{
 							if(isNaN(formulario.usuario.value))
-							{
-								window.alert("Introduce un número de solicitud numérico");	
-								formulario.usuario.focus();
-								return false;	
-							}
-						}
-						
-						if(isNaN(formulario.contrasena.value))
-						{
-							window.alert("Introduce un NIP numérico");
-							formulario.contrasena.focus();
-							return false;	
-						}
-						if(formulario.contrasena.value.length>4)
-						{
-							window.alert("Introduce un NIP de 4 caracteres");
-							formulario.contrasena.focus();
-							return false;	
-						}
-					}	
-					
-					if(formulario.usuario.value=="" || formulario.usuario.value==null)
-					{
-						window.alert("Por favor introduce tu "+msj_usr);
-						formulario.usuario.focus();
-						return false;
-					}
-					
-					if(formulario.contrasena.value=="" || formulario.contrasena.value==null)
-					{
-						window.alert("Por favor introduce tu "+msj_pws);
-						formulario.contrasena.focus();
-						return false;
-					}
-					return true
-					//formulario.submit();
-				}*/
+								{
+									window.alert("Introduce un número de solicitud numérico");	
+									formulario.alumno.focus();
+									return false;	
+								}
+								else
+									{			
+										if(isNaN(formulario.contrasenas.value))
+										{
+											window.alert("Introduce un NIP numérico");
+											formulario.contrasenas.focus();
+											return false;	
+										}
+										else
+											{
+												if(formulario.contrasenas.value.length>4)
+												{
+													window.alert("Introduce un NIP de 4 caracteres");
+													formulario.contrasenas.focus();
+													return false;	
+												}
+												else
+													{
+														if(formulario.usuario.value=="")
+															{
+																window.alert("Por favor introduce tu numero de control");
+																formulario.usuario.focus();
+																return false;
+															}
+															else
+																{
+																	if(formulario.contrasenas.value=="")
+																		{
+																			window.alert("Por favor introduce tu contraseña");
+																			formulario.contrasenas.focus();
+																			return false;
+																		}
+																		else
+																		{
+																			//formulario.submit();
+																			return true;
+																		}
+																}
+													}
+											}
+									}	
+						}	
+				}
 	</script>
+	
 </head>
 <body>
-
 	<br>
 	<br>
 	<br>
 	<br>
 	<br>
-	<form name="acceso" id="loginForm" method="POST" action="validarcode.php" role="form">
-		
+	<form name="acceso" id="loginForm" method="POST" action="validarcode.php" role="form"  onsubmit="return ValidarDatos()">
+	<input name="tipo" type="hidden" value="">
 		<table width="700px" border="0" align="center" cellspacing="0" cellpadding="0">
 				<tbody>
 					<tr>
@@ -91,21 +145,21 @@
 							onmouseover="cambiar_imagen('img_personal','AlumnoOver.png',1)" onmouseout="cambiar_imagen('img_personal','Alumno.png')">
 						</td>	
 						<td align="center" height="270px">
-							<div align="center" style="display:none;" id="a" class="box">
+							<div align="center" style="display:none;" id="a" name='tipo' class="box">
 								<h2>Autentificación para acceso al sistema </h2>
 								<label for="username" id="user">Usuario</label>
 						  		<input type="text" name="usuario">
 						  		<label for="password" id="pass">Contraseña</label>
 						  		<input type="password" name="contrasenas" >
-						  		<input type="submit" value="Acceso">
+						  		<input class="boton" type="submit" value="Acceso">
 						  	</div>
-						  	<div align="center" style="display:none;" id="p" class="box">
+						  	<div align="center" style="display:none;" id="p" name='tipo' class="box">
 								<h2>Autentificación para acceso al sistema </h2>
 								<label for="username" id="user">No. Control:</label>
 						  		<input type="text" name="alumno">
 						  		<label for="password" id="pass">Nip</label>
 						  		<input type="password" name="contrasena"   >
-						  		<input type="submit" value="Acceso">
+						  		<input class="boton" type="submit" value="Acceso">
 						  	</div>
 						</td>
 						<td align="right" height="280px"> 

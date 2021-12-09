@@ -55,7 +55,8 @@ foreach ($fileContacts as $contact)
 	        $Grupo           	= !empty($contactList[6])  ? ($contactList[6]) : '';
 			$Turno          	= !empty($contactList[7])  ? ($contactList[7]) : '';
 	        $Periodo           	= !empty($contactList[8])  ? ($contactList[8]) : '';
-	        $Vigente           	= !empty($contactList[9])  ? ($contactList[9]) : '';
+	        $Vigentes           = !empty($contactList[9])  ? ($contactList[9]) : '';
+			$Vigente = trim($Vigentes);
 
 		    if( $Num_Ctrl !="")
 		    	{

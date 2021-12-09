@@ -52,7 +52,6 @@
 	</head>
 	<body>
   <?php include '../menu_AD/Consultas/Consultas_/menu.php';?>
-    <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
       <br>
 	     <header>
           <div class="alert alert-info">

@@ -36,7 +36,7 @@ if (($_SESSION ["usuario"]['Num_Ctrl'] != null)) {
 <br> 
 <br> 
     <h2 align="center"> Bienvenido(a) </h2><br><br>
-    <h3 align="center"> <?=$_SESSION ["usuario"]['Num_Ctrl']?> <br> <?=$_SESSION ["usuario"]['Nombre']?> <?=$_SESSION ["usuario"]['Ape_paterno']?> <?=$_SESSION ["usuario"]['Ape_Materno']?> </h3>
+    <h3 align="center"> <u><b><?=$_SESSION ["usuario"]['Num_Ctrl']?></b> </u><br><u><b> <?=$_SESSION ["usuario"]['Nombre']?> <?=$_SESSION ["usuario"]['Ape_paterno']?> <?=$_SESSION ["usuario"]['Ape_Materno']?> </b> </u></h3>
 
 </body>
 </html>

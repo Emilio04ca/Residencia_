@@ -51,42 +51,73 @@
               </center> 
         </form>
       <br>
+      <?php
+        include("../php_s/Consultar/consultar_calif.php");
+        
+        $cant_duplicidad = mysqli_num_rows($query);
+            if($cant_duplicidad == 0)
+              {
+                echo "<script>";
+                echo "Resultado();";
+                echo "</script>";
+              }
+                else{
+                while($row=mysqli_fetch_array($query)) {
+                ?>
+                <h4 align="center"><?php echo utf8_decode($row['Nombre'])?> <?php echo utf8_decode($row['Ape_paterno'])?> <?php echo utf8_decode($row['Ape_Materno'])?></h4>        
+                <?php
+                  }
+                }
+                ?> 
       <div class="container justify-items-center n">
                   <table class="table">
-                    <thead class="table">
+                    <tbody class="table">
                       <tr>
                         <th scope="col">Materia</th>
                         <th scope="col">Unidad 1</th>
-                        <th scope="col">Unidad 2</th>
-                        <th scope="col">Unidad 3</th>
                         <th scope="col">Asistencia U1</th>
+                        <th scope="col">Unidad 2</th>
                         <th scope="col">Asistencia U2</th>
+                        <th scope="col">Unidad 3</th>
                         <th scope="col">Asistencia U3</th>
                         <th scope="col">Calificacion</th>
                       </tr>
-                    </thead>
-                  </table>
-              </div>
-                <?php
-                      include("../php_s/Consultar/consultar_calif.php");
-                      $cant_duplicidad = mysqli_num_rows($query);
-                              if($cant_duplicidad == 0)
-                              {
-                                echo "<script>";
-                                echo "Resultado();";
-                                echo "</script>";
-                              }
-                              else{
-                      while($row=mysqli_fetch_array($query)) {
-                ?>
-                <h4 align="center"><?php echo utf8_decode($row['Nombre'])?> <?php echo utf8_decode($row['Ape_paterno'])?> <?php echo utf8_decode($row['Ape_Materno'])?></h4>
-     
-              
                     <?php
-                      }
-                    }
-                    mysqli_close($con);
-                    ?>                   
+                    $TOTAL =0;
+                    $Materia = "SELECT DISTINCT Clave_Materia, Grupo from datos_calificaciones where Num_Ctrl='$Num_Ctrl' and Periodo='$Periodo'";
+                    $Consulta=mysqli_query($con,$Materia);
+                    $dato = null;
+                    $filas = mysqli_num_rows($Consulta);
+                          if($filas == 0)
+                            {
+                              ?>
+                              <center><h5>No tienes materias Capturadas</h5></center>
+                              <?php
+                            }
+                            else
+                            {
+                              while($datos= $Consulta->fetch_assoc()) 
+                              {
+                                $asignatura=  $datos['Clave_Materia']; 
+                                ?>  
+                                  <tr><td align="left" ><?php echo utf8_encode($datos['Clave_Materia'])?> <br> <b><?php echo utf8_encode($dato)?></b></td>  
+                                <?php
+                                $Califas = "SELECT Calificacion, Asistencia FROM `datos_calificaciones` WHERE Clave_Materia='$asignatura' and Num_Ctrl='$Num_Ctrl' ";
+                                $Consultas=mysqli_query($con,$Califas);
+                                  while($datoss= $Consultas->fetch_assoc())
+                                    {
+                                      ?>
+                                      <td><center><?php echo utf8_encode($datoss['Calificacion'])?></center> </td>
+                                      <td><center><?php echo utf8_encode($datoss['Asistencia'])?></center>  </td>
+                                      <?php
+                                    }
+                              } 
+                            } 
+                    ?>
+                    </tr>
+                     </tbody>
+                  </table> 
+                  </div>                
                   
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

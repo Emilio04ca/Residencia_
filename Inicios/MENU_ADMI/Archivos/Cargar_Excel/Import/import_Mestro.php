@@ -19,7 +19,8 @@ foreach ($fileContacts as $contact)
 		$Nombre            	= !empty($contactList[1])  ? ($contactList[1]) : '';
 		$Apellido_P        	= !empty($contactList[2])  ? ($contactList[2]) : '';
         $Apellido_M        	= !empty($contactList[3])  ? ($contactList[3]) : '';
-        $Area        	    = !empty($contactList[4])  ? ($contactList[4]) : '';
+        $Areas        	    = !empty($contactList[4])  ? ($contactList[4]) : '';
+        $Periodo = trim($Areas);
         
     $insertar = "INSERT INTO datos_docentes( 
             Clave_Docente,

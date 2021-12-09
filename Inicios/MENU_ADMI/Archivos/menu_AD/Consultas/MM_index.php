@@ -171,7 +171,7 @@
                     <option value="">Selecciona</option>
                       <?php
                       include 'php_s/Consultar/conexion.php';
-                      $sql= "SELECT DISTINCT Periodo FROM datos_alumnos";
+                      $sql= "SELECT DISTINCT Periodo FROM materia_relacion";
                       $query=mysqli_query($con,$sql);
                       while($row=mysqli_fetch_array($query)) {
                       ?>

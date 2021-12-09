@@ -32,33 +32,20 @@ $(document).ready(function() {
                         }
                     });
                 }
-                else {
-                    if (response.estado == "falso") {
-                    $("body").overhang({
-                        type: "error",
-                        message: "por favor! introduce datos"
-                    });
-                }
-            }
 
                 $("#loginForm button[type=submit]").html("Ingresar");
                 $("#loginForm button[type=submit]").removeAttr("disabled");
             }
-                
-            },
-            error: function() {
+            if (response.estado == "falso") {
                 $("body").overhang({
                     type: "error",
-                    message: "Usuario o password incorrecto!",
-                        callback: function() {
-                            window.location.href = 'http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php';
-                            
-                            
-                        }
+                    message: "Usuario incorrecto",
+                    callback: function() {
+                        window.location.href = 'http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php';
+                    }
                 });
-
-                $("#loginForm button[type=submit]").html("Ingresar");
-                $("#loginForm button[type=submit]").removeAttr("disabled");
+            }
+                
             }
         });
 

@@ -161,7 +161,7 @@
                   <option value="">Selecciona</option>
                     <?php
                     include '../php_s/Consultar/conexion.php';
-                    $sql= "SELECT DISTINCT Periodo FROM datos_alumnos";
+                    $sql= "SELECT DISTINCT Periodo FROM materia_relacion";
                     $query=mysqli_query($con,$sql);
                     while($row=mysqli_fetch_array($query)) {
                     ?>
@@ -186,7 +186,7 @@
                     <option value="">Selecciona</option>
                       <?php
                       include '../php_s/Consultar/conexion.php';
-                      $sql= "SELECT DISTINCT Periodo FROM datos_alumnos";
+                      $sql= "SELECT DISTINCT Periodo FROM materia_relacion";
                       $query=mysqli_query($con,$sql);
                       while($row=mysqli_fetch_array($query)) {
                       ?>
@@ -195,7 +195,6 @@
                       }
                       mysqli_close($con);
                       ?>
-                      <option value="">Selecciona</option>
                   </select>
                   <input type="submit" value="Consultar" width="100px" >
                   
@@ -223,12 +222,12 @@
                     while($row= $query->fetch_assoc()){
                   ?> 
                     <tr>
-                        <td><?php echo utf8_decode($row['Clave_Materia'])?></td>
-                        <td><?php echo utf8_decode($row['Grupo'])?></td>
-                        <td><?php echo utf8_decode($row['Semestre'])?></td>
+                        <td><?php echo utf8_encode($row['Clave_Materia'])?></td>
+                        <td><?php echo utf8_encode($row['Grupo'])?></td>
+                        <td><?php echo utf8_encode($row['Semestre'])?></td>
                         <td><?php echo utf8_encode($row['Especialidad']);?></td>
-                        <td><?php echo utf8_decode($row['Clave_Maestro'])?></td>
-                        <td><?php echo utf8_decode($row['Periodo'])?></td>
+                        <td><?php echo utf8_encode($row['Clave_Maestro'])?></td>
+                        <td><?php echo utf8_encode($row['Periodo'])?></td>
                         <?php
                           if ($_SESSION ["usuario"]["Privilegios"] == '1') {
 
