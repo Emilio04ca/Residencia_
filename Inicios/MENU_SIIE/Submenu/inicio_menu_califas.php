@@ -31,6 +31,13 @@
             font-family: Arial;
             text-transform: lowercase;
           }
+          .tamaño
+        {
+          width: 400px;
+        }
+        .centro{
+          text-align: center;
+        }
       </style>
   </head>
 <body>
@@ -47,66 +54,109 @@
         <i>No. de Control: <?=$_SESSION ["usuario"]['Num_Ctrl']?></i><br>
         <i>Nombre: <?=$_SESSION ["usuario"]['Nombre']?> <?=$_SESSION ["usuario"]['Ape_paterno']?> <?=$_SESSION ["usuario"]['Ape_Materno']?></i>
       </h4>
-    <table width="489"></center>
+    <table width="700px"></center>
       <tbody>
         <tr>
           <th rowspan="2">Materia</th>
           <th rowspan="2">Grupo</th>
-          <th colspan="4" >Unidades</th>
-          <th colspan="4" >Asistencias</th>
+          <th colspan="8" >Unidades/Asistencias</th>
         </tr>
         <tr>
           <th>1</th>
+          <th>AU</th>
           <th>2</th>
-          <th>3</th>
-          <th>4</th>
+          <th>AU</th>
         
-          <th>1</th>
-          <th>2</th>
           <th>3</th>
+          <th>AU</th>
           <th>4</th>
+          <th>AU</th>
         </tr>
-      <tr>
         <?php
           include ("../Consultas/consulta_califas.php");
           $Num_Ctrl = $_SESSION ["usuario"]['Num_Ctrl'];
           $Periodo = $_SESSION ["usuario"]['Periodo'];
-          $Unidad = 1;
-          $Unidad2 = 2;
-          $Unidad3 = 3;
-          $sql = "SELECT Clave_Materia, Calificacion, Asistencia from datos_calificaciones where Num_Ctrl='$Num_Ctrl' and Unidad = '$Unidad'";
-          $sql2 = "SELECT Clave_Materia, Calificacion, Asistencia from datos_calificaciones where Num_Ctrl='$Num_Ctrl' and Unidad = '$Unidad2'";
-          $sql3 = "SELECT Clave_Materia, Calificacion, Asistencia from datos_calificaciones where Num_Ctrl='$Num_Ctrl' and Unidad = '$Unidad3'";
-          $query=mysqli_query($con,$sql);
-          $query2=mysqli_query($con,$sql2);
-          $query3=mysqli_query($con,$sql3);
-            
-            $cant_duplicidad = mysqli_num_rows($query);
-                if($cant_duplicidad == 0)
+          $Especilidad = $_SESSION ["usuario"]['Especialidad'];
+          $TOTAL =0;
+          $Materia = "SELECT DISTINCT Clave_Materia, Grupo from datos_calificaciones where Num_Ctrl='$Num_Ctrl' and Periodo='$Periodo'";
+          $Consulta=mysqli_query($con,$Materia);
+          $dato = null;
+          $filas = mysqli_num_rows($Consulta);
+                if($filas == 0)
                   {
                     ?>
-                    <center><h5>No tienes Calificaciones Capturadas</h5></center>
-
+                    <center><h5>No tienes materias Capturadas</h5></center>
                     <?php
                   }
                   else
                     {
-                      while($row=mysqli_fetch_array($query)) 
-                      {
-                      ?>
-                          <td align="left" ><?php echo utf8_encode($row['Clave_Materia'])?></td>
-                          <td></td>
-                          <td><?php echo utf8_encode($row['Calificacion'])?></td>
-                        </tr>                        
-                      <?php
-                        
-                      }  
+                      while($datos= $Consulta->fetch_assoc()) 
+                        {
+                          $nombre=  $datos['Clave_Materia']; 
+                          $Grupo=  $datos['Grupo']; 
+                          $Docente ="SELECT Clave_Maestro FROM materia_relacion WHERE Clave_Materia='$nombre' and Grupo='$Grupo' and Periodo='$Periodo'";
+                          $Consulta2=mysqli_query($con,$Docente);
+                          $row = $Consulta2->fetch_assoc();
+                            if(isset($row['Clave_Maestro']))
+                              {
+                                $dato = $row['Clave_Maestro'];
+                              }
+                                else{
+                                $dato ='No tienes maestro asignado';
+                                }
+                              ?>  
+                                  <tr><td align="left" ><?php echo utf8_encode($datos['Clave_Materia'])?> <br> <b><?php echo utf8_encode($dato)?></b></td> 
+                                  <td><center><?php echo utf8_encode($datos['Grupo'])?></center>  </td>   
+                              <?php
+                                  $Califas = "SELECT Calificacion, Asistencia FROM `datos_calificaciones` WHERE Clave_Materia='$nombre' and Num_Ctrl='$Num_Ctrl' ";
+                                  $Consultas=mysqli_query($con,$Califas);
+                                    while($datoss= $Consultas->fetch_assoc())
+                                      {
+                                        ?>
+                                        <td><center><?php echo utf8_encode($datoss['Calificacion'])?></center> </td>
+                                        <td><center><?php echo utf8_encode($datoss['Asistencia'])?></center>  </td>
+                                        <?php
+                                      }
+
+                                        $TOTAL = mysqli_num_rows($Consultas);
+                        } 
+                      
+                      
                     }
                     mysqli_close($con);
+                    $filas = mysqli_num_rows($Consulta);
+                    if($TOTAL>=3)
+                    {
                     ?>
+                    </tr>
 
       </tbody>
     </table>
+    <br>
+   
+    <form action="../Boleta/Reporte.php" TARGET="_blank"  method="post">
+              <center>
+              <div class="tamaño" style="display: flex;">
+              <input name="no_de_control" type="hidden" value="<?php echo $_SESSION ["usuario"]['Num_Ctrl']?>">
+              <input name="periodo" type="hidden" value="<?php echo $_SESSION ["usuario"]['Periodo']?>">
+                  <input type="submit" value="BOLETA" width="100px" >
+                </div>
+                </center>
+                <br>
+              </form>
+              <?php
+                    }
+                    else
+                    {
+                      if($TOTAL=0)
+                      {
+                        ?>
+                        <center><h5>No tienes Calificaciones Capturadas</h5></center>
+                        <?php
+                      }
+                    }
+                    
+                    ?>
 
 
   </body>

@@ -36,13 +36,13 @@
       <div class="container justify-items-center n">
         <div class="row">
           <div class="col-xs-12 col-lg-3"> 
-            <form action="php_s/php/ins_admi.php" method="POST">
+            <form action="" method="POST">
               <h5 class="text-center"><strong>Consulta<br>De Boletas</strong></h5>
               <center>
                 <p>
                   Numero De control
                 
-                <input type="text" name="Clave_RFC" value="<?=$_SESSION ["usuario"]['Num_Ctrl']?>" class="form-control" readonly="true">
+                <input type="text" name="Num_Ctrl" value="<?=$_SESSION ["usuario"]['Num_Ctrl']?>" class="form-control" readonly="true">
                 </p>
                 </center>
                 <center>
@@ -51,7 +51,7 @@
                     <option value="">Selecciona</option>
                     <?php
                     include '../../php_s/config.php';
-                    $sql= "SELECT DISTINCT Periodo FROM datos_alumnos";
+                    $sql= "SELECT DISTINCT Periodo FROM datos_calificaciones";
                     $query=mysqli_query($conn,$sql);
                     while($row=mysqli_fetch_array($query)) {
                     ?>
@@ -65,7 +65,7 @@
                     
                 </center>
              
-              <input type="submit" value="Agregar" class="btn btn-primary btn-block">
+              <input type="submit" value="Agregar" name="mostrar" class="btn btn-primary btn-block">
             </form>
           </div>
           <div class="col-xs-12 col-lg-8 p-3">
@@ -76,25 +76,61 @@
                 <input type="submit" value="Buscar" width="100px" >
               </center>
             </form>-->
+
+            <?php
+            if(isset($_REQUEST['mostrar']))
+            {
+            include ("../Consultas/conexion.php");
+            $Num_Ctrll = $_POST['Num_Ctrl'];
+            $Periodo=$_POST['Periodo'];
+            $Datos_alumno= "SELECT Num_Ctrl, Nombre, Ape_paterno, Ape_Materno, Semestre, Especialidad from datos_alumnos where Num_Ctrl='$Num_Ctrll'";  
+            $recuperar_datos=mysqli_query($con,$Datos_alumno);
+                          $filas = $recuperar_datos->fetch_assoc();
+                            if(isset($filas['Num_Ctrl']))
+                              {
+                                $Num_Ctrl = $filas['Num_Ctrl'];
+                                $Nombre = $filas['Nombre'];
+                                $Ape_paterno = $filas['Ape_paterno'];
+                                $Ape_Materno = $filas['Ape_Materno'];
+                                $Semestre = $filas['Semestre'];
+                                $Especilidad = $filas['Especialidad'];
+                              }
+                                else{
+                                $dato ='No tienes maestro asignado';
+                                }
+              ?>
             <br>
               <table class="table">
                   <thead class="table">
                   <tbody><tr align="center"> 
                     <th width="16%"> No. Control s.e.p. </th>
-                    <th width="35%"> Nombre del Alumno </th>
+                    <th width="30%"> Nombre del Alumno </th>
                     <th width="9%"> Semestre </th>
-                    <th width="15%"> Periodo Escolar </th>
+                    <th width="20%"> Periodo Escolar </th>
                     <th width="15%"> Especialidad </th>
                         </tr>
                   <tr align="center" id="non">
-                    <td> <?=$_SESSION ["usuario"]['Num_Ctrl']?></td>
-                    <td> <?=$_SESSION ["usuario"]['Nombre']?> <?=$_SESSION ["usuario"]['Ape_paterno']?> <?=$_SESSION ["usuario"]['Ape_Materno']?></td>
-                    <td> <?=$_SESSION ["usuario"]['Semestre']?></td>
-                    <td> AGO-DIC/2017 </td>
-                    <td> <?=$_SESSION ["usuario"]['Especialidad']?></td>
-                        </tr>
-                  </tbody>
+                    <td> <?php echo utf8_encode($Num_Ctrl)?></td>
+                    <td> <?php echo utf8_encode($Nombre)?> <?php echo utf8_encode($Ape_Materno)?> <?php echo utf8_encode($Ape_paterno)?></td>
+                    <td> <?php echo utf8_encode($Semestre)?></td>
+                    <td> <?php echo utf8_encode($Periodo)?> </td>
+                    <td> <?php echo utf8_encode($Especilidad)?></td>
+                  </tr>                  
+                </tbody>
               </table>
+              <table class="table" width="800">
+                <tbody><tr align="center">
+                  <th class="small_negrita_center" > Materia </th> 
+                  <th class="small_negrita_center" width="170"> Calificación </th>
+                  <th class="small_negrita_center" width="170"> Tipo<br>Evaluación </th>
+                  <th class="small_negrita_center" width="170"> Observaciones </th>
+                </tr >
+                
+            
+              </tbody></table>
+              <?php
+                }
+              ?>
           </div>
         </div>
       </div>
