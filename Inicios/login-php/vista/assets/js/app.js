@@ -36,12 +36,14 @@ $(document).ready(function() {
                 $("#loginForm button[type=submit]").html("Ingresar");
                 $("#loginForm button[type=submit]").removeAttr("disabled");
             }
-            if (response.estado == "falso") {
+            if (response.estado == "nooo") {
                 $("body").overhang({
                     type: "error",
                     message: "Usuario incorrecto",
                     callback: function() {
-                        window.location.href = 'http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php';
+                        $( document ).ready(function() {
+                            $('.2').val('');	
+                        });	
                     }
                 });
             }

@@ -35,17 +35,16 @@ else
           Swal.fire({
                     title: 'Deseas Actulizar?',
                     text: "Si es asi, prosigue con la operacion!",
-                    showDenyButton: true,
-                    confirmButtonText: 'Save',
-                    denyButtonText: `Don't save`,
-                  }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, Claro!'
+                    }).then((result) => {
                     if (result.isConfirmed) {
-                      formulario.submit();
-                    } else if (result.isDenied) {
-                      return false; 
+                        formulario.submit();
                     }
-                  })
+                    })
         }
       </script>
   </head>
@@ -66,10 +65,7 @@ else
                 <th>Nombre</th>
                 <td id="non"><input type="text" name="Nombre" value="<?php echo utf8_encode($row['Nombre']);?>"></td>
               </tr>
-              <tr>
-                <th>Abreviacion</th>
-                <td id="non"><input  type="text" name="Nom_Abreviado" value="<?php echo utf8_encode($row['Nom_Abreviado']);?>"></td>
-              </tr>
+              
               <tr>
               <th>Semestre</th>
               <td id="non">

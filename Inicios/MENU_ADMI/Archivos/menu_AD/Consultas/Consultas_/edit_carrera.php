@@ -35,17 +35,16 @@ else
           Swal.fire({
                     title: 'Deseas Actulizar?',
                     text: "Si es asi, prosigue con la operacion!",
-                    showDenyButton: true,
-                    confirmButtonText: 'Save',
-                    denyButtonText: `Don't save`,
-                  }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, Claro!'
+                    }).then((result) => {
                     if (result.isConfirmed) {
-                      formulario.submit();
-                    } else if (result.isDenied) {
-                      return false; 
+                        formulario.submit();
                     }
-                  })
+                    })
         }
       </script>
   </head>
@@ -54,22 +53,18 @@ else
     <br>
     
       <form name="actaulizar" action="../php_s/Actualizar/actua_carrera.php" method="POST">
-        <h1 class="text-center"><strong>Actualizar Materia</strong></h1>
-        <input name="clave_carrera" type="hidden" value="<?php echo $row['clave_carrera'];?>">
+        <center><h1 class="text-center"><strong>Actualizar Carrera</strong></h1></center>
+        <input name="id" type="hidden" value="<?php echo $row['id'];?>">
         <br>
         <table>
           <tbody>
               <tr>
                 <th>Clave Carrera</th>
-                <td id="non"><input type="hidden" value=""> <?php echo $row['clave_carrera'];?></td>
+                <td id="non"><input type="hidden" value=""> <?php echo $row['id'];?></td>
               </tr>
               <tr>
                 <th>Nombre</th>
                 <td id="non"><input type="text" name="Nombre" value="<?php echo utf8_encode($row['Nombre']);?>"></td>
-              </tr>
-              <tr>
-                <th>Clave Division</th>
-                <td id="non"><input  type="text" name="clave_division" value="<?php echo $row['clave_division'];?>"></td>
               </tr>
           </tbody>
         </table>

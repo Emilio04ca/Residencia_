@@ -22,7 +22,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>  
+    <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/CSS/sweetalert2.all.min.js"></script> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Css-Scripts/bootstrap.min.css" >
@@ -30,6 +30,8 @@
         function ValidarDatos()
         {
             formulario = document.Consultar;
+            if(formulario.id.value != "" || formulario.nombre.value != "" )
+            {
                     Swal.fire({
                     title: 'Deseas Dar de alta una Carrera',
                     showDenyButton: true,
@@ -40,12 +42,27 @@
                     if (result.isConfirmed) {
                     formulario.submit();
                     } else if (result.isDenied) {
-                    formulario.clave_carrera.value="";
+                    formulario.id.value="";
                     formulario.nombre.value="";
-                    formulario.clave_division.value="";
+                    
                     return false; 
                     }
                     })
+                  }
+                  else{
+                  Swal.fire({
+                              icon: 'error',
+                              title: 'Oops...',
+                              toast: true,
+                              position: 'top',
+                              allowOutsideClick: false,
+                              allowEscapeKey: false,
+                              allowEnterKey:false,
+                              stopKeydownPropagation:false,
+                              text: 'verifica que los campos esten llenos'
+                          })
+                          return false;
+                }
         }
         </script>
 </head>
@@ -58,12 +75,13 @@
           <div class="col-xs-12 col-lg-3"> 
             <form name="Consultar" action="php_s/Insertar/insertar_carrera.php" method="POST" enctype="multipart/form-data">
               <h5 class="text-center"><strong>Agregar Carrera</strong></h5>
-              <br>
-                <input type="text" required placeholder="Clave Carrera" name="clave_carrera" class="form-control">
+              <br><center>
+                <label for="quantity">Agrega un numero</label>
+                <input type="number" name="id" class="form-control" autocomplete="off">
                 <br>
+              </center>
+                
                 <input type="text" required placeholder="Nombre" name="nombre" class="form-control">
-                <br>
-                <input type="text" required placeholder="Clave Division" name="clave_division" class="form-control">
                 <br>
                 <input type="button" name="subir" value="Agregar" class="btn btn-primary btn-block" onclick="ValidarDatos();">
             </form>
@@ -80,9 +98,8 @@
               <table class="table">
                   <thead class="table">
                     <tr>
-                      <th scope="col">Clave Carrera</th>
+                      <th scope="col">#</th>
                       <th scope="col">Nombre</th>
-                      <th scope="col">Clave Division</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -91,13 +108,12 @@
                     while($row= $resultado->fetch_assoc()){
                   ?> 
                     <tr>
-                        <td><?php echo utf8_decode($row['clave_carrera'])?></td>
+                        <td><?php echo utf8_decode($row['id'])?></td>
                         <td><?php echo utf8_encode($row['Nombre'])?></td>
-                        <td><?php echo utf8_decode($row['clave_division'])?></td>
                         <?php
                           if ($_SESSION ["usuario"]["Privilegios"] == '1') {
                         ?>
-                        <td><a href="Consultas_/edit_carrera.php?clave_carrera=<?php echo $row['clave_carrera']?>"  class="btn btn-danger" >Editar</a></td>
+                        <td><a href="Consultas_/edit_carrera.php?id=<?php echo $row['id'] ?>"  class="btn btn-danger" >Editar</a></td>
                         <?php
                           }
                         ?>      

@@ -59,7 +59,7 @@ if (isset($_POST['Carrera'])) {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>  
+    <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/CSS/sweetalert2.all.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Css-Scripts/bootstrap.min.css" >
@@ -67,6 +67,9 @@ if (isset($_POST['Carrera'])) {
         function ValidarDatos()
         {
           formulario = document.Consultar;
+          if(formulario.Carrera.value != "" || formulario.Grupo.value != "" || formulario.Semestre.value != ""
+          || formulario.archivo.value != "" )
+          {
                     Swal.fire({
                     title: 'Deseas registrar un nuevo Horario?',
                     showDenyButton: true,
@@ -84,6 +87,21 @@ if (isset($_POST['Carrera'])) {
                       return false; 
                     }
                   })
+                }
+                else{
+                  Swal.fire({
+                              icon: 'error',
+                              title: 'Oops...',
+                              toast: true,
+                              position: 'top',
+                              allowOutsideClick: false,
+                              allowEscapeKey: false,
+                              allowEnterKey:false,
+                              stopKeydownPropagation:false,
+                              text: 'verifica que los campos esten llenos'
+                          })
+                          return false;
+                }
         }
       </script>
   </head>
@@ -101,13 +119,18 @@ if (isset($_POST['Carrera'])) {
               <center>
                     <p>Carrera:
                         <select name="Carrera" class="form-control">
-                        <option utf8_decode value="">Seleccionar</option>
-                        <option utf8_decode value="COMPONENTE BASICO Y PROPEDEUTICO">COM. BAS Y PROPEDEUTICO</option>
-                        <option utf8_decode value="CONTABILIDAD">CONTABILIDAD</option>
-                        <option utf8_decode value="OFIMÁTICA">OFIMÁTICA</option>
-                        <option utf8_decode value="MANTENIMIENTO AUTOMOTRIZ">MANTENIMIENTO AUTOMOTRIZ</option>
-                        <option value="PROGRAMACIÓN">PROGRAMACIÓN</option>
-                        <br>
+                        <option value="">Selecciona</option>
+                        <?php
+                        include 'php_s/Consultar/conexion.php';
+                        $sql= "SELECT Nombre FROM datos_carrera";
+                        $query=mysqli_query($con,$sql);
+                        while($row=mysqli_fetch_array($query)) {
+                        ?>
+                        <option value="<?php echo utf8_encode($row['Nombre'])?>"><?php echo utf8_encode($row['Nombre'])?></option>
+                        <?php
+                        }
+                        mysqli_close($con);
+                        ?>
                         </select>
                     </p>
                     <p>Grupo:

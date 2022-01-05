@@ -45,7 +45,7 @@ foreach ($fileContacts as $contact)
     $cantidad_regist_agregados =  ($cantidad_registros - 1);
     if ($i!=0) 
     	{
-			$contactList = explode(",", $contact);
+			$contactList = explode("|", $contact);
 			$Num_Ctrl          	= !empty($contactList[0])  ? ($contactList[0]) : '';
 			$Nombre            	= !empty($contactList[1])  ? ($contactList[1]) : '';
 			$Ape_paterno        = !empty($contactList[2])  ? ($contactList[2]) : '';
@@ -108,23 +108,24 @@ foreach ($fileContacts as $contact)
 				else
 					{
 					    $updateData =  ("UPDATE datos_alumnos SET 
-					        Num_Ctrl 	= '".$Num_Ctrl. "', 
-					        Nombre 		= '".$Nombre. "',
-					        Ape_paterno	='" .$Ape_paterno. "',
-					        Ape_Materno	='" .$Ape_Materno. "',
-					        Especialidad='" .$Especialidad. "',
-							Semestre	='" .$Semestre. "',
-					        Grupo		= '".$Grupo."',
-					        Periodo		= '".$Periodo."',
-							Turno		= '".$Turno."',
-					        Vigente 	=	'" .$Vigente. "'
-					        WHERE 		Num_Ctrl ='".$Num_Ctrl."'
+					        Num_Ctrl 	= '$Num_Ctrl', 
+					        Nombre 		= '$Nombre',
+					        Ape_paterno	=	'$Ape_paterno',
+					        Ape_Materno	=	'$Ape_Materno',
+					        Especialidad=	'$Especialidad',
+							Semestre	=	'$Semestre',
+					        Grupo		= 	'$Grupo',
+							Turno		= 	'$Turno',
+							Periodo		= 	'$Periodo',
+					        Vigente 	=	'$Vigente'
+					        WHERE 		Num_Ctrl ='$Num_Ctrl'
 					    ");
 						mysqli_query($con, $updateData);
 				    }
     	}
     	else
     	{
+			break;
     		$i = 0;
     		mysqli_close($con);
     	}

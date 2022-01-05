@@ -1,9 +1,9 @@
 <?php
  include ('conexion.php');
  
- $clave_carrera = $_GET['clave_carrera'];
+ $dato = $_GET['id'];
 
- $sql="SELECT * FROM carrera WHERE clave_carrera ='$clave_carrera'";
+ $sql="SELECT * FROM datos_carrera WHERE id='$dato'";
 
  $query=mysqli_query($con,$sql);
  $row=mysqli_fetch_array($query);

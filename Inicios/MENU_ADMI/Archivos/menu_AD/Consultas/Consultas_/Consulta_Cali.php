@@ -50,7 +50,6 @@
                 <input type="submit" value="Buscar" width="100px">
               </center> 
         </form>
-      <br>
       <?php
         include("../php_s/Consultar/consultar_calif.php");
         
@@ -80,7 +79,7 @@
                         <th scope="col">Asistencia U2</th>
                         <th scope="col">Unidad 3</th>
                         <th scope="col">Asistencia U3</th>
-                        <th scope="col">Calificacion</th>
+                
                       </tr>
                     <?php
                     $TOTAL =0;
@@ -96,19 +95,39 @@
                             }
                             else
                             {
+                              ?>
+                              <center><h5><?php echo utf8_encode($Nombre)?> <?php echo utf8_encode($Ape_paterno)?> <?php echo utf8_encode($Ape_Materno)?></h5></center>
+                              
+
+                              <?php
                               while($datos= $Consulta->fetch_assoc()) 
                               {
-                                $asignatura=  $datos['Clave_Materia']; 
+                                $nombre=  $datos['Clave_Materia']; 
+                                $Grupo=  $datos['Grupo'];  
                                 ?>  
                                   <tr><td align="left" ><?php echo utf8_encode($datos['Clave_Materia'])?> <br> <b><?php echo utf8_encode($dato)?></b></td>  
                                 <?php
-                                $Califas = "SELECT Calificacion, Asistencia FROM `datos_calificaciones` WHERE Clave_Materia='$asignatura' and Num_Ctrl='$Num_Ctrl' ";
+                               $Califas = "SELECT Calificacion, Asistencia FROM `datos_calificaciones` WHERE Clave_Materia='$nombre' and Num_Ctrl='$Num_Ctrl' and Periodo='$Periodo'";
                                 $Consultas=mysqli_query($con,$Califas);
+                                $uni =1;
                                   while($datoss= $Consultas->fetch_assoc())
                                     {
+                                      $Asistencia="SELECT Asitencias_totales from asistencias_materias where Materia='$nombre' and Grupo='$Grupo' and Periodo='$Periodo' and Unidad='$uni' ";
+                                        $Consulta3=mysqli_query($con,$Asistencia);
+                                        $flecha = $Consulta3->fetch_assoc();
+                                          if(isset($flecha['Asitencias_totales']))
+                                            {
+                                              $asis = $flecha['Asitencias_totales'];
+                                              $uni++;
+                                            }
+                                            else{
+                                              $asis ='SAC';
+                                              $uni++;
+                                            }
+
                                       ?>
                                       <td><center><?php echo utf8_encode($datoss['Calificacion'])?></center> </td>
-                                      <td><center><?php echo utf8_encode($datoss['Asistencia'])?></center>  </td>
+                                      <td><center><?php echo utf8_encode($datoss['Asistencia'])?> / <?php echo utf8_encode($asis)?></center>  </center>  </td>
                                       <?php
                                     }
                               } 

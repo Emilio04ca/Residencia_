@@ -1,14 +1,14 @@
 <?php
     include('conexion.php');
-
-    $Clave_Materia = $_POST['Clave_Materia'];
+    $ID = utf8_decode($_POST['id']);
+    $Clave_Materia = utf8_decode($_POST['Clave_Materia']);
     $Grupo = $_POST['Grupo'];
     $Semestre = $_POST['Semestre'];
     $Especialidad = utf8_decode($_POST['Especialidad']);
     $Clave_Maestro = $_POST['Clave_Maestro'];
-    $Periodo = $_POST['Periodo'];
+    $Periodo = $_POST['Periodo']; 
     
-    $sql= "UPDATE materia_relacion SET Grupo='$Grupo', Semestre='$Semestre', Clave_Maestro='$Clave_Maestro', Periodo='$Periodo'  WHERE Clave_Materia='$Clave_Materia' and Especialidad='$Especialidad'";
+    $sql= "UPDATE materia_relacion SET Grupo='$Grupo', Semestre='$Semestre', Clave_Docente='$Clave_Maestro', Periodo='$Periodo'  WHERE id='$ID'";
     $query=mysqli_query($con,$sql);
   
  if($query){

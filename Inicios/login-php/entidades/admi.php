@@ -7,7 +7,6 @@ class Admi
     private $Ape_Paterno;
     private $Ape_Materno;
     private $Contrasena;
-    private $Usuario;
     private $Privilegios;
 
     public function getClave_RFC(){
@@ -48,13 +47,6 @@ class Admi
 
     public function setContrasena($Contrasena){
         $this->Contrasena = $Contrasena;
-    }
-    public function getUsuario(){ 
-        return $this->Usuario;
-    }
-
-    public function setUsuario($Usuario){
-        $this->Usuario = $Usuario;
     }
     public function getPrivilegios(){ 
         return $this->Privilegios;

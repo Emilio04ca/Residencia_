@@ -46,7 +46,7 @@
 	$pdf->write(1,'CBTIS NO.42');
 
 	$pdf->SetFont('Arial','B',10);
-	$pdf->SetX(220);
+	$pdf->SetX(150);
 	$pdf->SetTextColor(0,0,0);
 	$pdf->write(1,'CARRERA: ');
 	$pdf->SetTextColor(40,40,40);
@@ -62,7 +62,7 @@
 	$pdf->SetFont('Arial','B',12);
 	$pdf->write(1,'10DCT0202K');
 	$pdf->SetFont('Arial','B',10);
-	$pdf->SetX(220);
+	$pdf->SetX(150);
 	$pdf->SetTextColor(0,0,0);
 	$pdf->write(1,'TURNO: ');
 	$pdf->SetTextColor(40,40,40);
@@ -79,7 +79,7 @@
 	$pdf->write(1,$Num_Ctrl);
 
 	$pdf->SetFont('Arial','B',10);
-	$pdf->SetX(220);
+	$pdf->SetX(150);
 	$pdf->SetTextColor(0,0,0);
 	$pdf->write(1,'GRUPO: ');
 	$pdf->SetTextColor(40,40,40);
@@ -96,7 +96,7 @@
 	$pdf->write(1,$Nombre .' ' .$Ape_paterno .' '.$Ape_Materno);
 
 	$pdf->SetFont('Arial','B',10);
-	$pdf->SetX(220);
+	$pdf->SetX(150);
 	$pdf->SetTextColor(0,0,0);
 	$pdf->write(1,'MODALIDAD: ');
 	$pdf->SetTextColor(40,40,40);
@@ -148,13 +148,26 @@
 			$pdf->Cell(20,6,$Grupo,1,0,'C',1);
             $Califas = "SELECT Calificacion, Asistencia FROM `datos_calificaciones` WHERE Clave_Materia='$nombre' and Num_Ctrl='$Num_Ctrl' ";
             $Consultas=mysqli_query($conn,$Califas);
+			$uni=1;
             while($datoss= $Consultas->fetch_assoc())
                 {
-					$pdf->SetFont('Arial','B',12);
+					$Asistencia="SELECT Asitencias_totales from asistencias_materias where Materia='$nombre' and Grupo='$Grupo' and Periodo='$Periodo' and Unidad='$uni'";
+                                        $Consulta3=mysqli_query($conn,$Asistencia);
+                                        $flecha = $Consulta3->fetch_assoc();
+                                          if(isset($flecha['Asitencias_totales']))
+                                            {
+                                              $asis = $flecha['Asitencias_totales'];
+                                              $uni++;
+                                            }
+                                            else{
+                                              $asis ='SAC';
+                                              $uni++;
+                                            }
+					$pdf->SetFont('Arial','B',8);
 					$pdf->Cell(16,6, utf8_encode($datoss['Calificacion']),1,0,'C',1);
-					$pdf->Cell(16,6, utf8_encode($datoss['Asistencia']),1,0,'C',1);
+					$pdf->Cell(16,6, utf8_encode($datoss['Asistencia']) .'/'.$asis,1,0,'C',1);
 				}
-				$pdf->Cell(16,6,'',1,1,'C',1);
+				$pdf->Cell(16,6,'',0,1,'C',0);
 
 
 

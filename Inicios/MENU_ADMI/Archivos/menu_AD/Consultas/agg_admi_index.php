@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/CSS/sweetalert2.all.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Css-Scripts/bootstrap.min.css" >
@@ -36,6 +36,10 @@
         function ValidarDatos()
         {
           formulario = document.Consultar;
+formulario = document.Consultar;
+          if(formulario.Clave_RFC.value != "" || formulario.Nombre.value != "" || formulario.Apellido_p.value != ""
+          || formulario.Apellido_m.value != "" || formulario.Contrasena.value != "" || formulario.Privilegios.value != "" )
+          {
                     Swal.fire({
                     title: 'Deseas registrar un nuevo usuario?',
                     showDenyButton: true,
@@ -51,11 +55,25 @@
                     formulario.Apellido_p.value="";
                     formulario.Apellido_m.value="";
                     formulario.Contrasena.value="";
-                    formulario.Tipo.value="";
                     formulario.Privilegios.value="";
                       return false; 
                     }
                   })
+                  }
+                else{
+                  Swal.fire({
+                              icon: 'error',
+                              title: 'Oops...',
+                              toast: true,
+                              position: 'top',
+                              allowOutsideClick: false,
+                              allowEscapeKey: false,
+                              allowEnterKey:false,
+                              stopKeydownPropagation:false,
+                              text: 'verifica que los campos esten llenos'
+                          })
+                          return false;
+                }
         }
       </script>
   </head>
@@ -70,24 +88,17 @@
           <div class="col-xs-12 col-lg-3"> 
             <form name="Consultar" action="php_s/Insertar/insertar_admi.php" method="POST">
               <h5 class="text-center"><strong>Agregar Admi</strong></h5>
-              <input type="text" required placeholder="Clave_RFC" name="Clave_RFC" class="form-control">
+              <input type="text" required placeholder="Clave_RFC" name="Clave_RFC" class="form-control" autocomplete="off">
               <br>
-              <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
+              <input type="text" required placeholder="Nombre" name="Nombre" class="form-control" autocomplete="off">
               <br>
-              <input type="text" required placeholder="Apellido P" name="Apellido_p" class="form-control">
+              <input type="text" required placeholder="Apellido P" name="Apellido_p" class="form-control" autocomplete="off"> 
               <br>
-              <input type="text" required placeholder="Apellido M" name="Apellido_m" class="form-control">
+              <input type="text" required placeholder="Apellido M" name="Apellido_m" class="form-control" autocomplete="off">
               <br>
-              <input type="text" required placeholder="Contraseña" name="Contrasena" class="form-control">
+              <input type="text" required placeholder="Contraseña" name="Contrasena" class="form-control" autocomplete="off">
               <br>
                 <center>
-                    <p>Tipo:
-                        <select name="Tipo" class= "form-control">
-                        <option utf8_decode value="">Selecciona un Tipo</option>
-                        <option utf8_decode value="Adm_Root">Administrador Root</option>
-                        <option utf8_decode value="Adm_Inv">Administrador Invitado</option>
-                        </select>
-                    </p>
                     <p>Privilegio:
                         <select name="Privilegios" class= "form-control">
                         <option value="">Selecciona un Tipo</option>
@@ -116,7 +127,6 @@
                       <th scope="col">Apellido Paterno</th>
                       <th scope="col">Apellido Materno</th>
                       <th scope="col">Contrasena</th>
-                      <th scope="col">Tipo</th>
                       <th scope="col">Privilegios</th>
                     </tr>
                   </thead> 
@@ -133,7 +143,6 @@
                         <td><?php echo utf8_decode($row['Ape_paterno'])?></td>
                         <td><?php echo utf8_decode($row['Ape_Materno'])?></td>
                         <td><?php echo $dato_desencriptado = $desencriptar($row['Contrasena'])?></td>
-                        <td><?php echo utf8_decode($row['Usuario']) ?></td>
                         <td><?php echo utf8_decode($row['Privilegios'])?></td>
                         <td><a href="php_s/Eliminar/Eliminar_Admi.php?id=<?php echo $row['Clave_RFC'] ?>"  class="btn btn-danger" >Eliminar</a></td>
                         
@@ -149,9 +158,7 @@
       </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
   </body>
 </html>
 <?php

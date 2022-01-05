@@ -14,7 +14,7 @@
 ?>
 <html lang="es">
 	<head> 
-		<title>registros_Alumnos</title>
+		<title>registros_asistencias</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 		<link rel="stylesheet" href="css/estilos.css">
@@ -54,11 +54,11 @@
       <br>
         <header>
           <div class="alert alert-info">
-            <h3>Insertar registros de Alumnos</h3>
+            <h3>Registrar o Actulizar datos de Asistencias</h3>
           </div>
         </header>
        
-        <form action="Import/verificar_dat_alumno.php" method="post" enctype="multipart/form-data" name="Valores" id="filesForm">
+        <form action="Import/verificar_asistencias.php" method="post" enctype="multipart/form-data" name="Valores" id="filesForm">
           <div class="col-md-4 offset-md-4">
               <input class="form-control" type="file" name="fileContacts" id="cuadr"><br>
               <center><button type="button" onclick="ValidarDatos();" class="btn btn-primary form-control" >Cargar</button></center>
@@ -92,7 +92,7 @@
                       Swal.fire('Se te notificara cuando ya se termino el registro, por favor no cierres!', '', 'success')
                       var Form = new FormData($('#filesForm')[0]);
                         $.ajax({
-                            url: "Import/import_alumno.php",
+                            url: "Import/import_asistencias.php",
                             type: "post",
                             data : Form,
                             processData: false,

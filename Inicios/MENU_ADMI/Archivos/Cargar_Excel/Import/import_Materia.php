@@ -14,26 +14,34 @@ foreach ($fileContacts as $contact)
 	$cantidad_registros = count($fileContacts);
     $cantidad_regist_agregados =  ($cantidad_registros - 1);
     if ($i!=0) {
-		$contactList        = explode(",", $contact);
+		$contactList        = explode("|", $contact);
 		$clave       		= !empty($contactList[0])  ? ($contactList[0]) : '';
 		$Nombre             = !empty($contactList[1])  ? ($contactList[1]) : '';
 		$Semestre           = !empty($contactList[2])  ? ($contactList[2]) : '';
         $Tipos               = !empty($contactList[3])  ? ($contactList[3]) : '';
-        $tipo = trim($Tipos);
-       
-        
-    $insertar = "INSERT INTO datos_materias(
-            Clave,
-            Nombre,
-            Semestre,
-            Tipo
-        ) VALUES(
-            '$clave',
-            '$Nombre',
-            '$Semestre',
-            '$Tipo'
-        )";
-        mysqli_query($con, $insertar);
+        $ipo = trim($Tipos);
+
+        if ($clave !="") 
+        {
+            $insertar = "INSERT INTO datos_materias(
+                    Clave,
+                    Nombre,
+                    Semestre,
+                    Tipo
+                ) VALUES(
+                    '$clave',
+                    '$Nombre',
+                    '$Semestre',
+                    '$Tipo'
+                )";
+                mysqli_query($con, $insertar);
+        }
+        else
+            {
+                $i = 0;
+                mysqli_close($con);
+                break;
+            }
     }
 	$i++;
 	

@@ -1,13 +1,13 @@
 <?php
  include ('conexion.php');
-    $Clave_Materia = $_POST['Clave_Materia'];
+    $Clave_Materia = utf8_decode($_POST['Clave_Materia']);
     $Grupo = $_POST['Grupo'];
     $Semestre = $_POST['Semestre'];
     $Especialidad = utf8_decode($_POST['Especialidad']);
-    $Clave_Maestro = $_POST['Clave_Maestro'];
+    $Clave_Maestro = utf8_decode($_POST['Clave_Maestro']);
     $Periodo = $_POST['Periodo'];
     
-    $consulta = "SELECT Clave_Materia, Clave_Maestro FROM materia_relacion WHERE Clave_Materia='$Clave_Materia' and Clave_Maestro='$Clave_Maestro'";
+    $consulta = "SELECT Clave_Materia, Clave_Docente FROM materia_relacion WHERE Clave_Materia='$Clave_Materia' and Clave_Docente='$Clave_Maestro'";
     $querys=mysqli_query($con,$consulta);
     $cant_duplicidad = mysqli_num_rows($querys);
          if($cant_duplicidad != 0)
@@ -24,7 +24,7 @@
                      Grupo,
                      Semestre,
                      Especialidad,
-                     Clave_Maestro,
+                     Clave_Docente,
                      Periodo
                   ) VALUES(
                      '$Clave_Materia',

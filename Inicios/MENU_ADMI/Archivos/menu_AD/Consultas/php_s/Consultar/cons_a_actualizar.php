@@ -1,14 +1,33 @@
 <?php
  include ('conexion.php');
  
- $Clave_Materia = $_GET['id'];
- $Clave_Maestro = $_GET['id2'];
+ $Clave_Materia = utf8_decode($_GET['id']);
+ $Clave_Maestro = utf8_decode($_GET['id2']);
  
- $sql="SELECT * FROM materia_relacion WHERE Clave_Materia ='$Clave_Materia' and Clave_Maestro='$Clave_Maestro'";
+ $Materia_relacion="SELECT * FROM materia_relacion WHERE Clave_Materia ='$Clave_Materia' and Clave_Docente='$Clave_Maestro'";
 
- $query=mysqli_query($con,$sql);
+ $resultados=mysqli_query($con,$Materia_relacion);
 
- $row=mysqli_fetch_array($query);
+ $datos=mysqli_fetch_array($resultados);
+ if(isset($datos))
+ { 
+    $ID =  utf8_encode($datos['id']);
+    $Clave_Materia= utf8_encode($datos['Clave_Materia']);
+    $Grupo= $datos['Grupo'];
+    $Semestre= $datos['Semestre'];
+    $Especialidad= $datos['Especialidad'];
+    $Clave_Maestro= utf8_encode($datos['Clave_Docente']);
+    $Periodo= $datos['Periodo'];
+ }
+ else{
+
+    $Grupo= 'Nohay';
+    $Semestre= 'Nohay';
+    $Especialidad= 'Nohay';
+
+    $Periodo= 'Nohay';
+
+ } 
 ?>
 
 

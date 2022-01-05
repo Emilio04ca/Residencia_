@@ -36,7 +36,7 @@
                            {
                               mysqli_close($con);
                               echo '<script type="text/javascript">alert("¡Maestro Registrado!");</script>';
-                              header('location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/Docente_index.php');
+                              echo '<script type="text/javascript">window.location.href = "http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Archivos/menu_AD/Consultas/Docente_index.php";</script>';
                            }
                      }
                      

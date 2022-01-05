@@ -32,7 +32,7 @@
   <script src="script.js"></script>
   <div class="congeneral">
   <div class="contenedor">
-    <div class="cont">Requisitos para titulacion</div>
+    <div class="cont">Requisitos para Realizar el Servicio Social</div>
   </div>
   <div class="contenedor2">
     <ul id="diseño">

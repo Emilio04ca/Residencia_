@@ -7,7 +7,6 @@ require_once("../../reporte/mcript.php");
     $Apellido_M = $_POST['Apellido_m'];
     $Cont = $_POST['Contrasena'];
     $Contrasena = $encriptar($Cont);
-    $Usuario = $_POST['Tipo'];
     $Privilegios = $_POST['Privilegios'];
     
     $consulta = "SELECT Clave_RFC  FROM login_admi WHERE Clave_RFC='$Clave_RFC'";
@@ -26,7 +25,6 @@ $insetarData = "INSERT INTO login_admi(
      Ape_paterno,
      Ape_Materno,
      Contrasena,
-     Usuario, 
      Privilegios
  ) VALUES(
     '$Clave_RFC',
@@ -34,7 +32,6 @@ $insetarData = "INSERT INTO login_admi(
     '$Apellido_p',
     '$Apellido_M',
     '$Contrasena',
-    '$Usuario',
     '$Privilegios'
  )";
  $query = mysqli_query($con, $insetarData);

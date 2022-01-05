@@ -8,7 +8,7 @@ $Grupo = $_GET['Grupo'];
 //Detectamos si el usuario acepto el mensaje
 /*echo '<script type="text/javascript">if (mensaje) {</script>';*/
   unlink("../../archivos/$Nombre");
-  $query = "DELETE FROM horario WHERE Grupo= '$Grupo' and Nombre='$Nombre'"; 
+  $query = "DELETE FROM datos_horario WHERE Grupo= '$Grupo' and Nombre='$Nombre'"; 
   $result = mysqli_query($con,$query);
 
     if($query)

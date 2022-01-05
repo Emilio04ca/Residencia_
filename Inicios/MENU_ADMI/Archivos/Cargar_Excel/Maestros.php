@@ -28,7 +28,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script> 
+        <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/CSS/sweetalert2.all.min.js"></script> 
         <script type="text/javascript">
         function ValidarDatos()
         {
@@ -55,7 +55,7 @@
       <br>
 	     <header>
           <div class="alert alert-info">
-            <h3>Insertar registros Maestros</h3>
+            <h3>Insertar o Actulizar Datos de Maestros</h3>
           </div>
         </header>
     <form action="Import/verificar_dat_docente.php" method="post" enctype="multipart/form-data" name="Valores" id="filesForm">
@@ -80,11 +80,19 @@
         })
         }
         else{
-          Swal.fire('Se te notificara cuando ya se termino el registro, por favor no cierres!', '', 'success')
+          Swal.fire({
+                    title: 'Deseas Registrar nuevos datos?',
+                    showDenyButton: true,
+                    confirmButtonText: 'Registrar',
+                    denyButtonText: `No Registrar`,
+                  }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                      Swal.fire('Se te notificara cuando ya se termino el registro!', '', 'success')
                       var Form = new FormData($('#filesForm')[0]);
                         $.ajax({
                           url: "Import/import_Mestro.php",
-                            type: "post",
+                          type: "post",
                             data : Form,
                             processData: false,
                             contentType: false,
@@ -92,7 +100,11 @@
                                       {
                                         Swal.fire('Registros Exitosos!', '', 'success')
                                       }
-                        }); 
+                        });
+                    } else if (result.isDenied) {
+                       
+                    }
+                  })
     }
 }
 

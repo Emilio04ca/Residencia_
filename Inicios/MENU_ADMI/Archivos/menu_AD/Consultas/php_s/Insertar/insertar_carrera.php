@@ -1,14 +1,12 @@
 <?php
  include ('conexion.php');
-    $subir = $_POST['nombre'];
+    $subir = utf8_decode($_POST['nombre']);
     
     if (isset($subir))
     {
-    $clave_carrera = $_POST['clave_carrera'];
-    $nombre = $_POST['nombre'];
-    $clave_division = $_POST['clave_division'];
+        $id= $_POST['id'];
 
-    $consulta = "SELECT clave_carrera FROM carrera WHERE clave_carrera='$clave_carrera'";
+    $consulta = "SELECT id FROM datos_carrera WHERE id='$id'";
     $querys=mysqli_query($con,$consulta);
     $cant_duplicidad = mysqli_num_rows($querys);
         if($cant_duplicidad != 0)
@@ -19,14 +17,12 @@
             }
             else
                 {
-                    $insetarData = "INSERT INTO carrera(
-                        clave_carrera, 
-                        Nombre,
-                        clave_division
+                    $insetarData = "INSERT INTO datos_carrera(
+                        id,
+                        Nombre
                     ) VALUES(
-                        '$clave_carrera',
-                        '$nombre',
-                        '$clave_division'
+                        '$id',
+                        '$subir'
                     )";
                     $query = mysqli_query($con, $insetarData);
                     if($query){

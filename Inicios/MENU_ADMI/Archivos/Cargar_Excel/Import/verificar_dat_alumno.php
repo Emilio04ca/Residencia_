@@ -72,7 +72,7 @@
                         $cantidad_regist_agregados =  ($cantidad_registros - 1);
                         if ($i!=0) 
                             {
-                                $contactList = explode(",", $contact);
+                                $contactList = explode("|", $contact);
                                 $Num_Ctrl          	= !empty($contactList[0])  ? ($contactList[0]) : '';
                                 $Nombre            	= !empty($contactList[1])  ? ($contactList[1]) : '';
                                 $Ape_paterno        = !empty($contactList[2])  ? ($contactList[2]) : '';
@@ -83,7 +83,7 @@
                                 $Turno          	= !empty($contactList[7])  ? ($contactList[7]) : '';
                                 $Periodo           	= !empty($contactList[8])  ? ($contactList[8]) : '';
                                 $Vigente           	= !empty($contactList[9])  ? ($contactList[9]) : '';
-                                if($Num_Ctrl != "")
+                                if($Num_Ctrl != null)
                                 {
                 ?>
                                             <td><?php echo utf8_encode($i)?></td>
@@ -98,6 +98,9 @@
                                         </tr>
                 <?php
     	                        }
+                                else{
+                                    break;
+                                }
                             }
                         $i++;	
                     }

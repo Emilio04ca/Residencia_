@@ -38,13 +38,12 @@ require_once("../Cripto/mcript.php");
   </head>
   <body>
     <?php include 'menu.php';?>
-    <script src="script.js"></script>
       <br>
       <br>
       <div class="container justify-items-center n">
         <div class="row">
           <div class="col-xs-12 col-lg-3">            
-            <form  method="POST" action="../reporte/reporte.php">
+            <form  method="POST" TARGET="_blank" action="../reporte/reporte.php">
               <h4 class="text-center"><strong>Descarga Grupal</strong></h4>
               <br>
               <p>Carrera:

@@ -47,64 +47,21 @@ else
                           })
                           return false;
               }
-              /*if (formulario.Semestre.value == "") {
-                Swal.fire({
-                              icon: 'error',
-                              title: 'Oops...',
-                              toast: true,
-                              position: 'top',
-                              allowOutsideClick: false,
-                              allowEscapeKey: false,
-                              allowEnterKey:false,
-                              stopKeydownPropagation:false,
-                              text: 'Por favor, LLenar el campo Semestre'
-                          })
-                          return false;
-              }
-              if (formulario.Especialidad.value == "") {
-                Swal.fire({
-                              icon: 'error',
-                              title: 'Oops...',
-                              toast: true,
-                              position: 'top',
-                              allowOutsideClick: false,
-                              allowEscapeKey: false,
-                              allowEnterKey:false,
-                              stopKeydownPropagation:false,
-                              text: 'Por favor, LLenar el campo Carrera'
-                          })
-                          return false;
-              }
-              if (formulario.Status.value == "") {
-                Swal.fire({
-                              icon: 'error',
-                              title: 'Oops...',
-                              toast: true,
-                              position: 'top',
-                              allowOutsideClick: false,
-                              allowEscapeKey: false,
-                              allowEnterKey:false,
-                              stopKeydownPropagation:false,
-                              text: 'Por favor, LLenar el campo Status'
-                          })
-                          return false;
-              }*/
               else{
               
-                  Swal.fire({
-                          title: 'Are you sure?',
-                          text: "You won't be able to revert this!",
-                          icon: 'warning',
-                          showCancelButton: true,
-                          confirmButtonColor: '#3085d6',
-                          cancelButtonColor: '#d33',
-                          confirmButtonText: 'Yes, delete it!'
-                          }).then((result) => {
-                          if (result.isConfirmed) {
-                              formulario.submit();
-                          }
-                          })
-                
+                Swal.fire({
+                    title: 'Deseas Actulizar?',
+                    text: "Si es asi, prosigue con la operacion!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, Claro!'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        formulario.submit();
+                    }
+                    })
               }
               
           }
@@ -134,6 +91,27 @@ else
               <tr>
                 <th>Apellido Materno </th>
                 <td id="non"><input name="Ape_Materno" type="text" value="<?php echo utf8_encode($row['Ape_Materno']);?>"></td>
+              </tr>
+              
+              <tr>
+                <th>Especialidad</th>
+                <td id="non"> 
+                <select name="Especialidad" class="form-control" >
+                  <option value="<?php echo $row['Especialidad'];?>"><?php echo utf8_encode($row['Especialidad']);?></option>
+                  <option value="">Selecciona</option>
+                        <?php
+                        include '../php_s/Consultar/conexion.php';
+                        $sql= "SELECT Nombre FROM datos_carrera";
+                        $query=mysqli_query($con,$sql);
+                        while($Especilidad=mysqli_fetch_array($query)) {
+                        ?>
+                        <option value="<?php echo utf8_encode($Especilidad['Nombre'])?>"><?php echo utf8_encode($Especilidad['Nombre'])?></option>
+                        <?php
+                        }
+                        ?>
+                </select>
+                </td>
+                <!--<td id="non"><input name="Carrera" type="text"  value=""></td>-->
               </tr>
               <tr>
                 <th>Semestre</th> 
@@ -165,32 +143,16 @@ else
                 </td>
               </tr>
               <tr>
-                <th>Especialidad</th>
-                <td id="non"> 
-                <select name="Especialidad" class="form-control" >
-                  <option value="<?php echo $row['Especialidad'];?>"><?php echo utf8_encode($row['Especialidad']);?></option>
-                    <option utf8_decode value="COMPONENTE BASICO Y PROPEDEUTICO">COM. BAS Y PROPEDEUTICO</option>
-                    <option utf8_decode value="CONTABILIDAD">CONTABILIDAD</option>
-                    <option utf8_decode value="OFIMÁTICA">OFIMÁTICA</option>
-                    <option utf8_decode value="MANTENIMIENTO AUTOMOTRIZ">MANTENIMIENTO AUTOMOTRIZ</option>
-                    <option value="PROGRAMACIÓN">PROGRAMACIÓN</option>
-                </select>
-                </td>
-                  
-                <!--<td id="non"><input name="Carrera" type="text"  value=""></td>-->
-              </tr> 
-              
-              <tr>
                 <th>Turno</th>
                 <td id="non"> 
                 <select name="Turno" class="form-control" >
-                    <option value="<?php echo $row['Turno'];?>"><?php echo $row['Turno'];?></option>
+                    <option value="<?php echo $row['Turno'];?>"><?php echo $row['Turno']?></option>
                     <option value="matutino">matutino</option>
                     <option value="vespertino">vespertino</option>
                  <!-- </select><input name="Status" type="text"  value=""></td>-->
                  </select>
                 </td>
-              </tr>
+              </tr> 
               <tr>
               <th>Periodo</th>
                 <td id="non">
@@ -213,7 +175,7 @@ else
                 <th>Vigente</th>
                 <td id="non"> 
                 <select name="Vigente" class="form-control" widht="100%">
-                    <option value="<?php echo $row['Vigente'];?>"><?php echo $row['Vigente'];?></option>
+                    <option value="<?php echo $row['Vigente']?>"><?php echo $row['Vigente']?></option>
                     <option value="activo">activo</option>
                     <option value="negativo">negativo</option>
                     </select>

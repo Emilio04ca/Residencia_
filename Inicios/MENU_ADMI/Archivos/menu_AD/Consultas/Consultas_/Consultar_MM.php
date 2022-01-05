@@ -4,7 +4,7 @@
   session_start();
   // Si el usuario no se ha logueado se le regresa al inicio.
   if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
-    
+    $valor = 1;
     /*if ($_SESSION ["usuario"]["Privilegios"] == '') {*/
       // code...
 ?>
@@ -35,11 +35,8 @@
         function valida_datos()
         {
           formulario = document.priv;
-          if (formulario.Privilegio.value != 1)
-          {
-            formulario.Clave.value="";
-            formulario.Nombre.value="";
-            formulario.Tipo.value="";      
+          if (<?php echo $valor?> != <?php echo $_SESSION ["usuario"]['Privilegios']?>)
+          { 
             Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -49,7 +46,7 @@
                         allowEscapeKey: false,
                         allowEnterKey:false,
                         stopKeydownPropagation:false,
-                        text: 'No tienes la autorizacion para agregar Materias'
+                        text: 'No tienes la autorizacion para agregar.'
                     })
                     return false;
           }
@@ -108,7 +105,6 @@
               <form name="priv" action="../php_s/Insertar/insertar_ma_do.php" method="POST">
               <h5 class="text-center"><strong>Agregar M-M</strong></h5>
                 <br>
-                <input name="Privilegio" type="hidden" value="<?php echo $_SESSION ["usuario"]['Privilegios']?>">
                 <input type="text" required placeholder="Clave_Materia" name="Clave_Materia" class="form-control">
                 <br>
                 <CENTER>
@@ -147,11 +143,17 @@
                 <p>Carrera:
                   <select name="Especialidad" class= "form-control">
                   <option value="">Selecciona</option>
-                    <option utf8_decode value="COMPONENTE BASICO Y PROPEDEUTICO">COM. BAS Y PROPEDEUTICO</option>
-                    <option utf8_decode value="CONTABILIDAD">CONTABILIDAD</option>
-                    <option utf8_decode value="OFIMÁTICA">OFIMÁTICA</option>
-                    <option utf8_decode value="MANTENIMIENTO AUTOMOTRIZ">MANTENIMIENTO AUTOMOTRIZ</option>
-                    <option value="PROGRAMACIÓN">PROGRAMACIÓN</option>
+                        <?php
+                        include '../php_s/Consultar/conexion.php';
+                        $sql= "SELECT Nombre FROM datos_carrera";
+                        $query=mysqli_query($con,$sql);
+                        while($row=mysqli_fetch_array($query)) {
+                        ?>
+                        <option value="<?php echo utf8_encode($row['Nombre'])?>"><?php echo utf8_encode($row['Nombre'])?></option>
+                        <?php
+                        }
+                        mysqli_close($con);
+                        ?>
                   </select>
                 </p>
                 <input type="text" required placeholder="Clave_Maestro" name="Clave_Maestro" class="form-control">
@@ -190,7 +192,7 @@
                       $query=mysqli_query($con,$sql);
                       while($row=mysqli_fetch_array($query)) {
                       ?>
-                      <option value="<?php echo utf8_decode($row['Periodo'])?>"><?php echo utf8_decode($row['Periodo'])?></option>
+                      <option value="<?php echo utf8_encode($row['Periodo'])?>"><?php echo utf8_encode($row['Periodo'])?></option>
                       <?php
                       }
                       mysqli_close($con);
@@ -226,13 +228,13 @@
                         <td><?php echo utf8_encode($row['Grupo'])?></td>
                         <td><?php echo utf8_encode($row['Semestre'])?></td>
                         <td><?php echo utf8_encode($row['Especialidad']);?></td>
-                        <td><?php echo utf8_encode($row['Clave_Maestro'])?></td>
+                        <td><?php echo utf8_encode($row['Clave_Docente'])?></td>
                         <td><?php echo utf8_encode($row['Periodo'])?></td>
                         <?php
-                          if ($_SESSION ["usuario"]["Privilegios"] == '1') {
+                          if ($_SESSION ["usuario"]["Privilegios"] == '1') { 
 
                         ?>
-                        <td><a href="editar_MM.php?id=<?php echo $row['Clave_Materia']?>&id2=<?php echo $row['Clave_Maestro']?>" class="btn btn-primary">Editar</a></td>
+                        <td><a href="editar_MM.php?id=<?php echo utf8_encode($row['Clave_Materia'])?>&id2=<?php echo utf8_encode($row['Clave_Docente'])?>" class="btn btn-primary">Editar</a></td>
                         <?php
                           }
         

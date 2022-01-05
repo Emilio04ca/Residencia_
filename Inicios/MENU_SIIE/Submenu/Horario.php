@@ -37,15 +37,15 @@
             <th width="21%"> No. Control s.e.p. </th>
             <th width="40%"> Nombre del Alumno </th>
             <th width="9%"> Semestre </th>
+            <th> Grupo </th>
             <th width="25%"> Periodo Escolar </th>
-                  <th width="10%"> Prom. Acum. </th>
                 </tr>
           <tr align="center" id="non">
             <td><?=$_SESSION ["usuario"]['Num_Ctrl']?></td>
             <td><?=$_SESSION ["usuario"]['Nombre']?> <?=$_SESSION ["usuario"]['Ape_paterno']?> <?=$_SESSION ["usuario"]['Ape_Materno']?></td>
             <td><?=$_SESSION ["usuario"]['Semestre']?></td>
+            <td><?=utf8_encode( $_SESSION ["usuario"]['Grupo'])?></td>
             <td><?=$_SESSION ["usuario"]['Periodo']?></td>
-                  <td> 96.18 </td>
                 </tr>
         </tbody>
       </table>
@@ -53,11 +53,11 @@
         <tbody>
           <tr align="center">
             <th> Carerra </th>
-            <th> Grupo </th>
+           
           </tr>
         <tr align="center" id="non">
                 <td><?=utf8_encode( $_SESSION ["usuario"]['Especialidad'])?></td>
-                <td><?=utf8_encode( $_SESSION ["usuario"]['Grupo'])?></td>
+               
         </tr>
         </tbody>
       </table>

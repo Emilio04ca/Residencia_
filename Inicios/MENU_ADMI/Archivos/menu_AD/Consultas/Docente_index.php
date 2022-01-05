@@ -4,7 +4,7 @@
   session_start();
   // Si el usuario no se ha logueado se le regresa al inicio.
   if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
-    
+    $valor = 1;
     /*if ($_SESSION ["usuario"]["Privilegios"] == '') {*/
       // code...
 ?>
@@ -17,7 +17,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/CSS/sweetalert2.all.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Css-Scripts/bootstrap.min.css" >
@@ -31,7 +31,7 @@
         function valida_datos()
         {
           formulario = document.priv;
-          if (formulario.Privilegio.value != 1)
+          if (<?php echo $valor?> != <?php echo $_SESSION ["usuario"]['Privilegios']?>)
           {                  
             Swal.fire({
                 icon: 'error',
@@ -42,7 +42,7 @@
                 allowEscapeKey: false,
                 allowEnterKey:false,
                 stopKeydownPropagation:false,
-                text: 'No tienes la autorizacion para agregar Materias'
+                text: 'No tienes la autorizacion para agregar Maestro'
             })
               formulario.Clave_RFC.value="";
               formulario.Nombre.value="";
@@ -52,8 +52,8 @@
           }
           else
             {
-              if (formulario.Clave_Docente.value == "null" || formulario.Nombre.value == "null" || formulario.Ape_Paterno.value == "null" 
-                        || formulario.Ape_Materno.value == "null")  
+              if (formulario.Clave_Docente.value == "" || formulario.Nombre.value == "" || formulario.Ape_Paterno.value == "" 
+                        || formulario.Ape_Materno.value == "" || formulario.Area.value == "")  
                     {      
                       Swal.fire({
                                   icon: 'error',
@@ -98,7 +98,6 @@
           <div class="row">
             <div class="col-xs-12 col-lg-3">
               <form name="priv" action="php_s/Insertar/insertar_docente.php" method="POST">
-              <input name="Privilegio" type="hidden" value="<?php echo $_SESSION ["usuario"]['Privilegios']?>">
                 <h1 class="text-center"><strong>Agregar Docente</strong></h1>
                 <br>
                 <input type="text" required placeholder="Clave_RFC" name="Clave_Docente" class="form-control">
@@ -112,9 +111,10 @@
                 <p>Area:
                   <select name="Area" class="form-control" >
                     <option value="">Selecciona</option>
-                    <option value="Sin Seccionar">Sin Seccionar</option>
-                    <option value="Sin Seccionar">Sin Seccionar</option>
-                    <option value="Sin Seccionar">Sin Seccionar</option>
+                    <option value="Ofimatica">Ofimatica</option>
+                    <option value="Contabilidad">Contabilidad</option>
+                    <option value="Programacion">Programacion</option>
+                    <option value="Mantenimiento">Mantenimiento</option>
                   </select>
                 </p> 
                 </center>

@@ -50,7 +50,7 @@
                         $cantidad_registros = count($fileContacts);
                         $cantidad_regist_agregados =  ($cantidad_registros - 1);
                         if ($i!=0) {
-                            $contactList        = explode(",", $contact);
+                            $contactList        = explode("|", $contact);
                             $clave       		= !empty($contactList[0])  ? ($contactList[0]) : '';
                             $Nombre             = !empty($contactList[1])  ? ($contactList[1]) : '';
                             $Semestre           = !empty($contactList[2])  ? ($contactList[2]) : '';

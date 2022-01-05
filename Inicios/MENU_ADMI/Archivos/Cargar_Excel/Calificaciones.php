@@ -21,6 +21,7 @@
       <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Css-Scripts/style.css">  
        <!-- <link rel="stylesheet" href="css/cargando.css">-->
       <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Css-Scripts/bootstrap.min.css" >
+      <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/CSS/sweetalert2.all.min.js"></script>
       <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'> 
         <!-- Latest compiled and minified CSS -->
         <!-- jQuery library -->
@@ -47,14 +48,14 @@
           })
         }
       </script>
-      <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>   
+        
 	</head>
 	<body>
   <?php include '../menu_AD/Consultas/Consultas_/menu.php';?>
       <br>
-        <header></header>
+        <header>
           <div class="alert alert-info">
-            <h3>Insertar calificaciones de Alumnos</h3>
+            <h3>Insertar o Actulizar Calificaciones de Alumnos por Unidad</h3>
           </div>
         </header>
        
@@ -158,7 +159,7 @@
                     if (result.isConfirmed) {
                       Swal.fire('Se te notificara cuando ya se termino el registro!', '', 'success')
                       var Form = new FormData($('#filesForm')[0]);
-                        $.ajax({
+                        $.ajax({ 
                             url: "Import/import_cali.php",
                             type: "post",
                             data : Form,

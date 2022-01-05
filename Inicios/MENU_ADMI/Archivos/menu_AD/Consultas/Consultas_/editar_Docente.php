@@ -31,6 +31,22 @@ else
         function valida_datos()
         {
           formulario = document.actualizar;
+          if (formulario.Nombre.value == "" || formulario.Ape_paterno.value == "" 
+          || formulario.Ape_Materno.value == "" || formulario.Area.value == "") {
+                Swal.fire({
+                              icon: 'error',
+                              title: 'Oops...',
+                              toast: true,
+                              position: 'top',
+                              allowOutsideClick: false,
+                              allowEscapeKey: false,
+                              allowEnterKey:false,
+                              stopKeydownPropagation:false,
+                              text: 'Por favor, verificar que los campos no esten vacios'
+                          })
+                          return false;
+              }
+              else{
           Swal.fire({
                     title: 'Deseas Actulizar?',
                     text: "Si es asi, prosigue con la operacion!",
@@ -42,15 +58,14 @@ else
                     }).then((result) => {
                     if (result.isConfirmed) {
                         formulario.submit();
-                        
                     }
                     })
+              }
         }
       </script>
   </head>
   <body>
   <?php include 'menu.php';?>
-  <script src="script.js"></script>
         <br>
         <br>
       <form  name="actualizar"action="../php_s/Actualizar/update_docente.php" method="POST">
@@ -77,7 +92,7 @@ else
               <td id="non"><input name="Ape_Materno" type="text" value="<?php echo $row['Ape_Materno'];?>"></td>
             </tr>
             <tr>
-              <th>Apellido Materno </th>
+              <th>Area</th>
               <td id="non">
                 <select name="Area" class="form-control" >
                     <option value="">Selecciona</option>

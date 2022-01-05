@@ -3,7 +3,7 @@
   session_start();
   // Si el usuario no se ha logueado se le regresa al inicio.
   if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
-    
+    $valor = 1;
     /*if ($_SESSION ["usuario"]["Privilegios"] == '') {*/
       // code...
 ?>
@@ -33,7 +33,7 @@
         function valida_datos()
         {
           formulario = document.priv;
-          if (formulario.Privilegio.value != 1)
+          if (<?php echo $valor?> != <?php echo $_SESSION ["usuario"]['Privilegios']?>)
             {
               Swal.fire({
                 icon: 'error',
@@ -46,11 +46,7 @@
                 stopKeydownPropagation:false,
                 text: 'No tienes la autorizacion para agregar'
                 })
-                formulario.Clave.value="";
-                formulario.Clave_RFC.value="";
-                formulario.Especialidad.value="";
-                formulario.Grupo.value="";
-                formulario.Semestre.value="";
+               
                 return false;
             }
               else
@@ -92,8 +88,7 @@
               <form name="priv" action="php_s/Insertar/insertar_ma_do.php" method="POST">
                 <h5 class="text-center"><strong>Agregar M-M</strong></h5>
                 <br>
-                <input name="Privilegio" type="hidden" value="<?php echo $_SESSION ["usuario"]['Privilegios']?>">
-                <input type="text" required placeholder="Clave_Materia" name="Clave_Materia" class="form-control">
+                <input type="text" required placeholder="Clave_Materia" name="Clave_Materia" class="form-control" autocomplete="off">
                 <br>
                 <CENTER>
                 <p>Grupo:
@@ -131,14 +126,20 @@
                 <p>Carrera:
                   <select name="Especialidad" class= "form-control">
                   <option value="">Selecciona</option>
-                    <option utf8_decode value="COMPONENTE BASICO Y PROPEDEUTICO">COM. BAS Y PROPEDEUTICO</option>
-                    <option utf8_decode value="CONTABILIDAD">CONTABILIDAD</option>
-                    <option utf8_decode value="OFIMÁTICA">OFIMÁTICA</option>
-                    <option utf8_decode value="MANTENIMIENTO AUTOMOTRIZ">MANTENIMIENTO AUTOMOTRIZ</option>
-                    <option value="PROGRAMACIÓN">PROGRAMACIÓN</option>
+                    <?php
+                    include 'php_s/Consultar/conexion.php';
+                    $sql= "SELECT Nombre FROM datos_carrera";
+                    $query=mysqli_query($con,$sql);
+                    while($row=mysqli_fetch_array($query)) {
+                    ?>
+                    <option value="<?php echo utf8_encode($row['Nombre'])?>"><?php echo utf8_encode($row['Nombre'])?></option>
+                    <?php
+                    }
+                    mysqli_close($con);
+                    ?>
                   </select>
                 </p>
-                <input type="text" required placeholder="Clave_Maestro" name="Clave_Maestro" class="form-control">
+                <input type="text" required placeholder="Clave_Maestro" name="Clave_Maestro" class="form-control" autocomplete="off">
                 <br>
                 <p>Periodo:
                   <select name="Periodo" class="form-control" >

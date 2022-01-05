@@ -4,7 +4,8 @@
   session_start();
   // Si el usuario no se ha logueado se le regresa al inicio.
   if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
-    
+
+    $valor = 1;
     /*if ($_SESSION ["usuario"]["Privilegios"] == '') {*/
       // code...
 ?>
@@ -30,7 +31,7 @@
         function valida_datos()
         {
           formulario = document.priv;
-          if (formulario.Privilegio.value != 1)
+          if (<?php echo $valor?> != <?php echo $_SESSION ["usuario"]['Privilegios']?>)
             {    
               Swal.fire({
                           icon: 'error',
@@ -52,7 +53,7 @@
             else
               {
                 if (formulario.Clave.value == "" || formulario.Nombre.value == ""
-                || formulario.Semestre.value == "" || formulario.Tipo.value == "") 
+                || formulario.Semestre.value == "" || formulario.Tipo.value == "null") 
                     {
                       formulario.Clave.value="";
                       formulario.Nombre.value="";
@@ -104,14 +105,12 @@
           <div class="row">
             <div class="col-xs-12 col-lg-3">
               <form name="priv" action="../php_s/Insertar/insertar_materia.php" method="POST">
-              <input name="Privilegio" type="hidden" value="<?php echo $_SESSION ["usuario"]['Privilegios']?>">
+            
                <h1 class="text-center"><strong>Agregar Materias</strong></h1>
                 <br>
-                <input type="text" required placeholder="Clave" name="Clave" class="form-control">
+                <input type="text" required placeholder="Clave" name="Clave" class="form-control" autocomplete="off">
                 <br>
-                <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
-                <br>
-                <input type="text" required placeholder="Abreviatura" name="Abreviatura" class="form-control">
+                <input type="text" required placeholder="Nombre" name="Nombre" class="form-control" autocomplete="off">
                 <br>
                 <center><p>Semestre:
                         <select name="Semestre" class= "form-control">
@@ -124,7 +123,6 @@
                         <option value="6">6</option>
                         </select>
                 </p>
-                <br>
                 <p>Tipo:
                         <select name="Tipo" class= "form-control">
                         <option value="">Selecciona</option>
@@ -137,19 +135,19 @@
               </form>
             </div>
             <div class="col-xs-12 col-lg-8 p-3">
-              <h1 class="text-center"><strong>Consulta Materia Maestro</strong></h1>   
+              <h1 class="text-center"><strong>Consulta Materia</strong></h1>   
               <br>
               <form  action="" method="post">
                 <center>
                   <input type="submit" value="Consultar" width="100px" >
                 </center>
               </form>
+              <br>
               <table align="center" class="table">
                 <thead class="table">
                   <tr>
                     <th scope="col">Clave</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Abreviatura</th>
                     <th scope="col">Semestre</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Editar</th>
@@ -164,13 +162,18 @@
                     <tr>
                         <td><?php echo utf8_encode($row['Clave'])?></td>
                         <td><?php echo utf8_encode($row['Nombre']);?></td>
-                        <td><?php echo utf8_encode($row['Nom_Abreviado'])?></td>
                         <td><?php echo utf8_encode($row['Semestre'])?></td>
                         <td><?php echo utf8_encode($row['Tipo'])?></td>
-                        
+                        <?php 
+                        if ($_SESSION ["usuario"]["Privilegios"] == '1') {
+  
+                        ?>
                         <td><a href="editar_Materia.php?id=<?php echo $row['Clave'] ?>" class="btn btn-primary">Editar</a></td>
                         <td><a href="../php_s/Eliminar/delete_materia.php?id=<?php echo utf8_encode($row['Clave'])?>"  class="btn btn-danger" >Eliminar</a></td>
-                    </tr>
+                        <?php
+                        }
+                          ?>
+                      </tr>
                     <?php
                     }
                     mysqli_close($con);

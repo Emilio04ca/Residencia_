@@ -32,7 +32,8 @@
         
       <br>
       <br>
-      <h1 class="text-center"><strong>Consulta Contraseña</strong></h1>
+      <br>
+      <h1 class="text-center"><strong>Consulta Calificaciones</strong></h1>
       <form action="Consultas_/Consulta_Cali.php" method="POST">
             <center>
               <input type="text" name="buscar" required style="margin: auto; text-align: center;" placeholder="Numero de control">
@@ -46,14 +47,13 @@
                   <table class="table">
                     <thead class="table">
                       <tr>
-                        <th scope="col">Materia</th>
+                      <th scope="col">Materia</th>
                         <th scope="col">Unidad 1</th>
-                        <th scope="col">Unidad 2</th>
-                        <th scope="col">Unidad 3</th>
                         <th scope="col">Asistencia U1</th>
+                        <th scope="col">Unidad 2</th>
                         <th scope="col">Asistencia U2</th>
+                        <th scope="col">Unidad 3</th>
                         <th scope="col">Asistencia U3</th>
-                        <th scope="col">Calificacion</th>
                       </tr>
                     </thead>
                   </table>                        

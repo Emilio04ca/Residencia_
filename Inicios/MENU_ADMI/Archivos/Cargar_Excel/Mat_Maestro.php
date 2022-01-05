@@ -31,7 +31,7 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>   
+        <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/CSS/sweetalert2.all.min.js"></script>   
         <script type="text/javascript">
         function ValidarDatos()
         {
@@ -55,11 +55,10 @@
 	</head>
 	<body>
   <?php include '../menu_AD/Consultas/Consultas_/menu.php';?>  
-    <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
     <br>
 	     <header>
           <div class="alert alert-info">
-            <h3>Insertar registros Maestro - Materia </h3>
+            <h3>Insertar o actulizar registros Maestro - Materia </h3>
           </div>
         </header>
 

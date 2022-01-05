@@ -33,6 +33,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Clave_Docente</th>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Apellido Paterno</th>
                         <th scope="col">Area</th>
                     </tr>
                     <tr>
@@ -49,7 +50,7 @@
                         $cantidad_registros = count($fileContacts);
                         $cantidad_regist_agregados =  ($cantidad_registros - 1);
                         if ($i!=0) {
-                            $contactList = explode(",", $contact);
+                            $contactList = explode("|", $contact);
                             $clave       		= !empty($contactList[0])  ? ($contactList[0]) : '';
                             $Nombre            	= !empty($contactList[1])  ? ($contactList[1]) : '';
                             $Apellido_P        	= !empty($contactList[2])  ? ($contactList[2]) : '';
@@ -60,7 +61,8 @@
                 ?>
                                             <td><?php echo utf8_encode($i)?></td>
                                             <td><?php echo utf8_encode($clave)?></td>
-                                            <td><?php echo utf8_encode($Nombre + $Apellido_P + $Apellido_M)?></td>
+                                            <td><?php echo utf8_encode($Nombre)?></td>
+                                            <td><?php echo utf8_encode($Apellido_P)?></td>
                                             <td><?php echo utf8_encode($Area)?></td>
                                         </tr>
                 <?php

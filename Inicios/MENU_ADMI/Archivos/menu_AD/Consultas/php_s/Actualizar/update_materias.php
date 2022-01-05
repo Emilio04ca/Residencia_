@@ -3,11 +3,10 @@
 
     $Clave = $_POST['Clave'];
     $Nombre = utf8_decode($_POST['Nombre']);
-    $Nom_Abreviado = utf8_decode($_POST['Nom_Abreviado']);
     $Semestre = $_POST['Semestre'];
     $Tipo = $_POST['Tipo'];
     
-    $sql= "UPDATE datos_materias SET Nombre='$Nombre', Nom_Abreviado='$Nom_Abreviado', Semestre='$Semestre', Tipo='$Tipo' WHERE Clave='$Clave'";
+    $sql= "UPDATE datos_materias SET Nombre='$Nombre', Semestre='$Semestre', Tipo='$Tipo' WHERE Clave='$Clave'";
     $query=mysqli_query($con,$sql);
  
  if($query){

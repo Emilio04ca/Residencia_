@@ -34,17 +34,16 @@ else
           Swal.fire({
                     title: 'Deseas Actulizar?',
                     text: "Si es asi, prosigue con la operacion!",
-                    showDenyButton: true,
-                    confirmButtonText: 'Save',
-                    denyButtonText: `Don't save`,
-                  }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, Claro!'
+                    }).then((result) => {
                     if (result.isConfirmed) {
-                      formulario.submit();
-                    } else if (result.isDenied) {
-                      return false; 
+                        formulario.submit();
                     }
-                  })
+                    })
         }
       </script>
   </head>
@@ -54,21 +53,21 @@ else
 <br>
       <center><h1><strong>Actualizar Materia-Maestro</strong></h1></center>
       <form name="actaulizar" action="../php_s/Actualizar/update_ma_do.php" method="POST">
-      
-      <input name="Clave_Materia" type="hidden" value="<?php echo $row['Clave_Materia'];?>">
-      <input name="Especialidad" type="hidden" value="<?php echo utf8_encode($row['Especialidad']);?>">
+      <input name="id" type="hidden" value="<?php echo utf8_encode($ID)?>">
+      <input name="Clave_Materia" type="hidden" value="<?php echo utf8_encode($Clave_Materia)?>">
+      <input name="Especialidad" type="hidden" value="<?php echo utf8_encode($Especialidad)?>">
       <br>
         <table align="center" width="300px">
               <tbody>
                 <center>
                 <tr>
                   <th>Clave_Materia</th>
-                  <td id="non"><input type="hidden" value=""> <?php echo $row['Clave_Materia'];?></td>
+                  <td id="non"><input type="hidden" value=""> <?php echo $Clave_Materia?></td>
                 </tr>
                 <tr>
                 <th>Grupo </th>
                 <td id="non"> 
-                <select name="Grupo" class="form-control" >
+                <select name="Grupo" class="formontrol" >
                     <option value="">Selecciona</option>
                     <option value="1A">1A</option>
                     <option value="1B">1B</option>
@@ -92,8 +91,8 @@ else
               <tr>
               <th>Semestre</th>
               <td id="non">
-                      <select name="Semestre" class= "form-control">
-                        <option value=""><?php echo $row['Semestre'];?></option>
+                      <select name="Semestre" class= "forcontrol">
+                        <option value=""><?php echo $Semestre?></option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -106,19 +105,19 @@ else
               <tr>
                 <th>Especialidad</th>
                 <td id="non"> 
-                  <input type="hidden"> <?php echo utf8_encode($row['Especialidad']);?>
-                </td>
+                  <input type="hidden"> <?php echo utf8_encode($Especialidad)?>
+             </td>
                   
                 <!--<td id="non"><input name="Carrera" type="text"  value=""></td>-->
               </tr>
                 <tr>
                   <th>Clave_Maestro</th>
-                  <td id="non"><input name="Clave_Maestro" type="text" value="<?php echo $row['Clave_Maestro'];?>"></td>
-                </tr>
+                  <td id="non"><input name="Clave_Maestro" type="text" value="<?php echo $Clave_Maestro?>"></td>
+             </tr>
                 <tr>
                   <th>Periodo</th>
-                  <td id="non"><input name="Periodo" type="text" value="<?php echo $row['Periodo'];?>"></td>
-                </tr>
+                  <td id="non"><input name="Periodo" type="text" value="<?php echo $Periodo?>"></td>
+             </tr>
               </tbody>
             </table>
               <br>  

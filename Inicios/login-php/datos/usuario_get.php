@@ -79,7 +79,7 @@ class UsuarioDao extends Conexion
      */
     public static function getClave_RFC($usuario)
     {
-        $query = "SELECT Clave_RFC,Nombre,Ape_paterno,Ape_Materno, Usuario, Privilegios FROM login_admi WHERE Clave_RFC = :Clave_RFC AND Contrasena = :Contrasena";
+        $query = "SELECT Clave_RFC,Nombre,Ape_paterno,Ape_Materno, Privilegios FROM login_admi WHERE Clave_RFC = :Clave_RFC AND Contrasena = :Contrasena";
 
         self::getConexion();
 
@@ -97,7 +97,6 @@ class UsuarioDao extends Conexion
         $usuario->setNombre($filas["Nombre"]);
         $usuario->setApe_Paterno($filas["Ape_paterno"]);
         $usuario->setApe_Materno($filas["Ape_Materno"]);
-        $usuario->setUsuario($filas["Usuario"]);
         $usuario->setPrivilegios($filas["Privilegios"]);
 
         return $usuario;

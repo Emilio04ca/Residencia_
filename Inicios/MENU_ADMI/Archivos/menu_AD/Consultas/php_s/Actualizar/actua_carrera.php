@@ -1,10 +1,9 @@
 <?php
     include('conexion.php');
 
-    $clave_carrera = $_POST['clave_carrera'];
+    $clave_carrera = $_POST['id'];
     $Nombre = utf8_decode($_POST['Nombre']);
-    $clave_division = $_POST['clave_division']; 
-    $sql= "UPDATE carrera SET Nombre='$Nombre', clave_division='$clave_division' WHERE clave_carrera='$clave_carrera'";
+    $sql= "UPDATE datos_carrera SET Nombre='$Nombre' WHERE id='$clave_carrera'";
     $query=mysqli_query($con,$sql);
  
  if($query){

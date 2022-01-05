@@ -31,10 +31,12 @@
                     <tbody>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Num_Ctrl</th>
                         <th scope="col">Materia</th>
                         <th scope="col">Grupo</th>
+                        <th scope="col">Especilidad</th>
                         <th scope="col">Semestre</th>
+                        <th scope="col">Asitencias_totales</th>
+                        <th scope="col">Unidad</th>
                         <th scope="col">Periodo</th>
                     </tr>
                     <tr>
@@ -52,21 +54,25 @@
                         $cantidad_regist_agregados =  ($cantidad_registros - 1);
                         if ($i!=0) {
                             $contactList = explode("|", $contact);
-                            $Num_Ctrl             	= !empty($contactList[0])  ? ($contactList[0]) : '';
-                            $Materia             	= !empty($contactList[1])  ? ($contactList[1]) : '';
-                            $Grupo             	    = !empty($contactList[2])  ? ($contactList[2]) : '';
-                            $Semestre       		= !empty($contactList[3])  ? ($contactList[3]) : '';
-                            $Periodos             	= !empty($contactList[4])  ? ($contactList[4]) : '';
-                            $Periodo =trim($Periodos);
+                            $Materia             	    = !empty($contactList[0])  ? ($contactList[0]) : '';
+                            $Grupo             	        = !empty($contactList[1])  ? ($contactList[1]) : '';
+                            $Especilidad             	= !empty($contactList[2])  ? ($contactList[2]) : '';
+                            $Semestre       		    = !empty($contactList[3])  ? ($contactList[3]) : '';
+                            $Asitencias_totales         = !empty($contactList[4])  ? ($contactList[4]) : '';
+                            $Unidad                     = !empty($contactList[5])  ? ($contactList[5]) : '';
+                            $data_periodo               = !empty($contactList[6])  ? ($contactList[6]) : '';
+                            $Periodo                    = trim($data_periodo);
                             
-                                if($Num_Ctrl != "")
+                                if($Materia != "")
                                 {
                 ?>
                                             <td><?php echo utf8_encode($i)?></td>
-                                            <td><?php echo utf8_encode($Num_Ctrl)?></td>
                                             <td><?php echo utf8_encode($Materia)?></td>
                                             <td><?php echo utf8_encode($Grupo)?></td>
+                                            <td><?php echo utf8_encode($Especilidad)?></td>
                                             <td><?php echo utf8_encode($Semestre)?></td>
+                                            <td><?php echo utf8_encode($Asitencias_totales)?></td>
+                                            <td><?php echo utf8_encode($Unidad)?></td>
                                             <td><?php echo utf8_encode($Periodo)?></td>
                                         </tr>
                 <?php

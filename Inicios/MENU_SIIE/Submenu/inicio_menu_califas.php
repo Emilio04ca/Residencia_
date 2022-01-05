@@ -54,7 +54,7 @@
         <i>No. de Control: <?=$_SESSION ["usuario"]['Num_Ctrl']?></i><br>
         <i>Nombre: <?=$_SESSION ["usuario"]['Nombre']?> <?=$_SESSION ["usuario"]['Ape_paterno']?> <?=$_SESSION ["usuario"]['Ape_Materno']?></i>
       </h4>
-    <table width="700px"></center>
+    <table width="800px"></center>
       <tbody>
         <tr>
           <th rowspan="2">Materia</th>
@@ -63,14 +63,14 @@
         </tr>
         <tr>
           <th>1</th>
-          <th>AU</th>
+          <th width="70px">AU</th>
           <th>2</th>
-          <th>AU</th>
+          <th width="70px">AU</th>
         
           <th>3</th>
-          <th>AU</th>
+          <th width="70px">AU</th>
           <th>4</th>
-          <th>AU</th>
+          <th width="70px">AU</th>
         </tr>
         <?php
           include ("../Consultas/consulta_califas.php");
@@ -85,36 +85,58 @@
                 if($filas == 0)
                   {
                     ?>
-                    <center><h5>No tienes materias Capturadas</h5></center>
+                    <center><h5>No tienes Calificaciones Capturadas</h5></center>
                     <?php
                   }
                   else
-                    {
+                    { 
                       while($datos= $Consulta->fetch_assoc()) 
                         {
                           $nombre=  $datos['Clave_Materia']; 
                           $Grupo=  $datos['Grupo']; 
-                          $Docente ="SELECT Clave_Maestro FROM materia_relacion WHERE Clave_Materia='$nombre' and Grupo='$Grupo' and Periodo='$Periodo'";
+                          $Docente ="SELECT Clave_Docente FROM materia_relacion WHERE Clave_Materia='$nombre' and Grupo='$Grupo' and Especialidad='$Especilidad' and Periodo='$Periodo'";
                           $Consulta2=mysqli_query($con,$Docente);
                           $row = $Consulta2->fetch_assoc();
-                            if(isset($row['Clave_Maestro']))
+                            if(isset($row['Clave_Docente']))
                               {
-                                $dato = $row['Clave_Maestro'];
+                                $dato = $row['Clave_Docente'];
                               }
                                 else{
-                                $dato ='No tienes maestro asignado';
+                                $Docente2="SELECT Clave_Docente from materia_relacion where Clave_Materia='$nombre' and Grupo='$Grupo' and Periodo='$Periodo'";
+                                $Consulta2=mysqli_query($con,$Docente2);
+                                $row = $Consulta2->fetch_assoc();
+                                  if(isset($row['Clave_Docente']))
+                                    {
+                                      $dato = $row['Clave_Docente'];
+                                    }
+                                    else{
+                                      $dato ='No tienes maestro asignado';
+                                    }
                                 }
                               ?>  
                                   <tr><td align="left" ><?php echo utf8_encode($datos['Clave_Materia'])?> <br> <b><?php echo utf8_encode($dato)?></b></td> 
                                   <td><center><?php echo utf8_encode($datos['Grupo'])?></center>  </td>   
                               <?php
-                                  $Califas = "SELECT Calificacion, Asistencia FROM `datos_calificaciones` WHERE Clave_Materia='$nombre' and Num_Ctrl='$Num_Ctrl' ";
+                                  $Califas = "SELECT Calificacion, Asistencia FROM `datos_calificaciones` WHERE Clave_Materia='$nombre' and Num_Ctrl='$Num_Ctrl' and Periodo='$Periodo'";
                                   $Consultas=mysqli_query($con,$Califas);
+                                  $uni =1;
                                     while($datoss= $Consultas->fetch_assoc())
                                       {
+                                        $Asistencia="SELECT Asitencias_totales from asistencias_materias where Materia='$nombre' and Grupo='$Grupo' and Periodo='$Periodo' and Unidad='$uni' ";
+                                        $Consulta3=mysqli_query($con,$Asistencia);
+                                        $flecha = $Consulta3->fetch_assoc();
+                                          if(isset($flecha['Asitencias_totales']))
+                                            {
+                                              $asis = $flecha['Asitencias_totales'];
+                                              $uni++;
+                                            }
+                                            else{
+                                              $asis ='SAC';
+                                              $uni++;
+                                            }
                                         ?>
                                         <td><center><?php echo utf8_encode($datoss['Calificacion'])?></center> </td>
-                                        <td><center><?php echo utf8_encode($datoss['Asistencia'])?></center>  </td>
+                                        <td><center><?php echo utf8_encode($datoss['Asistencia'])?>/ <?php echo utf8_encode($asis)?></center>  </td>
                                         <?php
                                       }
 
@@ -125,7 +147,7 @@
                     }
                     mysqli_close($con);
                     $filas = mysqli_num_rows($Consulta);
-                    if($TOTAL>=3)
+                    if($TOTAL>=1)
                     {
                     ?>
                     </tr>

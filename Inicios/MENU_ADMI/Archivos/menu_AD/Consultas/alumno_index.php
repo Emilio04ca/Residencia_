@@ -3,7 +3,7 @@
   session_start();
   // Si el usuario no se ha logueado se le regresa al inicio.
   if (($_SESSION ["usuario"]['Clave_RFC'] != null)) {
-    
+    $valor = 1;
     /*if ($_SESSION ["usuario"]["Privilegios"] == '') {*/
     // code...
 ?>
@@ -16,7 +16,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/CSS/sweetalert2.all.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/Css-Scripts/bootstrap.min.css" >
@@ -24,7 +24,7 @@
         function valida_datos()
           {
             formulario = document.priv;
-            if (formulario.Privilegio.value != 1)
+           if (<?php echo $valor?> != <?php echo $_SESSION ["usuario"]['Privilegios']?>)
             {
               formulario.Num_Ctrl.value="";
               formulario.Nombre.value="";
@@ -42,17 +42,17 @@
                     position: 'top',
                     allowOutsideClick: false,
                     allowEscapeKey: false,
-                    allowEnterKey:false,
+                    allowEnterKey:false, 
                     stopKeydownPropagation:false,
-                    text: 'No tienes la autorizacion para agregar Materias'                              
+                    text: 'No tienes la autorizacion para agregar nuevo alumno'                              
                 })
                 return false;     
             }
             else
               {
-                if (formulario.Num_Ctrl.value == "null" || formulario.Nombre.value == "null" || formulario.Apellido_p.value == "null" 
-                        || formulario.Apellido_m.value == "null" || formulario.Semestre.value == "null" || formulario.Especialidad.value == "null"
-                        || formulario.Grupo.value == "null" || formulario.Turno.value == "null" || formulario.Periodo.value == "null")  
+                if (formulario.Num_Ctrl.value == "" || formulario.Nombre.value == "" || formulario.Apellido_p.value == "" 
+                        || formulario.Apellido_m.value == "" || formulario.Semestre.value == "" || formulario.Especialidad.value == ""
+                        || formulario.Grupo.value == "" || formulario.Turno.value == "" || formulario.Periodo.value == "")  
                     {      
                       Swal.fire({
                                   icon: 'error',
@@ -102,7 +102,6 @@
           <div class="col-xs-12 col-lg-3"> 
           <form name="priv" action="php_s/Insertar/insertar_alumno.php" method="POST">
               <h4 class="text-center"><strong>Agregar Alumno</strong></h4>
-              <input name="Privilegio" type="hidden" value="<?php echo $_SESSION ["usuario"]['Privilegios']?>">
                 <input type="text" required placeholder="No. de Control" name="Num_Ctrl" class="form-control">
                   <br>
                 <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
@@ -126,11 +125,17 @@
                 <p>Especialidad:
                   <select name="Especialidad" class="form-control" >
                   <option value="">Selecciona</option>
-                    <option utf8_decode value="COMPONENTE BASICO Y PROPEDEUTICO">COM. BAS Y PROPEDEUTICO</option>
-                    <option utf8_decode value="CONTABILIDAD">CONTABILIDAD</option>
-                    <option utf8_decode value="OFIMÁTICA">OFIMÁTICA</option>
-                    <option utf8_decode value="MANTENIMIENTO AUTOMOTRIZ">MANTENIMIENTO AUTOMOTRIZ</option>
-                    <option value="PROGRAMACIÓN">PROGRAMACIÓN</option>
+                    <?php
+                    include 'php_s/Consultar/conexion.php';
+                    $sql= "SELECT Nombre FROM datos_carrera";
+                    $query=mysqli_query($con,$sql);
+                    while($row=mysqli_fetch_array($query)) {
+                    ?>
+                    <option value="<?php echo utf8_encode($row['Nombre'])?>"><?php echo utf8_encode($row['Nombre'])?></option>
+                    <?php
+                    }
+                    mysqli_close($con);
+                    ?>
                   </select>
                 </p>
                 <p>Grupo:
@@ -194,17 +199,16 @@
               <table class="table">
                   <thead class="table">
                     <tr>
-                      <th scope="col">Num_Ctrl</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Apellido Paterno</th>
-                      <th scope="col">Apellido Materno</th>
-                      <th scope="col">Semestre</th>
-                      <th scope="col">Carrera</th>
-                      <th scope="col">Grupo</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Grupo</th>
-                      <th scope="col">Editar</th>
-                      <th scope="col">Eliminar</th>
+                    <th scope="col">Num_Ctrl</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido Paterno</th>
+                    <th scope="col">Apellido Materno</th>
+                    <th scope="col">Especialidad</th>
+                    <th scope="col">Semestre</th>
+                    <th scope="col">Grupo</th>
+                    <th scope="col">Turno</th>
+                    <th scope="col">Periodo</th>
+                    <th scope="col">Vigente</th>
                     </tr>
                   </thead>
               </table>

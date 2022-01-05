@@ -14,7 +14,7 @@ foreach ($fileContacts as $contact)
 	$cantidad_registros = count($fileContacts);
     $cantidad_regist_agregados =  ($cantidad_registros - 1);
     if ($i!=0) {
-		$contactList = explode(",", $contact);
+		$contactList = explode("|", $contact);
 		$Clave_Materia       		= !empty($contactList[0])  ? ($contactList[0]) : '';
 		$Grupo                      = !empty($contactList[1])  ? ($contactList[1]) : '';
 		$Semestre             	    = !empty($contactList[2])  ? ($contactList[2]) : '';
@@ -23,25 +23,33 @@ foreach ($fileContacts as $contact)
         $Clave_Maestro              = !empty($contactList[5])  ? ($contactList[5]) : '';
         $Periodos                   = !empty($contactList[6])  ? ($contactList[6]) : '';
         $Periodo = trim($Periodos);
-        
-    $insertar = "INSERT INTO materia_relacion( 
-            Clave_Materia,
-            Grupo,
-            Semestre,
-            Especialidad,
-            Turno,
-            Clave_Maestro,
-            Periodo
-        ) VALUES(
-            '$Clave_Materia',
-            '$Grupo',
-            '$Semestre',
-            '$Especialidad',
-            '$Turno',
-            '$Clave_Maestro',
-            '$Periodo'
-        )";
-        mysqli_query($con, $insertar);
+        if($Clave_Maestro !="")
+        {
+            $insertar = "INSERT INTO materia_relacion( 
+                    Clave_Materia,
+                    Grupo,
+                    Semestre,
+                    Especialidad,
+                    Turno,
+                    Clave_Maestro,
+                    Periodo
+                ) VALUES(
+                    '$Clave_Materia',
+                    '$Grupo',
+                    '$Semestre',
+                    '$Especialidad',
+                    '$Turno',
+                    '$Clave_Docente',
+                    '$Periodo'
+                )";
+                mysqli_query($con, $insertar);
+        }
+        else
+            {
+                $i = 0;
+                mysqli_close($con);
+                break;
+            }
     }
 	$i++;
 	

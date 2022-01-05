@@ -4,6 +4,7 @@
   if (($_SESSION ["usuario"]['Clave_RFC'] == null)) {
     header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/login-php/vista/Principal.php');
   }
+  $valor = 1;
 ?>
 <!doctype html>
 <html lang="en">
@@ -34,7 +35,7 @@
           function ValidarDatos()
           {
             formulario = document.priv;
-              if (formulario.Privilegio.value != 1)
+              if (<?php echo $valor?> != <?php echo $_SESSION ["usuario"]['Privilegios']?>)
               {  
                 Swal.fire({
                       icon: 'error',
@@ -45,7 +46,7 @@
                       allowEscapeKey: false,
                       allowEnterKey:false,
                       stopKeydownPropagation:false,
-                      text: 'No tienes la autorizacion para agregar Materias'                              
+                      text: 'No tienes la autorizacion para agregar nuevo alumno'                              
                   })
                   formulario.Num_Ctrl.value="";
                   formulario.Nombre.value="";
@@ -110,7 +111,6 @@
           <div class="col-xs-12 col-lg-3"> 
             <form name="priv" action="../php_s/Insertar/insertar_alumno.php" method="POST">
               <h4 class="text-center"><strong>Agregar Alumno</strong></h4>
-                <input name="Privilegio" type="hidden" value="<?php echo $_SESSION ["usuario"]['Privilegios']?>">
                 <input type="text" required placeholder="No. de Control" name="Num_Ctrl" class="form-control">
                   <br>
                 <input type="text" required placeholder="Nombre" name="Nombre" class="form-control">
@@ -133,12 +133,18 @@
                 </p>
                 <p>Especialidad:
                   <select name="Especialidad" class="form-control" >
-                  <option value="">Selecciona</option>
-                    <option utf8_decode value="COMPONENTE BASICO Y PROPEDEUTICO">COM. BAS Y PROPEDEUTICO</option>
-                    <option utf8_decode value="CONTABILIDAD">CONTABILIDAD</option>
-                    <option utf8_decode value="OFIMÁTICA">OFIMÁTICA</option>
-                    <option utf8_decode value="MANTENIMIENTO AUTOMOTRIZ">MANTENIMIENTO AUTOMOTRIZ</option>
-                    <option value="PROGRAMACIÓN">PROGRAMACIÓN</option>
+                        <option value="">Selecciona</option>
+                        <?php
+                        include '../php_s/Consultar/conexion.php';
+                        $sql= "SELECT Nombre FROM datos_carrera";
+                        $query=mysqli_query($con,$sql);
+                        while($row=mysqli_fetch_array($query)) {
+                        ?>
+                        <option value="<?php echo utf8_encode($row['Nombre'])?>"><?php echo utf8_encode($row['Nombre'])?></option>
+                        <?php
+                        }
+                        mysqli_close($con);
+                        ?>
                   </select>
                 </p>
                 <p>Grupo:

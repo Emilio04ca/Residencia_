@@ -3,9 +3,6 @@
   session_start();
   // Si el usuario no se ha logueado se le regresa al inicio.
   if (($_SESSION ["usuario"]['Num_Ctrl'] != null)) {
-    
-    /*if ($_SESSION ["usuario"]["Privilegios"] == '1') {*/
-    // code...
 ?>
 <!doctype html>
 <html lang="en">
@@ -29,7 +26,6 @@
   <body>
   <div class="loader"></div>
         <?php include 'menu.php';?>
-        <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/script.js"></script>
         <br>   
         <br>
      
@@ -41,7 +37,6 @@
               <center>
                 <p>
                   Numero De control
-                
                 <input type="text" name="Num_Ctrl" value="<?=$_SESSION ["usuario"]['Num_Ctrl']?>" class="form-control" readonly="true">
                 </p>
                 </center>
@@ -64,19 +59,11 @@
                     </p>
                     
                 </center>
-             
               <input type="submit" value="Agregar" name="mostrar" class="btn btn-primary btn-block">
             </form>
           </div>
           <div class="col-xs-12 col-lg-8 p-3">
           <h3 class="text-center"><strong>Resultados de Calificaciones</strong></h3>
-            <!--<form action="Consultas_/consulta_Alumno.php" method="post">
-              <center>
-                <input type="text" required name="buscar" style="margin: auto; text-align: center;" placeholder="Numero de control">
-                <input type="submit" value="Buscar" width="100px" >
-              </center>
-            </form>-->
-
             <?php
             if(isset($_REQUEST['mostrar']))
             {
@@ -121,14 +108,83 @@
               <table class="table" width="800">
                 <tbody><tr align="center">
                   <th class="small_negrita_center" > Materia </th> 
+                  <th class="small_negrita_center" width="15"> Grupo </th>
                   <th class="small_negrita_center" width="170"> Calificación </th>
                   <th class="small_negrita_center" width="170"> Tipo<br>Evaluación </th>
-                  <th class="small_negrita_center" width="170"> Observaciones </th>
+                  <th class="small_negrita_center" width="170"> Observacion </th>
                 </tr >
-                
-            
+                <?php
+
+                $Materia = "SELECT DISTINCT Clave_Materia, Grupo from datos_calificaciones where Num_Ctrl='$Num_Ctrl' and Periodo='$Periodo'";
+                $datos_materia=mysqli_query($con,$Materia);
+                $filas = mysqli_num_rows($datos_materia);
+                if($filas == 0)
+                  {
+                    ?>
+                    <center><h5>No tienes materias Capturadas</h5></center>
+                    <?php
+                  }
+                  else
+                    {
+                      while($datos= $datos_materia->fetch_assoc())
+                      {
+                        ?>
+                                  <tr><td align="left" ><?php echo utf8_encode($datos['Clave_Materia'])?></td> 
+                                  <td><center><?php echo utf8_encode($datos['Grupo'])?></center>  </td>
+                        <?php
+                        $Materias = $datos['Clave_Materia'];
+                         $Califas = "SELECT Calificacion FROM datos_calificaciones WHERE Clave_Materia='$Materias' and Num_Ctrl='$Num_Ctrl' and Periodo='$Periodo' ";
+                         $Consultas=mysqli_query($con,$Califas);
+                         
+                         $TOTAL = mysqli_num_rows($Consultas);
+                         if($TOTAL >=3)
+                         {  
+                          $Cali_f = "SELECT ROUND(AVG(Calificacion) ,0) as final FROM datos_calificaciones WHERE Clave_Materia='$Materias' and Num_Ctrl='$Num_Ctrl' and Periodo='$Periodo' ";
+                          $cal_final=mysqli_query($con,$Cali_f);
+                          $flechas = $cal_final->fetch_assoc();
+                          
+                          if(isset($flechas['final']))
+                          {
+                            $fina=$flechas['final'];
+                            if($fina >=6)
+                            {$fin = $flechas['final'];}
+                            else{$fin= 'N/A';}
+                          }
+                          else{
+                              $fin ='no cali';
+                          }
+                          $Cal = "SELECT Acreditacion FROM datos_calificaciones WHERE Clave_Materia='$Materias' and Num_Ctrl='$Num_Ctrl' and Periodo='$Periodo' ORDER BY Acreditacion DESC;";
+                          $Consul=mysqli_query($con,$Cal);
+                          $evaluacion=$Consul->fetch_array(MYSQLI_NUM);
+                            if(isset($evaluacion[0]))
+                            {
+                              $eva= $evaluacion[0];
+                            }
+                            else{$eva ='no cali';}
+                          ?>
+
+                          <td><center><?php echo utf8_encode($fin)?></center>  </td>
+                          <td><center><?php echo utf8_encode($eva)?></center>  </td>
+                          <td><center></center>  </td>
+
+                          <?php
+
+                         }
+                         else
+                         {
+                           ?>
+                          <td><center></center>  </td>
+                          <td><center></center>  </td>
+                          <td><center>Sin capturar</center>  </td>
+                          <?php
+                         }
+                      
+                      }
+                ?>
+                </tr>
               </tbody></table>
               <?php
+                    }
                 }
               ?>
           </div>
@@ -139,13 +195,6 @@
   </body>
 </html>
 <?php
-  /*}
-      else
-        if ($_SESSION ["usuario"]['Privilegios'] >= '2') 
-          {
-            header('Location: http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/MENU_ADMI/admi_menu.php');
-          }
-*/
   }
 
   else

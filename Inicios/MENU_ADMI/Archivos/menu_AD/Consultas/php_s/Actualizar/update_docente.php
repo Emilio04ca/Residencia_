@@ -1,9 +1,9 @@
 <?php
     include('conexion.php');
 
-    $Clave_Docente = $_POST['Clave_Docente'];
-    $Nombre = $_POST['Nombre'];
-    $Ape_p = $_POST['Ape_paterno'];
+    $Clave_Docente = utf8_decode($_POST['Clave_Docente']);
+    $Nombre = utf8_decode($_POST['Nombre']);
+    $Ape_p = utf8_decode($_POST['Ape_paterno']);
     $Ape_M = $_POST['Ape_Materno'];
     $Area = $_POST['Area'];
     

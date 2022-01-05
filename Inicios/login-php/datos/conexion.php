@@ -12,7 +12,7 @@ class Conexion
     {
         try {
 
-            $cn = new PDO("mysql:host=localhost;dbname=cbtis_bd", "root", "");
+            $cn = new PDO("mysql:host=localhost;dbname=cbtis-bd", "root", "");
 
             return $cn;
 

@@ -18,7 +18,8 @@ if (($_SESSION ["usuario"]['Num_Ctrl'] != '')) {
     <link rel="stylesheet" href="style.css">
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script src="http://localhost:8080/SIIE(CBTIS)%20-%20V1.2/Inicios/CSS/sweetalert2.all.min.js"></script>
     <!-- Boxicons CDN Link -->
    <script type="text/javascript">
       $(window).load(function() {
